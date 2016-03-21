@@ -153,8 +153,9 @@ public class Login extends HttpServlet {
             String con = request.getParameter("contrasena");
             HttpSession session = request.getSession();
             String email = (String) session.getAttribute("email");
+
             
-            //conflicto
+            
         }
        
     }
