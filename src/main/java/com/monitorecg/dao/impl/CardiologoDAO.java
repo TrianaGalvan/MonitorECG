@@ -20,5 +20,5 @@ public interface CardiologoDAO {
     public Cardiologo obtenerCardiologo(Cardiologo c);
     public Cardiologo loginCardiologo(Cardiologo c);
     public Cardiologo buscarCardiologoPorCorreo(Cardiologo c); 
-    public void cambiarContrasena(Cardiologo c);
+    public boolean cambiarContrasena(Cardiologo c);
 }

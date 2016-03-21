@@ -5,6 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    HttpSession sesion = request.getSession(); 
+    String nombre = sesion.getAttribute("user") == null ? "": (String)sesion.getAttribute("user");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +19,7 @@
         <div class="container" >
             <div class="row" style="margin-top:200px;">
                 <div class="col-md-12 col-md-offset-4">
-                    <h1>Bienvenid@ Triana Galván</h1>
+                    <h1>Bienvenid@ <%=nombre%></h1>
                     <img src="../img/icon--medico.png">
                 </div>
             </div>

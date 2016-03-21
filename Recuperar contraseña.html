@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://localhost:8080/ultimo/Login?accion=cambiarContrasena -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+        <meta charset="UTF-8">
+        <title>Recuperar contraseña</title>
+        <link rel="stylesheet" href="./Recuperar contraseña_files/font-awesome.min.css">
+        <link rel="stylesheet" href="./Recuperar contraseña_files/bootstrap.min.css">
+        <link rel="stylesheet" href="./Recuperar contraseña_files/perfil.css">
+        <link rel="stylesheet" href="./Recuperar contraseña_files/botones.css">
+        <link href="./Recuperar contraseña_files/css" rel="stylesheet" type="text/css">
+        <link href="./Recuperar contraseña_files/css(1)" rel="stylesheet" type="text/css">
+
+    </head>
+
+<body style="background: #DEFDFD;">
+    <div class="container-fluid">
+        <div class="tittle-registrarse">
+            <img src="./Recuperar contraseña_files/llave.png">
+            <h1>Recuperar contraseña</h1>
+            <hr>
+        </div>   
+        
+            <div class="alert alert-success fade in col-md-4 col-md-offset-4" style="margin-top: -27px;margin-bottom: 30px;">
+                <a href="http://localhost:8080/ultimo/Login?accion=cambiarContrasena#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                <strong>Éxito!</strong> Tu contraseña fue cambiada 
+            </div>
+        
+        <div class="recuperar-contrasena"> 
+            <form class="form-horizontal" action="http://localhost:8080/ultimo/Login?accion=cambiarContrasena" method="post" novalidate="">
+                <div class="form-group">
+                    <div class="control-group">
+                        <div class="row">
+                            <p style="font-size: 30px; margin-bottom: 20px; margin-top: 40px; margin-left:-100px;">Introduce tu nueva contraseña</p>
+                        </div>
+                        <div class="row margin-inputs">
+                            <div class="col-md-3">
+                                <label>Contraseña:</label>        
+                            </div>
+                            <div class="col-md-4">
+                                <input type="password" class="form-control tamano-letra" name="contrasena" required="" data-validation-required-message="* Campo requerido">
+                                <div class="warnings">
+                                    <p class="help-block style-warnings"></p> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin-inputs">
+                            <div class="col-md-3 ">
+                                <label>Confirmar contraseña:</label>        
+                            </div>
+                            <div class="col-md-4 control-group">
+                                <input type="password" class="form-control tamano-letra" name="contrasena-repetida" data-validation-match-match="contrasena" data-validation-match-message="No coinciden las contraseñas">
+                                <div class="warnings">
+                                    <p class="help-block style-warnings"></p> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--form group-->
+                <div class="form-actions">
+                    <div class="col-md-2 col-md-offset-5">
+                        <button type="submit" class="btn btn-default color-boton pull-right">Guardar</button>    
+                    </div>
+                </div>
+            </form>
+        </div><!-- content -->
+    </div>
+
+<script src="./Recuperar contraseña_files/jquery.min.js"></script> <!-- or use local jquery -->
+<script src="./Recuperar contraseña_files/jqBootstrapValidation.js"></script>
+<script src="./Recuperar contraseña_files/bootstrap.js"></script>
+<script src="./Recuperar contraseña_files/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
+    });
+</script>
+
+</body></html>

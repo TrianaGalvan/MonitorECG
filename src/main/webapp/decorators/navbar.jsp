@@ -7,6 +7,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <!DOCTYPE html>
+<%
+    HttpSession sesion = request.getSession(); 
+    String nombre = sesion.getAttribute("user") == null ? "": (String)sesion.getAttribute("user");
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -53,7 +57,7 @@
                             <li><a class="menu active" href="../perfil/VerElectrocardiogramas.jsp" >Electrocardiogramas</a></li>
                             <li><a class="menu" href="../perfil/Pacientes.jsp">Pacientes</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-md"></i> Triana Galvan<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-md"></i> <%=nombre%><b class="caret"></b></a>
                                     <ul class="dropdown-menu" >
                                         <li>
                                             <a href="VerPerfil.jsp"><i class="fa fa-user-md "></i>  Perfil</a>

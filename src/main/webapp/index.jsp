@@ -1,9 +1,12 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String error = request.getAttribute("error") == null ? "" : (String) request.getAttribute("error");
+    HttpSession sesion = request.getSession(); 
+    String error = sesion.getAttribute("error") == null ? "" : (String) sesion.getAttribute("error");
     String msj = request.getAttribute("error-registrarse") == null ? "" : (String) request.getAttribute("error-registrarse");
-    String tipoEnvio = request.getAttribute("tipo-envio") == null ? "" : (String) request.getAttribute("tipo-envio");
+    String tipoEnvio = sesion.getAttribute("tipo-envio") == null ? "" : (String) sesion.getAttribute("tipo-envio");
+    String msjCambiarPass = sesion.getAttribute("msj-cambiar-pass") == null ? "" : (String) sesion.getAttribute("msj-cambiar-pass");
+    String tipomsj = sesion.getAttribute("tipoMsj") == null ? "" : (String) sesion.getAttribute("tipoMsj");
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -66,35 +69,56 @@
         </div>
         <!-- /.container-fluid -->
         <%if (!error.isEmpty()) {%>
-        <div class="alert alert-danger col-lg-6 ">
+        <div class="alert alert-danger fade in col-md-4 col-md-offset-4" style="margin-top: 20px;" >
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <%=error%>
         </div>
         <%
             error = "";
+            sesion.removeAttribute("error");
         } else if (!msj.contains("error") && !msj.isEmpty()) {%>
         <div class="alert alert-success fade in col-md-4 col-md-offset-4" style="margin-top: 20px;" >
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>Éxito!</strong> <%=msj%> 
         </div>
         <% msj = "";
-        }else if(!tipoEnvio.isEmpty()){
-            String typeAlert = ""; 
-            String textStrong = ""; 
-            String msjEnvio = request.getAttribute("msj-envio") == null ? "" : (String) request.getAttribute("msj-envio");
-            if(tipoEnvio.equals("Exito")){
-               typeAlert = "alert-success"; 
-               textStrong = "Éxito!";
-            }else if(tipoEnvio.equals("Error") || tipoEnvio.equals("No Existe")){
-                typeAlert = "alert-danger"; 
+        } else if (!tipoEnvio.isEmpty()) {
+            String typeAlert = "";
+            String textStrong = "";
+            String msjEnvio = sesion.getAttribute("msj-envio") == null ? "" : (String) sesion.getAttribute("msj-envio");
+            if (tipoEnvio.equals("Exito")) {
+                typeAlert = "alert-success";
+                textStrong = "Éxito!";
+            } else if (tipoEnvio.equals("Error") || tipoEnvio.equals("No Existe")) {
+                typeAlert = "alert-danger";
                 textStrong = "Error!";
             }%>
-          <div class="alert <%=typeAlert%> fade in col-md-4 col-md-offset-4" style="margin-top: 20px;" >
+        <div class="alert <%=typeAlert%> fade in col-md-4 col-md-offset-4" style="margin-top: 20px;" >
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong><%=textStrong%></strong> <%=msjEnvio%>
-          </div>  
+        </div>  
         <%
-            msjEnvio = ""; }
+            msjEnvio = "";
+            sesion.removeAttribute("tipo-envio");
+            sesion.removeAttribute("msj-envio");
+        } else if (!tipomsj.isEmpty()) {
+            String typeAlert = "";
+            String textStrong = "";
+            if (tipomsj.equals("OK")) {
+                typeAlert = "alert-success";
+                textStrong = "Éxito!";
+            } else if (tipomsj.equals("Error")) {
+                typeAlert = "alert-danger";
+                textStrong = "Error!";
+            }%>
+        <div class="alert <%=typeAlert%> fade in col-md-4 col-md-offset-4" style="margin-top: 20px;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong><%=textStrong%></strong> <%=msjCambiarPass%> 
+        </div>
+        <%tipomsj = "";
+             sesion.removeAttribute("msj-cambiar-pass");
+             sesion.removeAttribute("tipoMsj");
+            }
         %>
     </nav>
 
@@ -107,9 +131,9 @@
                     <p>Introduce tu correo electrónico</p>
                     <div class="control-group">
                         <input type="email" placeholder="correo electrónico" name="email"
-                           data-validation-email-message="Correo inválido"
-                           required 
-                           data-validation-required-message="* Campo requerido"/>
+                               data-validation-email-message="Correo inválido"
+                               required 
+                               data-validation-required-message="* Campo requerido"/>
                         <div class="warnings">
                             <p class="help-block style-warnings"></p> 
                         </div>
@@ -117,10 +141,10 @@
                     <button type="submit">Enviar</button>
                     <p class="message"> <a href="#" style="margin-left: 80px;"> Inicia sesión</a></p>
                 </form>
-                <form class="login-form" action="Login?accion=recuperarContrasena" method="get">
-                    <input type="text" placeholder="username"/>
-                    <input type="password" placeholder="password"/>
-                    <button type="submit"><a href="Login" class="boton-entrar">Entrar</a></button>
+                <form class="login-form" action="Login?accion=login" method="post">
+                    <input type="text" placeholder="username" name="username" required/>
+                    <input type="password" placeholder="password" name="password" required/>
+                    <button type="submit"><a class="boton-entrar">Entrar</a></button>
                     <p class="message"> <a href="#">¿Olvidaste tu contraseña?</a></p>
                     <div class="message"><a style="margin-left: 205px;" href="Registrarse.jsp">Registrarse</a></div>
                 </form>
@@ -165,8 +189,8 @@
     <!-- login -->
     <script src="js/login.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <!-- or use local jquery -->
-    
-    
+
+
     <script src="js/jqBootstrapValidation.js"></script>
     <script>
         $(function () {

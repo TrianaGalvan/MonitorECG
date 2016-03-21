@@ -114,48 +114,6 @@ public class CardiologoDAOImpl implements CardiologoDAO{
         return pc;
     }
     
-    
-    
-    public static void main(String[] args) {
-        //agregar
-        /*Cardiologo p = new Cardiologo("paletas", 12.50);
-        CardiologoDAOImpl pimpl = new CardiologoDAOImpl(); 
-        pimpl.agregarCardiologo(p);*/
-        
-        //modificar
-       /* System.out.println("------ Modificar producto ---------");
-        Cardiologo p = new Cardiologo(11,"paletas",30.50);
-        CardiologoDAOImpl pimplm = new CardiologoDAOImpl(); 
-        pimplm.modificarCardiologo(p);
-        
-        //eliminar
-        System.out.println("------ Eliminar producto ---------");
-        Cardiologo pe = new Cardiologo();
-        pe.setIdCardiologo(10);
-        pe.setNombre("Ricolino");
-        CardiologoDAOImpl pimple = new CardiologoDAOImpl(); 
-        pimple.eliminarCardiologo(pe);
-        */
-        //leer un producto
-        /*System.out.println("------ Leer producto ---------");
-        CardiologoDAOImpl imp = new CardiologoDAOImpl(); 
-        Cardiologo p = new Cardiologo();
-        p.setIdCardiologo(8);
-        p.setNombre("maruchan");
-        Cardiologo producto = imp.obtenerCardiologo(p);
-        System.out.println(producto.toString());*/
-        
-        //leer muchos productos 
-        /*CardiologoDAOImpl imp = new CardiologoDAOImpl(); 
-        System.out.println("------ Leer productos ---------");
-        List productos = imp.obtenerCardiologos();
-        for (Object val : productos) {
-            System.out.println(val.toString());
-        }*/
-        
-    }
-
-
     @Override
     public Cardiologo loginCardiologo(Cardiologo c) {
         Session s;
@@ -165,11 +123,12 @@ public class CardiologoDAOImpl implements CardiologoDAO{
         Cardiologo cardiologo = null; 
         try{
             t.begin();
-            Query q =  s.createQuery("FROM Cardiologo c WHERE c.correo = :user and c.contrasena = :pass");
+            Query q =  s.createQuery("FROM Cardiologo WHERE correo = :user and contrasena = :pass");
             q.setParameter("user",c.getCorreo());
             q.setParameter("pass",c.getContrasena());
-            t.commit();
+            q.setMaxResults(1);
             cardiologo = (Cardiologo) q.uniqueResult();
+            t.commit();
         }catch(HibernateException he){
             he.printStackTrace();
             if(t !=null){
@@ -201,23 +160,29 @@ public class CardiologoDAOImpl implements CardiologoDAO{
     }
 
     @Override
-    public void cambiarContrasena(Cardiologo c) {
+    public boolean cambiarContrasena(Cardiologo c) {
         Session s;
         s = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t = s.getTransaction();
         Cardiologo cardiologo = null; 
+        boolean cambio = false; 
         try{
             t.begin();
-            Query q =  s.createQuery("UPDATE Cardiologo c SET c.contrasena = :contrasena WHERE c.correo = :correo");
+            Query q =  s.createQuery("UPDATE Cardiologo SET contrasena = :contrasena WHERE correo = :correo");
             q.setParameter("correo",c.getCorreo());
             q.setParameter("contrasena",c.getContrasena());
             q.executeUpdate();
+            t.commit();
+            System.out.println(q.toString());
+            cambio = true;
         }catch(HibernateException he){
             he.printStackTrace();
             if(t !=null){
                 t.rollback();
             }
+            cambio = false;
         }
+        return cambio;
     }
     
     

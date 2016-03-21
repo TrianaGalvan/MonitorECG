@@ -54,18 +54,18 @@ public class Login extends HttpServlet {
             Cardiologo car = new Cardiologo(); 
             car.setCorreo(user);
             car.setContrasena(pass);
-            Cardiologo c = impl.obtenerCardiologo(car);
+            Cardiologo c = impl.loginCardiologo(car);
             if(c != null){
                 //existe el cardiologo 
-                request.getSession().setAttribute("user",c.getNombre());
+                HttpSession sesion = request.getSession();
+                sesion.setAttribute("user",c.getNombre());
                 destino = "perfil/Principal.jsp";
-                response.sendRedirect(destino);
             }else{
                 error = "Usuario o contraseña inválidos";
                 destino = "index.jsp";
-                request.setAttribute("error",error);
-                request.getRequestDispatcher(destino).forward(request, response);
+                request.getSession().setAttribute("error",error);
             }
+            response.sendRedirect(destino);
         }
         
         
@@ -96,9 +96,9 @@ public class Login extends HttpServlet {
                 tipoEnvio = "No Existe";
                 enviomsj = "Verifica tu correo electrónico";
             }
-            request.setAttribute("msj-envio",enviomsj);
-            request.setAttribute("tipo-envio",tipoEnvio);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getSession().setAttribute("msj-envio",enviomsj);
+            request.getSession().setAttribute("tipo-envio",tipoEnvio);
+            response.sendRedirect("index.jsp");
         }
         
         
@@ -153,11 +153,27 @@ public class Login extends HttpServlet {
             String con = request.getParameter("contrasena");
             HttpSession session = request.getSession();
             String email = (String) session.getAttribute("email");
-
+            Cardiologo cardiologo = new Cardiologo();
+            cardiologo.setCorreo(email);
+            cardiologo.setContrasena(con);
+            boolean respuesta = impl.cambiarContrasena(cardiologo);
+            String tipo = ""; 
+            String msj = ""; 
+            if(respuesta){
+                msj= "Tu contraseña fue cambiada";
+                tipo = "OK";
+            }
+            else{
+                msj= "Ocurrió un error";
+                tipo = "Error";
+            }
             
             
+            request.getSession().setAttribute("tipoMsj",tipo);
+            request.getSession().setAttribute("msj-cambiar-pass",msj);
+            request.removeAttribute("email");
+            response.sendRedirect("index.jsp");
         }
-       
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -31,7 +31,9 @@
             <form class="form-horizontal" action="Login?accion=cambiarContrasena" method="post" novalidate>
                 <div class="form-group">
                     <div class="control-group">
-                        <p style="font-size: 30px; margin-bottom: 30px;">Introduce tu nueva contraseña</p>
+                        <div class="row">
+                            <p style="font-size: 30px;" class="col-md-4">Introduce tu nueva contraseña</p>
+                        </div>
                         <div class="row margin-inputs">
                             <div class="col-md-3">
                                 <label>Contraseña:</label>        
