@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/decorators">
+    
+<!--    <decorator name="header" page="header-links.jsp">
+        <pattern>/content/*</pattern>
+    </decorator>-->
+    
+    <decorator name="navbar" page="navbar.jsp">
+        <pattern>/perfil/*</pattern>
+    </decorator>
+    
+</decorators>
+
+

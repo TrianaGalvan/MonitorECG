@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-mar-2016 13:26:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.monitorecg.hibernate.entities.Paciente" table="Paciente" catalog="tt" optimistic-lock="version">
+        <composite-id name="id" class="com.monitorecg.hibernate.entities.PacienteId">
+            <key-property name="idPaciente" type="int">
+                <column name="idPaciente" />
+            </key-property>
+            <key-property name="cardiologoIdCardiologo" type="int">
+                <column name="Cardiologo_idCardiologo" />
+            </key-property>
+        </composite-id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" />
+        </property>
+        <property name="apellidoPaterno" type="string">
+            <column name="apellidoPaterno" length="45" />
+        </property>
+        <property name="apellidoMaterno" type="string">
+            <column name="apellidoMaterno" length="45" />
+        </property>
+        <property name="sexo" type="string">
+            <column name="sexo" length="1" />
+        </property>
+        <property name="edad" type="java.lang.Integer">
+            <column name="edad" />
+        </property>
+        <property name="curp" type="string">
+            <column name="curp" length="18" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="45" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="10" />
+        </property>
+        <property name="contrasena" type="string">
+            <column name="contrasena" length="45" />
+        </property>
+        <property name="peso" type="java.lang.Double">
+            <column name="peso" precision="22" scale="0" />
+        </property>
+        <property name="presionArterial" type="java.lang.Double">
+            <column name="presionArterial" precision="22" scale="0" />
+        </property>
+        <property name="imc" type="java.lang.Double">
+            <column name="imc" precision="22" scale="0" />
+        </property>
+        <property name="frecuenciaRespiratoria" type="java.lang.Double">
+            <column name="frecuenciaRespiratoria" precision="22" scale="0" />
+        </property>
+        <property name="altura" type="java.lang.Double">
+            <column name="altura" precision="22" scale="0" />
+        </property>
+        <property name="fechamodificacion" type="string">
+            <column name="fechamodificacion" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

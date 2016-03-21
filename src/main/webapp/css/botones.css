@@ -1,0 +1,27 @@
+.color-boton{
+	background-color: #88A7EA;
+	font-size: 17px;
+	border   : 1px solid ;
+	width: 100px;
+}
+
+button:hover{
+	border   : 1px solid #88A7EA;
+	background-color: #D1D1DB;
+}
+
+.boton-reporte{
+	width: 150px;	
+}
+
+.boton-guardar-pendiente{
+	background-color: #88A7EA;
+	font-size: 17px;
+	border   : 1px solid ;
+	width: 145px;
+}
+
+button a.boton-cancelar{
+    color: #333;
+    text-decoration: none;
+}

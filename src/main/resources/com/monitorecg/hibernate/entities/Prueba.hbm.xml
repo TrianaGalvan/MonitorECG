@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-mar-2016 13:26:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.monitorecg.hibernate.entities.Prueba" table="Prueba" catalog="tt" optimistic-lock="version">
+        <composite-id name="id" class="com.monitorecg.hibernate.entities.PruebaId">
+            <key-property name="idPrueba" type="int">
+                <column name="idPrueba" />
+            </key-property>
+            <key-property name="pacienteIdPaciente" type="int">
+                <column name="Paciente_idPaciente" />
+            </key-property>
+        </composite-id>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" />
+        </property>
+        <property name="hora" type="timestamp">
+            <column name="hora" length="19" />
+        </property>
+        <property name="muestraqrs" type="binary">
+            <column name="muestraqrs" />
+        </property>
+        <property name="muestracompleta" type="binary">
+            <column name="muestracompleta" />
+        </property>
+        <property name="frecuenciacardiaca" type="java.lang.Integer">
+            <column name="frecuenciacardiaca" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="observaciones" length="500" />
+        </property>
+        <property name="fechaenvio" type="date">
+            <column name="fechaenvio" length="10" />
+        </property>
+        <property name="horaenvio" type="timestamp">
+            <column name="horaenvio" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

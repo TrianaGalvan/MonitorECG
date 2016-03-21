@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-mar-2016 13:26:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.monitorecg.hibernate.entities.Cardiologo" table="Cardiologo" catalog="tt" optimistic-lock="version">
+        <id name="idCardiologo" type="int">
+            <column name="idCardiologo" />
+            <generator class="identity" />
+        </id>
+        <property name="instituto" type="string">
+            <column name="instituto" length="45" />
+        </property>
+        <property name="cedula" type="string">
+            <column name="cedula" length="45" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" />
+        </property>
+        <property name="apellidoPaterno" type="string">
+            <column name="apellidoPaterno" length="45" />
+        </property>
+        <property name="apellidoMaterno" type="string">
+            <column name="apellidoMaterno" length="45" />
+        </property>
+        <property name="edad" type="java.lang.Integer">
+            <column name="edad" />
+        </property>
+        <property name="sexo" type="string">
+            <column name="sexo" length="1" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="45" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="10" />
+        </property>
+        <property name="curp" type="string">
+            <column name="curp" length="18" />
+        </property>
+        <property name="contrasena" type="string">
+            <column name="contrasena" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

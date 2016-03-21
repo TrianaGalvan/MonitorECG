@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-mar-2016 13:26:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.monitorecg.hibernate.entities.Reporte" table="Reporte" catalog="tt" optimistic-lock="version">
+        <composite-id name="id" class="com.monitorecg.hibernate.entities.ReporteId">
+            <key-property name="idReporte" type="int">
+                <column name="idReporte" />
+            </key-property>
+            <key-property name="cardiologoIdCardiologo" type="int">
+                <column name="Cardiologo_idCardiologo" />
+            </key-property>
+            <key-property name="pruebaIdPrueba" type="int">
+                <column name="Prueba_idPrueba" />
+            </key-property>
+        </composite-id>
+        <property name="observaciones" type="string">
+            <column name="observaciones" length="500" />
+        </property>
+        <property name="recomendaciones" type="string">
+            <column name="recomendaciones" length="500" />
+        </property>
+        <property name="estatus" type="java.lang.Integer">
+            <column name="estatus" />
+        </property>
+    </class>
+</hibernate-mapping>
