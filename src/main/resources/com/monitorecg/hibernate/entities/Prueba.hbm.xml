@@ -4,14 +4,10 @@
 <!-- Generated 16-mar-2016 13:26:37 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.monitorecg.hibernate.entities.Prueba" table="Prueba" catalog="tt" optimistic-lock="version">
-        <composite-id name="id" class="com.monitorecg.hibernate.entities.PruebaId">
-            <key-property name="idPrueba" type="int">
-                <column name="idPrueba" />
-            </key-property>
-            <key-property name="pacienteIdPaciente" type="int">
-                <column name="Paciente_idPaciente" />
-            </key-property>
-        </composite-id>
+        <id name="idPrueba" type="int">
+            <column name="idPrueba" />
+            <generator class="identity"/>
+        </id>
         <property name="fecha" type="date">
             <column name="fecha" length="10" />
         </property>
@@ -36,5 +32,12 @@
         <property name="horaenvio" type="timestamp">
             <column name="horaenvio" length="19" />
         </property>
+         <set name="reportes" table="Reporte" 
+                        inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="Prueba_idPrueba" not-null="true" />
+            </key>
+            <one-to-many class="com.monitorecg.hibernate.entities.Reporte"/>
+        </set>
     </class>
 </hibernate-mapping>

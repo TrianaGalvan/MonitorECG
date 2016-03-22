@@ -1,6 +1,10 @@
 package com.monitorecg.hibernate.entities;
 // Generated 16-mar-2016 13:26:37 by Hibernate Tools 4.3.1
 
+import java.util.HashSet;
+import java.util.Set;
+
+
 
 
 /**
@@ -9,7 +13,7 @@ package com.monitorecg.hibernate.entities;
 public class Paciente  implements java.io.Serializable {
 
 
-     private PacienteId id;
+     private int idPaciente;
      private String nombre;
      private String apellidoPaterno;
      private String apellidoMaterno;
@@ -25,16 +29,19 @@ public class Paciente  implements java.io.Serializable {
      private Double frecuenciaRespiratoria;
      private Double altura;
      private String fechamodificacion;
+     private Set<Prueba> pruebas = 
+				new HashSet<Prueba>(0);
+     
 
     public Paciente() {
     }
 
 	
-    public Paciente(PacienteId id) {
-        this.id = id;
+    public Paciente(int id) {
+        this.idPaciente = id;
     }
-    public Paciente(PacienteId id, String nombre, String apellidoPaterno, String apellidoMaterno, String sexo, Integer edad, String curp, String correo, String telefono, String contrasena, Double peso, Double presionArterial, Double imc, Double frecuenciaRespiratoria, Double altura, String fechamodificacion) {
-       this.id = id;
+    public Paciente(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String sexo, Integer edad, String curp, String correo, String telefono, String contrasena, Double peso, Double presionArterial, Double imc, Double frecuenciaRespiratoria, Double altura, String fechamodificacion) {
+       this.idPaciente = id;
        this.nombre = nombre;
        this.apellidoPaterno = apellidoPaterno;
        this.apellidoMaterno = apellidoMaterno;
@@ -52,12 +59,12 @@ public class Paciente  implements java.io.Serializable {
        this.fechamodificacion = fechamodificacion;
     }
    
-    public PacienteId getId() {
-        return this.id;
+    public int getIdPaciente() {
+        return this.idPaciente;
     }
     
-    public void setId(PacienteId id) {
-        this.id = id;
+    public void setIdPaciente(int id) {
+        this.idPaciente = id;
     }
     public String getNombre() {
         return this.nombre;
@@ -165,9 +172,15 @@ public class Paciente  implements java.io.Serializable {
         this.fechamodificacion = fechamodificacion;
     }
 
+    public Set<Prueba> getPruebas() {
+        return pruebas;
+    }
 
+    public void setPruebas(Set<Prueba> pruebas) {
+        this.pruebas = pruebas;
+    }
 
-
+     
 }
 
 

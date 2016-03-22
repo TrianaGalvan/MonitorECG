@@ -9,7 +9,7 @@ package com.monitorecg.hibernate.entities;
 public class Reporte  implements java.io.Serializable {
 
 
-     private ReporteId id;
+     private int idReporte;
      private String observaciones;
      private String recomendaciones;
      private Integer estatus;
@@ -18,23 +18,24 @@ public class Reporte  implements java.io.Serializable {
     }
 
 	
-    public Reporte(ReporteId id) {
-        this.id = id;
+    public Reporte(int id) {
+        this.idReporte = id;
     }
-    public Reporte(ReporteId id, String observaciones, String recomendaciones, Integer estatus) {
-       this.id = id;
+    public Reporte(int id, String observaciones, String recomendaciones, Integer estatus) {
+       this.idReporte = id;
        this.observaciones = observaciones;
        this.recomendaciones = recomendaciones;
        this.estatus = estatus;
     }
+
+    public int getIdReporte() {
+        return idReporte;
+    }
+
+    public void setIdReporte(int idReporte) {
+        this.idReporte = idReporte;
+    }
    
-    public ReporteId getId() {
-        return this.id;
-    }
-    
-    public void setId(ReporteId id) {
-        this.id = id;
-    }
     public String getObservaciones() {
         return this.observaciones;
     }

@@ -1,6 +1,10 @@
 package com.monitorecg.hibernate.entities;
 // Generated 16-mar-2016 13:26:37 by Hibernate Tools 4.3.1
 
+import java.util.HashSet;
+import java.util.Set;
+
+
 
 
 /**
@@ -21,6 +25,8 @@ public class Cardiologo  implements java.io.Serializable {
      private String telefono;
      private String curp;
      private String contrasena;
+     private Set<Paciente> pacientes = 
+				new HashSet<Paciente>(0);
 
     public Cardiologo() {
     }
@@ -129,9 +135,14 @@ public class Cardiologo  implements java.io.Serializable {
         this.contrasena = contrasena;
     }
 
+    public Set<Paciente> getPacientes() {
+        return pacientes;
+    }
 
-
-
+    public void setPacientes(Set<Paciente> pacientes) {
+        this.pacientes = pacientes;
+    }
+   
 }
 
 
