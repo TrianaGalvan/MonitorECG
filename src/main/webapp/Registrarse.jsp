@@ -7,7 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-    String errorRegistrarse = request.getParameter("error-registrarse") == null ? "" : (String) request.getParameter("error-registrarse");
+    HttpSession sesion = request.getSession();
+    String errorRegistrarse = sesion.getAttribute("error-registrarse") == null ? "" : (String) sesion.getAttribute("error-registrarse");
 %>
 <html>
     <head>
@@ -30,18 +31,29 @@
             <h1>Registro en el sistema</h1>
             <hr>
         </div>
-        <%if (errorRegistrarse.contains("error")) {%>
-        <div class="alert alert-danger col-lg-6 ">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <%=errorRegistrarse%>
-        </div>    
-        <%errorRegistrarse = "";
-                }%>
 
         <div class="content margin-content-tab"> 
 
             <form class="form-horizontal" action="Login?accion=registrarse" method="post" novalidate>
                 <div class="form-group">
+                    <%if (errorRegistrarse.contains("error")) {%>
+                    <div class="row">
+                        <div class="alert alert-danger col-lg-5 col-md-offset-3" style="font-size: 18px;">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close" style="font-size: 20px;">&times;</a>
+                            <%=errorRegistrarse%>
+                        </div>    
+                    </div>
+                    <%errorRegistrarse = "";
+                    } else if (errorRegistrarse.contains("registrado")) {%>
+                    <div class="row">
+                        <div class="alert alert-info col-lg-5 col-md-offset-3" style="font-size: 18px;">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Info! </strong><%=errorRegistrarse%>
+                        </div>  
+                    </div>
+                    <%
+                            sesion.removeAttribute("error-registrarse");
+                        }%>
                     <div class="row" >
                         <div class="col-md-2">
                             <label>Nombre:</label>        

@@ -24,8 +24,8 @@ import org.hibernate.Session;
  *
  * @author trianaandaluciaprietogalvan
  */
-
 public class Login extends HttpServlet {
+
     private CardiologoDAOImpl impl = new CardiologoDAOImpl();
 
     /**
@@ -42,114 +42,118 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String accion = request.getParameter("accion");
-        
+
         //LOGIN
-        if(accion.equals("login")){
+        if (accion.equals("login")){
             String error = "";
             String destino = "";
             //obtener los parametros 
             String user = request.getParameter("username");
             String pass = request.getParameter("password");
             //verificar si existe el usuario 
-            Cardiologo car = new Cardiologo(); 
+            Cardiologo car = new Cardiologo();
             car.setCorreo(user);
             car.setContrasena(pass);
             Cardiologo c = impl.loginCardiologo(car);
-            if(c != null){
+            if (c != null) {
                 //existe el cardiologo 
                 HttpSession sesion = request.getSession();
-                sesion.setAttribute("user",c.getNombre());
+                sesion.setAttribute("user", c.getNombre());
                 destino = "perfil/Principal.jsp";
-            }else{
+                response.sendRedirect(destino);
+            } else {
                 error = "Usuario o contraseña inválidos";
                 destino = "index.jsp";
-                request.getSession().setAttribute("error",error);
+                request.getSession().setAttribute("error", error);
+                response.sendRedirect(destino);
             }
-            response.sendRedirect(destino);
-        }
-        
-        
-        //RECUPERAR CONTRASEÑA
-        else if(accion.equals("recuperarContrasena")){
+        } //RECUPERAR CONTRASEÑA
+        else if (accion.equals("recuperarContrasena")) {
             String email = request.getParameter("email");
             //verificar si existe el correo del usuario 
-            Cardiologo cardiologo = new Cardiologo(); 
+            Cardiologo cardiologo = new Cardiologo();
             cardiologo.setCorreo(email);
             Cardiologo c = impl.buscarCardiologoPorCorreo(cardiologo);
-            String enviomsj = ""; 
-            String tipoEnvio = ""; 
-            if(c != null){
+            String enviomsj = "";
+            String tipoEnvio = "";
+            if (c != null) {
                 boolean envio = Mail.enviarEmail(email);
-                if(envio){
-                      enviomsj = "Se a enviado un correo electrónico a tu cuenta";
-                      tipoEnvio = "Exito";
-                      HttpSession session = request.getSession();
-                      session.setAttribute("email",c.getCorreo());
-                }else{
-                      enviomsj = "La cuenta de correo no existe";
-                      tipoEnvio = "Error";
+                if (envio) {
+                    enviomsj = "Se a enviado un correo electrónico a tu cuenta";
+                    tipoEnvio = "Exito";
+                    HttpSession session = request.getSession();
+                    session.setAttribute("email", c.getCorreo());
+                } else {
+                    enviomsj = "La cuenta de correo no existe";
+                    tipoEnvio = "Error";
                 }
-                
-            }
-            //no se encontro el correo 
-            else{
+
+            } //no se encontro el correo 
+            else {
                 tipoEnvio = "No Existe";
                 enviomsj = "Verifica tu correo electrónico";
             }
-            request.getSession().setAttribute("msj-envio",enviomsj);
-            request.getSession().setAttribute("tipo-envio",tipoEnvio);
+            request.getSession().setAttribute("msj-envio", enviomsj);
+            request.getSession().setAttribute("tipo-envio", tipoEnvio);
             response.sendRedirect("index.jsp");
         }
         
-        
+
         //REGISTRARSE
-        else if(accion.equals("registrarse")){
+        else if (accion.equals("registrarse")) {
             Cardiologo car = new Cardiologo();
-            //campos requeridos
-            String nom = request.getParameter("nombre");
-            car.setNombre(nom);
-            String app = request.getParameter("app");
-            car.setApellidoPaterno(app);
-            String apm = request.getParameter("apm");
-            car.setApellidoMaterno(apm);
-            String curp = request.getParameter("curp");
-            car.setCurp(curp);
-            String correo = request.getParameter("correo"); 
+            String msj = "";
+            String correo = request.getParameter("correo");
             car.setCorreo(correo);
-            String cedula = request.getParameter("cedula");
-            car.setCedula(cedula);
-            String instituto = request.getParameter("instituto");
-            car.setInstituto(instituto);
-            String con = request.getParameter("contrasena");
-            car.setContrasena(con);
-            
-            //no obligatorios 
-            String tel = request.getParameter("telefono") == null ? "":request.getParameter("telefono");
-            car.setTelefono(tel);
-            String edad = request.getParameter("edad") == null ? "0": request.getParameter("edad");
-            car.setEdad(Integer.parseInt(edad));
-            String sexo = request.getParameter("sexo") == null ? "": request.getParameter("sexo");
-            if(sexo.equals("Femenino")){
-                car.setSexo("f");
-            }else if(sexo.equals("Masculino")){
-                car.setSexo("m");
-            }else{
-                car.setSexo("");
+            Cardiologo cardiologoRespuesta = impl.buscarCorreo(car);
+            if (cardiologoRespuesta == null) {
+                //campos requeridos
+                String nom = request.getParameter("nombre");
+                car.setNombre(nom);
+                String app = request.getParameter("app");
+                car.setApellidoPaterno(app);
+                String apm = request.getParameter("apm");
+                car.setApellidoMaterno(apm);
+                String curp = request.getParameter("curp");
+                car.setCurp(curp);
+                String cedula = request.getParameter("cedula");
+                car.setCedula(cedula);
+                String instituto = request.getParameter("instituto");
+                car.setInstituto(instituto);
+                String con = request.getParameter("contrasena");
+                car.setContrasena(con);
+
+                //no obligatorios 
+                String tel = request.getParameter("telefono") == null ? "" : request.getParameter("telefono");
+                car.setTelefono(tel);
+                String edad = request.getParameter("edad") == null ? "0" : request.getParameter("edad");
+                car.setEdad(Integer.parseInt(edad));
+                String sexo = request.getParameter("sexo") == null ? "" : request.getParameter("sexo");
+                if (sexo.equals("Femenino")) {
+                    car.setSexo("f");
+                } else if (sexo.equals("Masculino")) {
+                    car.setSexo("m");
+                } else {
+                    car.setSexo("");
+                }
+                if (impl.agregarCardiologo(car)) {
+                    msj = "Fuiste registrado correctamente en el sistema";
+                    request.getSession().setAttribute("error-registrarse", msj);
+                    response.sendRedirect("index.jsp");
+                } else {
+                    msj = "Ocurrió un error en tu registro";
+                    request.getSession().setAttribute("error-registrarse", msj);
+                    response.sendRedirect("Registrarse.jsp");
+                }
             }
-            String msj = ""; 
-            if(impl.agregarCardiologo(car)){
-                msj = "Fuiste registrado correctamente en el sistema";
-                request.setAttribute("error-registrarse",msj);
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            }else{
-                msj= "Ocurrió un error en tu registro";
+            else{
+                msj = "El correo ya se encuentra registrado en el sistema";
                 request.getSession().setAttribute("error-registrarse",msj);
                 response.sendRedirect("Registrarse.jsp");
             }
-        }
-        
-        //CAMBIAR CONTRASENA FORMULARIO
-        else if(accion.equals("cambiarContrasena")){
+
+        } //CAMBIAR CONTRASENA FORMULARIO
+        else if (accion.equals("cambiarContrasena")) {
             String con = request.getParameter("contrasena");
             HttpSession session = request.getSession();
             String email = (String) session.getAttribute("email");
@@ -157,24 +161,23 @@ public class Login extends HttpServlet {
             cardiologo.setCorreo(email);
             cardiologo.setContrasena(con);
             boolean respuesta = impl.cambiarContrasena(cardiologo);
-            String tipo = ""; 
-            String msj = ""; 
-            if(respuesta){
-                msj= "Tu contraseña fue cambiada";
+            String tipo = "";
+            String msj = "";
+            if (respuesta) {
+                msj = "Tu contraseña fue cambiada";
                 tipo = "OK";
-            }
-            else{
-                msj= "Ocurrió un error";
+            } else {
+                msj = "Ocurrió un error";
                 tipo = "Error";
             }
-            
-            
-            request.getSession().setAttribute("tipoMsj",tipo);
-            request.getSession().setAttribute("msj-cambiar-pass",msj);
+
+            request.getSession().setAttribute("tipoMsj", tipo);
+            request.getSession().setAttribute("msj-cambiar-pass", msj);
             request.removeAttribute("email");
             response.sendRedirect("index.jsp");
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

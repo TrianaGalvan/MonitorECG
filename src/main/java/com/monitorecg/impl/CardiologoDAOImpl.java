@@ -184,6 +184,33 @@ public class CardiologoDAOImpl implements CardiologoDAO{
         }
         return cambio;
     }
+
+    @Override
+    public Cardiologo buscarCorreo(Cardiologo c) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        Cardiologo cardiologo = null; 
+        boolean existencias = false; 
+        try{
+            t.begin();
+            Query q =  s.createQuery("FROM Cardiologo WHERE correo = :email");
+            q.setParameter("email",c.getCorreo());
+            cardiologo = (Cardiologo) q.uniqueResult();
+            t.commit();
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(t !=null){
+                t.rollback();
+            }
+        }
+        if(cardiologo != null){
+            existencias = true; 
+        }
+        return cardiologo;
+    }
+    
+    
     
     
 }

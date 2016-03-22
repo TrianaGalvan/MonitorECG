@@ -3,7 +3,7 @@
 <%
     HttpSession sesion = request.getSession(); 
     String error = sesion.getAttribute("error") == null ? "" : (String) sesion.getAttribute("error");
-    String msj = request.getAttribute("error-registrarse") == null ? "" : (String) request.getAttribute("error-registrarse");
+    String msj = sesion.getAttribute("error-registrarse") == null ? "" : (String) sesion.getAttribute("error-registrarse");
     String tipoEnvio = sesion.getAttribute("tipo-envio") == null ? "" : (String) sesion.getAttribute("tipo-envio");
     String msjCambiarPass = sesion.getAttribute("msj-cambiar-pass") == null ? "" : (String) sesion.getAttribute("msj-cambiar-pass");
     String tipomsj = sesion.getAttribute("tipoMsj") == null ? "" : (String) sesion.getAttribute("tipoMsj");
@@ -82,6 +82,7 @@
             <strong>Éxito!</strong> <%=msj%> 
         </div>
         <% msj = "";
+            sesion.removeAttribute("error-registrarse");
         } else if (!tipoEnvio.isEmpty()) {
             String typeAlert = "";
             String textStrong = "";
