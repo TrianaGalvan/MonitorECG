@@ -14,6 +14,10 @@
         <servlet-name>Hibernate</servlet-name>
         <servlet-class>com.monitorecg.pruebas.Hibernate</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModuloElectrocardiogramas</servlet-name>
+        <servlet-class>com.monitorecg.controlador.ModuloElectrocardiogramas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -21,6 +25,10 @@
     <servlet-mapping>
         <servlet-name>Hibernate</servlet-name>
         <url-pattern>/Hibernate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModuloElectrocardiogramas</servlet-name>
+        <url-pattern>/ModuloElectrocardiogramas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

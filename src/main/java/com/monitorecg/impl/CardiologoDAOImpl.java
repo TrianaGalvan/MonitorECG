@@ -209,8 +209,35 @@ public class CardiologoDAOImpl implements CardiologoDAO{
         }
         return cardiologo;
     }
-    
-    
-    
-    
+
+    @Override
+    public List<Object[]> obtenerTablaElectrocardiogramas(Cardiologo c) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        Cardiologo cardiologo = null; 
+        boolean existencias = false; 
+        List<Object[]> objects;
+        try{
+            t.begin();
+            Query q =  s.createQuery("select p.nombre as nombre, pr.fechaenvio as fechaenvio ,r.estatus as estatus,p.apellidoPaterno,p.apellidoMaterno,p.idPaciente,pr.idPrueba " +
+                                    "from Cardiologo c " +
+                                    "inner join c.pacientes p " +
+                                    "inner join p.pruebas pr " +
+                                    "inner join pr.reportes r " +
+                                    "where c.idCardiologo = :id");
+            q.setParameter("id",c.getIdCardiologo());
+            objects = q.list();
+            t.commit();
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(t !=null){
+                t.rollback();
+            }
+            objects = null; 
+        }
+        return objects;
+        
+    }
+ 
 }

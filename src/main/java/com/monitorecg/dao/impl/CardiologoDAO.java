@@ -22,4 +22,5 @@ public interface CardiologoDAO {
     public Cardiologo buscarCardiologoPorCorreo(Cardiologo c); 
     public boolean cambiarContrasena(Cardiologo c);
     public Cardiologo buscarCorreo(Cardiologo c);
+    public List<Object[]> obtenerTablaElectrocardiogramas(Cardiologo c);
 }

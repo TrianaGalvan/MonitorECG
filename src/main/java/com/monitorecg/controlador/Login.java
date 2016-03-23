@@ -59,6 +59,7 @@ public class Login extends HttpServlet {
                 //existe el cardiologo 
                 HttpSession sesion = request.getSession();
                 sesion.setAttribute("user", c.getNombre());
+                sesion.setAttribute("correo", c.getCorreo());
                 destino = "perfil/Principal.jsp";
                 response.sendRedirect(destino);
             } else {
@@ -67,7 +68,9 @@ public class Login extends HttpServlet {
                 request.getSession().setAttribute("error", error);
                 response.sendRedirect(destino);
             }
-        } //RECUPERAR CONTRASEÑA
+        }
+        
+        //RECUPERAR CONTRASEÑA
         else if (accion.equals("recuperarContrasena")) {
             String email = request.getParameter("email");
             //verificar si existe el correo del usuario 
