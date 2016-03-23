@@ -17,5 +17,10 @@
         <property name="estatus" type="java.lang.Integer">
             <column name="estatus" />
         </property>
+        <many-to-one name="prueba"
+                     class="com.monitorecg.hibernate.entities.Prueba"
+                     column="Prueba_idPrueba"
+                     cascade="save-update" 
+                     unique="true"/>
     </class>
 </hibernate-mapping>

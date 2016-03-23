@@ -31,13 +31,7 @@
         </property>
         <property name="horaenvio" type="timestamp">
             <column name="horaenvio" length="19" />
-        </property>
-         <set name="reportes" table="Reporte" 
-                        inverse="true" lazy="true" fetch="select" cascade="all">
-            <key>
-                <column name="Prueba_idPrueba" not-null="true" />
-            </key>
-            <one-to-many class="com.monitorecg.hibernate.entities.Reporte"/>
-        </set>
+        </property> 
+        <one-to-one name="reporte" class="com.monitorecg.hibernate.entities.Reporte" property-ref="prueba"></one-to-one>
     </class>
 </hibernate-mapping>

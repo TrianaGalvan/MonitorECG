@@ -13,6 +13,7 @@ public class Reporte  implements java.io.Serializable {
      private String observaciones;
      private String recomendaciones;
      private Integer estatus;
+     private Prueba prueba; 
 
     public Reporte() {
     }
@@ -58,7 +59,15 @@ public class Reporte  implements java.io.Serializable {
         this.estatus = estatus;
     }
 
+    public Prueba getPrueba() {
+        return prueba;
+    }
 
+    public void setPrueba(Prueba prueba) {
+        this.prueba = prueba;
+    }
+
+    
 
 
 }

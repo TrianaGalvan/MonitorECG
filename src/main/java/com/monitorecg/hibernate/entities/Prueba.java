@@ -21,9 +21,7 @@ public class Prueba  implements java.io.Serializable {
      private String observaciones;
      private Date fechaenvio;
      private Date horaenvio;
-     private Set<Reporte> reportes = 
-				new HashSet<Reporte>(0);
-
+     private Reporte reporte; 
     public Prueba() {
     }
 
@@ -108,13 +106,15 @@ public class Prueba  implements java.io.Serializable {
         this.horaenvio = horaenvio;
     }
 
-    public Set<Reporte> getReportes() {
-        return reportes;
+    public Reporte getReporte() {
+        return reporte;
     }
 
-    public void setReportes(Set<Reporte> reportes) {
-        this.reportes = reportes;
+    public void setReporte(Reporte reporte) {
+        this.reporte = reporte;
     }
+    
+    
    
 }
 

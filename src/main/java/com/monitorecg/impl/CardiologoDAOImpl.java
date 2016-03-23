@@ -224,7 +224,7 @@ public class CardiologoDAOImpl implements CardiologoDAO{
                                     "from Cardiologo c " +
                                     "inner join c.pacientes p " +
                                     "inner join p.pruebas pr " +
-                                    "inner join pr.reportes r " +
+                                    "inner join pr.reporte r "+
                                     "where c.idCardiologo = :id");
             q.setParameter("id",c.getIdCardiologo());
             objects = q.list();
