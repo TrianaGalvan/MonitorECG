@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,6 +24,32 @@
                         <button type="submit" class="btn btn-default color-boton boton-reporte"><a href="NuevoReporte.jsp" style="color: #333;">Nuevo reporte</a></button>    
                     </div>
                 </div>
+                
+                <%
+                    String msj = (String) request.getSession().getAttribute("msj-recomendaciones");
+                    String estado = (String) request.getSession().getAttribute("estado");
+                    String msje = (String) request.getSession().getAttribute("error-recomendaciones");
+                    String tipoAlerta = "";
+                    if (msj != null) {%>
+                        <%if(estado.equals("registrado")){
+                            tipoAlerta = "alert-success";
+                        }else{
+                             tipoAlerta = "alert-warning";
+                        }%>
+                        <div class="alert <%=tipoAlerta%> fade in col-md-10 col-md-offset-1" style="margin-top: 20px; font-size: 18px;">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Éxito! </strong> <%=msj%> 
+                        </div>
+                <%
+                    request.getSession().removeAttribute("msj-recomendaciones");
+                    request.getSession().removeAttribute("estado");
+                    } else if (msje != null) {%>
+                        <div class="alert alert-danger fade in col-md-4 col-md-offset-4" style="margin-top: 20px; font-size: 18px;">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error! </strong> <%=msje%> 
+                        </div>
+                <%request.getSession().removeAttribute("error-recomendaciones");
+                    }%>
 
                 <!-- table -->
                 <table class="table table-bordered">
@@ -32,30 +60,29 @@
                             <th>Estatus del reporte</th>
                             <th>Acciones</th>
                         </tr>
-                        <tr>
-                            <td>Prieto Galván Triana Andalucia</td>
-                            <td>10/02/2015</td>
-                            <td class="pendiente">Pendiente</td>
-                            <td style="margin-left:20px;">
-                                <a href="VerElectrocardiograma.jsp" data-toggle="tooltip" title="Generar reporte" ><img src="../img/pencil.png" style="width: 38px; height: 32px;"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Cifuentes Alonso Claudio Antonio</td>
-                            <td>12/02/2015</td>
-                            <td class="revisado">Revisado</td>
-                            <td style="margin-left:20px;">
-                                <a href="#" data-toggle="tooltip" title="Generar reporte" ><img src="../img/pencil.png" style="width: 38px; height: 32px;"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Peña Velarde Jesus Daniel</td>
-                            <td>10/05/2015</td>
-                            <td class="no-revisado">No revisado</td>
-                            <td style="margin-left:20px;">
-                                <a href="#" data-toggle="tooltip" title="Generar reporte" ><img src="../img/pencil.png" style="width: 38px; height: 32px;"></a>
-                            </td>
-                        </tr>
+                        <c:forEach var="item"
+                                   items="${sessionScope.items}">
+                            <tr>
+                                <td>
+                                    <c:out value="${item.nombrePaciente}  ${item.app}  ${item.apm}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${item.fechaReporte}"/>
+                                </td>
+                                <c:if test="${item.status == 0}">
+                                     <td class="revisado">Revisado</td>
+                                </c:if>
+                                <c:if test="${item.status == 1}">
+                                    <td class="pendiente">Pendiente</td>
+                                </c:if>
+                                <c:if test="${item.status == 2}">
+                                    <td class="no-revisado">No revisado</td>
+                                </c:if>
+                                <td style="margin-left:20px;">
+                                    <a href="../ModuloElectrocardiogramas?accion=verECG&idp=${item.id}&idm=${item.idPrueba}&idr=${item.idReporte}" data-toggle="tooltip" title="Generar reporte" ><img src="../img/pencil.png" style="width: 38px; height: 32px;"></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
