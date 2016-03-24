@@ -24,6 +24,32 @@
                         <button type="submit" class="btn btn-default color-boton boton-reporte"><a href="NuevoReporte.jsp" style="color: #333;">Nuevo reporte</a></button>    
                     </div>
                 </div>
+                
+                <%
+                    String msj = (String) request.getSession().getAttribute("msj-recomendaciones");
+                    String estado = (String) request.getSession().getAttribute("estado");
+                    String msje = (String) request.getSession().getAttribute("error-recomendaciones");
+                    String tipoAlerta = "";
+                    if (msj != null) {%>
+                        <%if(estado.equals("registrado")){
+                            tipoAlerta = "alert-success";
+                        }else{
+                             tipoAlerta = "alert-warning";
+                        }%>
+                        <div class="alert <%=tipoAlerta%> fade in col-md-10 col-md-offset-1" style="margin-top: 20px; font-size: 18px;">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Éxito! </strong> <%=msj%> 
+                        </div>
+                <%
+                    request.getSession().removeAttribute("msj-recomendaciones");
+                    request.getSession().removeAttribute("estado");
+                    } else if (msje != null) {%>
+                        <div class="alert alert-danger fade in col-md-4 col-md-offset-4" style="margin-top: 20px; font-size: 18px;">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error! </strong> <%=msje%> 
+                        </div>
+                <%request.getSession().removeAttribute("error-recomendaciones");
+                    }%>
 
                 <!-- table -->
                 <table class="table table-bordered">
@@ -53,7 +79,7 @@
                                     <td class="no-revisado">No revisado</td>
                                 </c:if>
                                 <td style="margin-left:20px;">
-                                    <a href="VerElectrocardiograma.jsp?accion=verECG&idp=${item.id}&idm=${item.idPrueba}" data-toggle="tooltip" title="Generar reporte" ><img src="../img/pencil.png" style="width: 38px; height: 32px;"></a>
+                                    <a href="../ModuloElectrocardiogramas?accion=verECG&idp=${item.id}&idm=${item.idPrueba}&idr=${item.idReporte}" data-toggle="tooltip" title="Generar reporte" ><img src="../img/pencil.png" style="width: 38px; height: 32px;"></a>
                                 </td>
                             </tr>
                         </c:forEach>

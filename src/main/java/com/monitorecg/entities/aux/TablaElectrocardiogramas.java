@@ -5,13 +5,14 @@
  */
 package com.monitorecg.entities.aux;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author trianaandaluciaprietogalvan
  */
-public class TablaElectrocardiogramas {
+public class TablaElectrocardiogramas implements Serializable{
     private String nombrePaciente; 
     private String app;
     private String apm;
@@ -19,6 +20,7 @@ public class TablaElectrocardiogramas {
     private int status; 
     private int id;
     private int idPrueba;
+    private int idReporte; 
 
     public String getNombrePaciente() {
         return nombrePaciente;
@@ -74,6 +76,14 @@ public class TablaElectrocardiogramas {
 
     public void setIdPrueba(int idPrueba) {
         this.idPrueba = idPrueba;
+    }
+
+    public int getIdReporte() {
+        return idReporte;
+    }
+
+    public void setIdReporte(int idReporte) {
+        this.idReporte = idReporte;
     }
     
     
