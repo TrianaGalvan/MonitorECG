@@ -13,6 +13,7 @@ import com.sun.corba.se.spi.presentation.rmi.StubAdapter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -152,7 +153,10 @@ public class ModuloPacientes extends HttpServlet {
         
         for (Object[] elemento : items) {
             TablaHistorial e = new TablaHistorial();
-            e.setHora((Date) elemento[8]);
+            Date fecha = (Date) elemento[8];
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+            String hora = sdf.format(fecha);
+            e.setHora(hora);
             e.setFecha((Date) elemento[1]);
             e.setEstatus((Integer)elemento[2]);
             e.setIdPrueba((Integer)elemento[6]);

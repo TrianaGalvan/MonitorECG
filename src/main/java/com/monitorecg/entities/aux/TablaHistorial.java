@@ -15,7 +15,7 @@ import org.eclipse.persistence.jpa.jpql.parser.DateTime;
  */
 public class TablaHistorial implements Serializable{
     private Date fecha; 
-    private Date hora; 
+    private String hora; 
     private int estatus;
     private int idPrueba;
     private int idReporte; 
@@ -29,11 +29,11 @@ public class TablaHistorial implements Serializable{
         this.fecha = fecha;
     }
 
-    public Date getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(Date hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 

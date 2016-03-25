@@ -54,8 +54,8 @@
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li><a class="menu active" href="../ModuloElectrocardiogramas?accion=listarElectrocardiogramas" >Electrocardiogramas</a></li>
-                                        <li><a class="menu" href="../perfil/Pacientes.jsp">Pacientes</a></li>
+                                        <li><a class="menu" href="../ModuloElectrocardiogramas?accion=listarElectrocardiogramas"><i class="fa fa-heartbeat"></i> Electrocardiogramas</a></li>
+                                        <li><a class="menu" href="../perfil/Pacientes.jsp"><i class="fa fa-users"></i> Pacientes</a></li>
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-md"></i> <%=nombre%><b class="caret"></b></a>
                                             <ul class="dropdown-menu" >
@@ -112,16 +112,15 @@
 
         <!-- Colocar ejemplo al seleccionar un filtro de búsqueda -->
         <script>
-            function setFormato() {
-                var x = document.getElementById("tipo-filtro").value;
-                if (!x.localeCompare("Nombre")) {
-                    document.getElementById("valor-filtro").placeholder = "Ej. Diana López Martínez";
-                } else if (!x.localeCompare("CURP")) {
-                    document.getElementById("valor-filtro").placeholder = "Ej. PIGT940502MOCRLR08";
-                } else {
-                    document.getElementById("valor-filtro").placeholder = "Ej. usuario@gmail.com";
+            $('.nav li').click(function(e) {
+                $('.nav li.active').removeClass('active');
+                var $this = $(this);
+                if (!$this.hasClass('active')) {
+                    $this.addClass('active');
                 }
-            }
+                e.preventDefault();
+            });
         </script>
+        
     </body>
 </html>
