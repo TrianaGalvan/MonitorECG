@@ -110,7 +110,7 @@
             });
         </script>
 
-        <!-- Colocar ejemplo al seleccionar un filtro de búsqueda -->
+        <!-- Cambiar el estado active de la navbar -->
         <script>
             $('.nav li').click(function(e) {
                 $('.nav li.active').removeClass('active');
