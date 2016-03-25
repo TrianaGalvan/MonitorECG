@@ -4,7 +4,8 @@
     Author     : trianaandaluciaprietogalvan
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" 
+    pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
@@ -37,7 +38,7 @@
                                 <label>1. Selecciona el filtro de búsqueda del paciente </label>
                             </div>
                             <div class="col-md-4">
-                                <select class="form-control" style="font-size: 17px;" name="filtro">
+                                <select class="form-control" style="font-size: 17px;" name="filtro" onchange="setFormato()" id="tipo-filtro">
                                     <option></option>
                                     <option>Nombre</option>
                                     <option>Correo electrónico</option>
@@ -51,7 +52,7 @@
                                 <label>2. Introduce el parámetro de búsqueda </label>
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="" style="font-size: 19px;" name="valor-filtro">
+                                <input type="text" class="form-control" placeholder="" style="font-size: 19px;" name="valor-filtro" id="valor-filtro">
                             </div>
                         </div>
                     </div>

@@ -32,13 +32,8 @@
                 <div>
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <%if (msjpass != null || msjepass != null) {%>
-                        <li role="presentation" class="tamano-letra-tabs"><a href="#datosPersonales" aria-controls="home" role="tab" data-toggle="tab">Datos personales</a></li>
-                        <li role="presentation" class="active tamano-letra-tabs"><a href="#datosClinicos" aria-controls="profile" role="tab" data-toggle="tab">Seguridad</a></li>
-                            <%} else {%>
                         <li role="presentation" class="active tamano-letra-tabs"><a href="#datosPersonales" aria-controls="home" role="tab" data-toggle="tab">Datos personales</a></li>
                         <li role="presentation" class="tamano-letra-tabs"><a href="#datosClinicos" aria-controls="profile" role="tab" data-toggle="tab">Seguridad</a></li>
-                            <%}%>
                     </ul>
                 </div>
 
@@ -56,7 +51,7 @@
                         <%request.getSession().removeAttribute("msj-guardar-cambios");
                         } else if (msje != null) {%>
                         <div class="row">
-                            <div class="alert alert-danger fade in col-md-8 col-md-offset-2" style="margin-top: 10px;  margin-bottom: -10px;  font-size: 18px;">
+                            <div class="alert alert-danger fade in col-md-8 col-md-offset-2" style="margin-top: 10px;  margin-bottom: -10px;  font-size: 20px;">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong>Ups! </strong> <%=msje%> 
                             </div>
@@ -64,7 +59,7 @@
                         <%request.getSession().removeAttribute("msj-error-guardar-cambios");
                         } else if (msjc != null) {%>
                         <div class="row">
-                            <div class="alert alert-info fade in col-md-8 col-md-offset-2" style="margin-top: 10px;  margin-bottom: -10px;  font-size: 18px;">
+                            <div class="alert alert-info fade in col-md-8 col-md-offset-2" style="margin-top: 10px;  margin-bottom: -10px;  font-size: 20px;">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong>Ups! </strong> <%=msjc%> 
                             </div>
@@ -77,7 +72,7 @@
                         <%
                             if (msjepass != null) {%>
                         <div class="row">
-                            <div class="alert alert-danger fade in col-md-8 col-md-offset-2" style="margin-top: 10px;  margin-bottom: -10px; font-size: 18px;">
+                            <div class="alert alert-danger fade in col-md-8 col-md-offset-2" style="margin-top: 10px;  margin-bottom: -10px; font-size: 20px;">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong>Ups! </strong> <%=msjepass%> 
                             </div>
@@ -85,7 +80,7 @@
                         <%request.getSession().removeAttribute("msj-error-cambio-contrasena");
                                 } else if (msjpass != null) {%>
                         <div class="row">
-                            <div class="alert alert-success fade in col-md-8 col-md-offset-2" style="margin-top: 10px;  margin-bottom: -10px; font-size: 18px;">
+                            <div class="alert alert-success fade in col-md-8 col-md-offset-2" style="margin-top: 10px;  margin-bottom: -10px; font-size: 20px;">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong>Éxito! </strong> <%=msjpass%> 
                             </div>

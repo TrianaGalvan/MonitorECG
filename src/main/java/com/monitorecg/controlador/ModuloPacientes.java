@@ -44,6 +44,7 @@ public class ModuloPacientes extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String accion = request.getParameter("accion");
         if(accion.equals("BuscarPaciente")){
             buscarPaciente(request,response);
@@ -63,7 +64,17 @@ public class ModuloPacientes extends HttpServlet {
         Paciente paciente = new Paciente();
         List<Paciente> pacientes = new ArrayList<Paciente>();
         if(filtro.equals("Nombre")){
-            paciente.setNombre(valorFiltro);
+            String[] valores = valorFiltro.split(" ");  
+            if(valores.length == 3){
+                paciente.setNombre(valores[0]);
+                paciente.setApellidoPaterno(valores[1]);
+                paciente.setApellidoMaterno(valores[2]);
+            }else if(valores.length == 4){
+                String nombre = valores[0] + " "+ valores[1];
+                paciente.setNombre(nombre);
+                paciente.setApellidoPaterno(valores[1]);
+                paciente.setApellidoMaterno(valores[2]);
+            }
             pacientes = pdi.obtenerPacientePorNombre(paciente);
         }else if(filtro.contains("Correo")){
             paciente.setCorreo(valorFiltro);

@@ -170,8 +170,10 @@ public class PacienteDAOImpl implements PacienteDAO{
         
         try{
             t.begin();
-            Query q = s.createQuery("From Paciente WHERE nombre like :nombre");
+            Query q = s.createQuery("From Paciente WHERE nombre = :nombre and apellidoPaterno = :ap and apellidoMaterno = :am");
             q.setParameter("nombre", p.getNombre());
+            q.setParameter("ap", p.getApellidoPaterno());
+            q.setParameter("am", p.getApellidoMaterno());
             resultados = q.list();
             t.commit();
         }catch(HibernateException he){
