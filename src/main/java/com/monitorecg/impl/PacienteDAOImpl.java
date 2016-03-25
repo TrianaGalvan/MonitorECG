@@ -7,6 +7,7 @@ package com.monitorecg.impl;
 
 import com.monitorecg.dao.impl.PacienteDAO;
 import com.monitorecg.hibernate.HibernateUtil;
+import com.monitorecg.hibernate.entities.Cardiologo;
 import com.monitorecg.hibernate.entities.Paciente;
 import com.monitorecg.hibernate.entities.Paciente;
 import java.util.List;
@@ -114,6 +115,99 @@ public class PacienteDAOImpl implements PacienteDAO{
             }
         }
         return pc;
+    }
+
+    @Override
+    public List<Paciente> obtenerPacientePorCorreo(Paciente p) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        List<Paciente> resultados = null; 
+        
+        try{
+            t.begin();
+            Query q = s.createQuery("From Paciente WHERE correo = :correo");
+            q.setParameter("correo", p.getCorreo());
+            resultados = q.list();
+            t.commit();
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(t !=null){
+                t.rollback();
+            }
+        }
+        return resultados;
+    }
+
+    @Override
+    public List<Paciente> obtenerPacientePorCURP(Paciente p) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        List<Paciente> resultados = null; 
+        
+        try{
+            t.begin();
+            Query q = s.createQuery("From Paciente WHERE curp = :curp");
+            q.setParameter("curp", p.getCurp());
+            resultados = q.list();
+            t.commit();
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(t !=null){
+                t.rollback();
+            }
+        }
+        return resultados;
+    }
+
+    @Override
+    public List<Paciente> obtenerPacientePorNombre(Paciente p) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        List<Paciente> resultados = null; 
+        
+        try{
+            t.begin();
+            Query q = s.createQuery("From Paciente WHERE nombre like :nombre");
+            q.setParameter("nombre", p.getNombre());
+            resultados = q.list();
+            t.commit();
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(t !=null){
+                t.rollback();
+            }
+        }
+        return resultados;
+    }
+
+    @Override
+    public List<Object[]> obtenerTablaPruebas(Paciente p) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        boolean existencias = false; 
+        List<Object[]> objects;
+        try{
+            t.begin();
+            Query q =  s.createQuery("select p.nombre as nombre, pr.fecha as fecha ,r.estatus as estatus,p.apellidoPaterno,p.apellidoMaterno,p.idPaciente,pr.idPrueba,r.idReporte,pr.hora " +
+                                    "from Paciente p " +
+                                    "inner join p.pruebas pr " +
+                                    "inner join pr.reporte r " +
+                                    "where p.idPaciente = :id");
+            q.setParameter("id",p.getIdPaciente());
+            objects = q.list();
+            t.commit();
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(t !=null){
+                t.rollback();
+            }
+            objects = null; 
+        }
+        return objects;
     }
     
 }

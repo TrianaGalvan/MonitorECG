@@ -19,4 +19,8 @@ public interface PacienteDAO {
     public boolean agregarPaciente(Paciente c);
     public List<Paciente> obtenerPacientes(); 
     public Paciente obtenerPaciente(Paciente c);
+    public List<Paciente> obtenerPacientePorCorreo(Paciente p);
+    public List<Paciente> obtenerPacientePorCURP(Paciente p);
+    public List<Paciente> obtenerPacientePorNombre(Paciente p);
+    public List<Object[]> obtenerTablaPruebas(Paciente p);
 }

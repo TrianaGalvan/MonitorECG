@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface CardiologoDAO {
     public void eliminarCardiologo(Cardiologo c);
-    public void modificarCardiologo(Cardiologo c);
+    public boolean modificarCardiologo(Cardiologo c);
     public boolean agregarCardiologo(Cardiologo c);
     public List<Cardiologo> obtenerCardiologos(); 
     public Cardiologo obtenerCardiologo(Cardiologo c);
@@ -23,4 +23,6 @@ public interface CardiologoDAO {
     public boolean cambiarContrasena(Cardiologo c);
     public Cardiologo buscarCorreo(Cardiologo c);
     public List<Object[]> obtenerTablaElectrocardiogramas(Cardiologo c);
+    public boolean moficarCardiologoSinContrasena(Cardiologo c);
+    public boolean modificarContrasena(Cardiologo c);
 }

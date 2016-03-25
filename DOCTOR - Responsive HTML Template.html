@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)http://localhost:8080/ultimo/perfil/EditarDatos.jsp -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>DOCTOR - Responsive HTML Template</title>
+    <link rel="stylesheet" href="./DOCTOR - Responsive HTML Template_files/font-awesome.min.css">
+    <link rel="stylesheet" href="./DOCTOR - Responsive HTML Template_files/bootstrap.min.css">
+    <link rel="stylesheet" href="./DOCTOR - Responsive HTML Template_files/perfil.css">
+    <link rel="stylesheet" href="./DOCTOR - Responsive HTML Template_files/tables.css">
+    <link rel="stylesheet" href="./DOCTOR - Responsive HTML Template_files/botones.css">
+    <link rel="stylesheet" href="./DOCTOR - Responsive HTML Template_files/estados.css">
+    <link href="./DOCTOR - Responsive HTML Template_files/css" rel="stylesheet" type="text/css">
+    <link href="./DOCTOR - Responsive HTML Template_files/css(1)" rel="stylesheet" type="text/css">
+    
+</head>
+<body>
+    
+    <!-- ====================================================
+    header section -->
+    <header class="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-5 header-logo" style="margin-top:-10px;">
+                    <br>
+                    <a href="http://localhost:8080/ultimo/perfil/index.html"><img src="./DOCTOR - Responsive HTML Template_files/logo.png" alt="" class="img-responsive logo"></a>
+                </div>
+
+                <div class="col-md-7">
+                    <nav class="navbar navbar-default">
+                      <div class="container-fluid nav-bar">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                          <a class="navbar-brand page-scroll" href="http://localhost:8080/ultimo/perfil/EditarDatos.jsp#page-top" style="margin-left:-400px; font-weight: 700; font-size:38px; letter-spacing:0.2px;">Monitor ECG</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                          <ul class="nav navbar-nav navbar-right">
+                            <li><a class="menu active" href="http://localhost:8080/ultimo/ModuloElectrocardiogramas?accion=listarElectrocardiogramas">Electrocardiogramas</a></li>
+                            <li><a class="menu" href="http://localhost:8080/ultimo/perfil/Pacientes.jsp">Pacientes</a></li>
+                            <li class="dropdown">
+                                <a href="http://localhost:8080/ultimo/perfil/EditarDatos.jsp#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-md"></i> Triana Andalucia<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="http://localhost:8080/ultimo/ModuloPerfil?accion=VerPerfil"><i class="fa fa-user-md "></i>  Perfil</a>
+                                        </li>
+                                         <li role="separator" class="divider"></li>
+                                        <li>
+                                            <a href="http://localhost:8080/ultimo/index.jsp"><i class="fa fa-power-off"></i>  Salir</a>
+                                        </li>
+                                     </ul>
+                                 </li>
+                          </ul>
+                        </div><!-- /navbar-collapse -->
+                      </div><!-- / .container-fluid -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header> <!-- end of header area -->
+    
+    
+        <div class="container-fluid">
+            <div class="tittle">
+                <img src="./DOCTOR - Responsive HTML Template_files/icon--medico.png">
+                <h1>Editar datos registrados</h1>
+                <hr>
+            </div>
+
+            <div class="content margin-content-tab">  
+                
+                
+                
+                <form class="form-horizontal" action="http://localhost:8080/ultimo/ModuloPerfil?accion=GuardarCambios" method="post">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Nombre:</label>        
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control tamano-letra" id="inputEmail3" value="Triana Andalucia" name="nombre">
+                            </div>
+                            <div class="col-md-3">
+                                <label>Teléfono celular: </label>
+                            </div>
+                            <div class="col-md-3">
+                                
+                                    <input type="text" class="form-control tamano-letra" id="inputEmail3" value="55-12-97-01-15" name="telefono">
+                                
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Apellido paterno:</label>        
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control tamano-letra" id="inputEmail3" value="Prieto" name="apellidoPaterno">
+                            </div>
+                            <div class="col-md-3">
+                                <label>Cédula profesional: </label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control tamano-letra" id="inputEmail3" value="A9876" name="cedula">
+                            </div>
+                         </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Apellido materno:</label>        
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control tamano-letra" id="inputEmail3" value="Galvan" name="apellidoMaterno">
+                            </div>
+                            <div class="col-md-3">
+                                <label>Instituto de estudios: </label>
+                            </div>
+                            <div class="col-md-3">
+                                
+                                    <input type="text" class="form-control tamano-letra" id="inputEmail3" value="ESM" name="instituto">
+                                
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Edad:</label>        
+                            </div>
+                            <div class="col-md-3">
+                                
+                                    <input type="text" class="form-control tamano-letra" id="inputEmail3" value="21" name="edad">
+                                
+                                
+                            </div>
+                            <div class="col-md-3">
+                                <label>Sexo: </label>
+                            </div>
+                            <div class="col-md-3">
+                                
+                                
+                                    <div class="row" style="margin-left:10px;">
+                                        <label style="margin-right: 10px;"><input type="radio" class="tamano-letra" id="inputEmail3" value="" name="sexo"> Femenino</label>
+                                        <label><input type="radio" class="tamano-letra" id="inputEmail3" value="" name="sexo"> Masculino</label>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>CURP:</label>        
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control tamano-letra" id="inputEmail3" value="PIGT940502MOCRLR08" name="curp">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Correo electrónico:</label>        
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control tamano-letra" id="inputEmail3" value="trianagalvan@gmail.com" name="correo">
+                            </div>
+                        </div>
+                        <input type="hidden" value="1" name="idCardiologo">
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-9">
+                                <button type="submit" class="btn btn-default color-boton pull-right">Guardar</button>    
+                            </div>
+                        </div>
+                    </div><!--form group-->
+                </form>
+            </div><!-- content -->
+        </div>
+    
+    
+   <!-- script tags
+    ============================================================= -->    
+    <script src="./DOCTOR - Responsive HTML Template_files/bootstrap.min.js"></script>
+    <script src="./DOCTOR - Responsive HTML Template_files/custom.js"></script>
+    <script src="./DOCTOR - Responsive HTML Template_files/jquery.min.js"></script>
+    <script src="./DOCTOR - Responsive HTML Template_files/bootstrap.min(1).js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+
+
+        $(document).ready(function(){
+
+        $('a[href^="#"]').click(function(){
+
+            $('a[href^="#"]').removeClass('active'); // remove the class from the currently selected
+            $(this).addClass('active'); // add the class to the newly clicked link
+        });
+
+        });
+    </script>
+    
+
+</body></html>

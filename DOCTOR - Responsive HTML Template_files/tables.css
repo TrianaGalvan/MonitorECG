@@ -1,0 +1,26 @@
+
+/*+++ tables**/
+table{
+	margin-top: 10px;
+}
+
+th {
+    background-color: #51CCC7;
+    color: black;
+}
+
+table>tbody>tr>td{
+	font-size: 20px;
+	letter-spacing: 1px;
+}
+
+table>tbody>tr>th{
+	font-size: 20px;
+	letter-spacing: 2px;
+}
+
+/** imagenes (iconos en tablas)**/
+.tamano-botones-tabla{
+	width: 30px; 
+	height: 25px;
+}

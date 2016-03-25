@@ -18,6 +18,14 @@
         <servlet-name>ModuloElectrocardiogramas</servlet-name>
         <servlet-class>com.monitorecg.controlador.ModuloElectrocardiogramas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModuloPacientes</servlet-name>
+        <servlet-class>com.monitorecg.controlador.ModuloPacientes</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModuloPerfil</servlet-name>
+        <servlet-class>com.monitorecg.controlador.ModuloPerfil</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -29,6 +37,14 @@
     <servlet-mapping>
         <servlet-name>ModuloElectrocardiogramas</servlet-name>
         <url-pattern>/ModuloElectrocardiogramas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModuloPacientes</servlet-name>
+        <url-pattern>/ModuloPacientes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModuloPerfil</servlet-name>
+        <url-pattern>/ModuloPerfil</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

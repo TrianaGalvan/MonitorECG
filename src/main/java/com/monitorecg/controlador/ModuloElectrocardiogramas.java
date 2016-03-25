@@ -99,6 +99,7 @@ public class ModuloElectrocardiogramas extends HttpServlet {
     public void verECG(HttpServletRequest request, HttpServletResponse response){
         //quitar de sesion los items de la tabla electrocardiogramas
         request.removeAttribute("items");
+        String redirect = request.getParameter("pag");
         int idPaciente = Integer.parseInt(request.getParameter("idp"));
         int idPrueba = Integer.parseInt(request.getParameter("idm"));
         int idReporte = Integer.parseInt(request.getParameter("idr"));
@@ -118,7 +119,12 @@ public class ModuloElectrocardiogramas extends HttpServlet {
         request.getSession().setAttribute("paciente",p);
         request.getSession().setAttribute("prueba",pr);
         try {
-            response.sendRedirect("perfil/VerElectrocardiograma.jsp");
+            if(redirect != null){
+                response.sendRedirect("perfil/VerElectrocardiogramaHistorial.jsp");
+            }else{
+                response.sendRedirect("perfil/VerElectrocardiograma.jsp");
+            }
+            
         } catch (IOException ex) {
             Logger.getLogger(ModuloElectrocardiogramas.class.getName()).log(Level.SEVERE, null, ex);
         }

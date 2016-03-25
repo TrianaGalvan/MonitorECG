@@ -37,20 +37,24 @@ public class CardiologoDAOImpl implements CardiologoDAO{
     }
 
     @Override
-    public void modificarCardiologo(Cardiologo p) {
+    public boolean modificarCardiologo(Cardiologo p) {
         Session s;
         s = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t = s.getTransaction();
+        boolean modificacion = false; 
         try{
             t.begin();
             s.saveOrUpdate(p);
+            modificacion = true; 
             t.commit();
         }catch(HibernateException he){
+            modificacion = false;
             he.printStackTrace();
             if( t !=null){
                 t.rollback();
             }
         }
+        return modificacion;
     }
 
     @Override
@@ -242,5 +246,77 @@ public class CardiologoDAOImpl implements CardiologoDAO{
         return objects;
         
     }
+
+    @Override
+    public boolean moficarCardiologoSinContrasena(Cardiologo c) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        boolean modificacion = false; 
+        try{
+            t.begin();
+            Query q = s.createQuery("UPDATE Cardiologo c SET "+
+                           "c.nombre = :nom, "+
+                           "c.apellidoPaterno = :ap, "+
+                           "c.apellidoMaterno = :am, "+
+                           "c.edad = :edad, "+
+                           "c.cedula = :cedula, "+
+                           "c.sexo = :s, "+
+                           "c.correo = :correo, "+
+                           "c.telefono = :tel, "+
+                           "c.instituto = :instituto, "+
+                           "c.curp = :curp "+
+                           "where idCardiologo = :id");
+            q.setParameter("nom",c.getNombre());
+            q.setParameter("ap",c.getApellidoPaterno());
+            q.setParameter("am",c.getApellidoMaterno());
+            q.setParameter("edad",c.getEdad());
+            q.setParameter("cedula",c.getCedula());
+            q.setParameter("s",c.getSexo());
+            q.setParameter("correo",c.getCorreo());
+            q.setParameter("tel",c.getTelefono());
+            q.setParameter("instituto",c.getInstituto());
+            q.setParameter("curp",c.getCurp());
+            q.setParameter("id",c.getIdCardiologo());
+            q.executeUpdate();
+            modificacion = true; 
+            t.commit();
+        }catch(HibernateException he){
+            modificacion = false;
+            he.printStackTrace();
+            if( t !=null){
+                t.rollback();
+            }
+        }
+        return modificacion;
+    }
+
+    @Override
+    public boolean modificarContrasena(Cardiologo c) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        boolean modificacion = false; 
+        try{
+            t.begin();
+            Query q = s.createQuery("UPDATE Cardiologo c SET "+
+                           "c.contrasena = :pass "+
+                           "where idCardiologo = :id");
+            q.setParameter("pass",c.getContrasena());
+            q.setParameter("id",c.getIdCardiologo());
+            q.executeUpdate();
+            modificacion = true; 
+            t.commit();
+        }catch(HibernateException he){
+            modificacion = false;
+            he.printStackTrace();
+            if( t !=null){
+                t.rollback();
+            }
+        }
+        return modificacion;
+    }
+    
+    
  
 }

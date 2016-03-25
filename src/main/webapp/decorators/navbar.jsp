@@ -60,7 +60,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-md"></i> <%=nombre%><b class="caret"></b></a>
                                     <ul class="dropdown-menu" >
                                         <li>
-                                            <a href="VerPerfil.jsp"><i class="fa fa-user-md "></i>  Perfil</a>
+                                            <a href="../ModuloPerfil?accion=VerPerfil"><i class="fa fa-user-md "></i>  Perfil</a>
                                         </li>
                                          <li role="separator" class="divider"></li>
                                         <li>
@@ -100,6 +100,13 @@
             $(this).addClass('active'); // add the class to the newly clicked link
         });
 
+        });
+    </script>
+    <!-- Validate forms -->
+    <script src="../js/jqBootstrapValidation.js"></script>
+    <script>
+        $(function () {
+            $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
         });
     </script>
     </body>
