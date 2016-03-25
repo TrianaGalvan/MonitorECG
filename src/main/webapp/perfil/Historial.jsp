@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +21,7 @@
             <div class="content">
                 <div class="row">
                     <div class="col-md-5"> 
-                        <label>Nombre del paciente: Prieto Galván Triana Andalucia </label>
+                        <label>Nombre del paciente: &nbsp;&nbsp; </label>
                     </div>
                 </div>
 
@@ -33,33 +35,33 @@
                         <tr>
                             <th>Fecha del electrocardiograma</th>
                             <th>Hora</th>
-                            <th>Estado</th>
+                            <th>Estatus</th>
                             <th>Acciones</th>
                         </tr>
-                        <tr>
-                            <td>10/02/2015</td>
-                            <td>12:00 pm</td>
-                            <td class="pendiente">Pendiente</td>
-                            <td style="margin-left:20px;">
-                                <a href="VerElectrocardiograma.jsp" data-toggle="tooltip" title="Ver" ><img src="../img/lupa_icono_tabla.png" style="width: 38px; height: 32px;"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10/08/2014</td>
-                            <td>03:00 pm</td>
-                            <td class="revisado">Revisado</td>
-                            <td style="margin-left:20px;">
-                                <a href="#" data-toggle="tooltip" title="Ver" ><img src="../img/lupa_icono_tabla.png" style="width: 38px; height: 32px;"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>12/08/2014</td>
-                            <td>10:00 am</td>
-                            <td class="no-revisado">No revisado</td>
-                            <td style="margin-left:20px;">
-                                <a href="#" data-toggle="tooltip" title="Ver" ><img src="../img/lupa_icono_tabla.png"  style="width: 38px; height: 32px;"></a>
-                            </td>
-                        </tr>
+                        <c:forEach var="item"
+                                   items="${sessionScope.pruebas}">
+                            <tr>
+                                <td>
+                                    <c:out value="${item.fecha}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${item.hora}"/>
+                                </td>
+                                <c:if test="${item.estatus == 0}">
+                                     <td class="revisado">Revisado</td>
+                                </c:if>
+                                <c:if test="${item.estatus == 1}">
+                                    <td class="pendiente">Pendiente</td>
+                                </c:if>
+                                <c:if test="${item.estatus == 2}">
+                                    <td class="no-revisado">No revisado</td>
+                                </c:if>
+                                </td>
+                                <td style="margin-left:20px;">
+                                    <a href="../ModuloElectrocardiogramas?accion=verECG&idm=${item.idPrueba}&idr=${item.idReporte}&idp=${item.idPaciente}&pag=historial" data-toggle="tooltip" title="Ver" ><img src="../img/lupa_icono_tabla.png"  style="width: 38px; height: 32px;"></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
                 <div class="row">

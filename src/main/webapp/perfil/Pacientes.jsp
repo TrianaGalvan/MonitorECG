@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,18 +19,29 @@
             <h1>Pacientes</h1>
             <hr>
             <div class="content">
-                <form class="form-horizontal">
+                <%
+                        String msj = (String) request.getSession().getAttribute("msj-buscar-paciente");
+                        if (msj != null) {%>
+                        <div class="row">
+                            <div class="alert alert-info fade in col-md-10 col-md-offset-1" style="font-size: 20px;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>Ups!</strong> <%=msj%>
+                            </div>
+                        </div>
+                        <%request.getSession().removeAttribute("msj-buscar-paciente");}
+                %>
+                <form class="form-horizontal" action="../ModuloPacientes?accion=BuscarPaciente" method="post" accept-charset="UTF-8">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-4">
                                 <label>1. Selecciona el filtro de búsqueda del paciente </label>
                             </div>
                             <div class="col-md-4">
-                              <select class="form-control">
-                                  <option></option>
-                                  <option>Nombre</option>
-                                  <option>Correo electrónico</option>
-                                  <option>CURP</option>
+                                <select class="form-control" style="font-size: 17px;" name="filtro">
+                                    <option></option>
+                                    <option>Nombre</option>
+                                    <option>Correo electrónico</option>
+                                    <option>CURP</option>
                                 </select>  
                             </div>
                         </div>
@@ -38,7 +51,7 @@
                                 <label>2. Introduce el parámetro de búsqueda </label>
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" class="form-control" placeholder="" style="font-size: 19px;" name="valor-filtro">
                             </div>
                         </div>
                     </div>
@@ -49,6 +62,7 @@
                     </div>
 
                 </form>
+
 
                 <div class="row">
                     <h2>Lista de pacientes </h2>
@@ -61,27 +75,19 @@
                             <th>Nombre del paciente</th>
                             <th>Acciones</th>
                         </tr>
-                        <tr>
-                            <td>Prieto Galván Triana Andalucia</td>
-                            <td style="margin-left:20px;">
-                                <a href="Historial.jsp" data-toggle="tooltip" title="Historial" ><img src="../img/foler_blue.png" style="width: 38px; height: 32px;"></a>
-                                <a href="Informacion.jsp" data-toggle="tooltip" title="Perfil"><img src="../img/user_buscar.png" style="width: 55px; height: 48px;"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Peña Velarde Jesus Daniel</td>
-                            <td>
-                                <a href="#" data-toggle="tooltip" title="Historial"><img src="../img/foler_blue.png" style="width: 38px; height: 32px;"></a>
-                                <a href="#" data-toggle="tooltip" title="Perfil"><img src="../img/user_buscar.png" style="width: 55px; height: 48px;"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Cifuentes Alonso Claudio Antonio    </td>
-                            <td>
-                                <a href="#"><img src="../img/foler_blue.png" style="width: 38px; height: 32px;"></a>
-                                <a href="#"><img src="../img/user_buscar.png" style="width: 55px; height: 48px;"></a>
-                            </td>
-                        </tr>
+
+                        <c:forEach var="item"
+                                   items="${sessionScope.pacientes}">
+                            <tr>
+                                <td>
+                                    <c:out value="${item.nombre}  ${item.apellidoPaterno}  ${item.apellidoMaterno}"/>
+                                </td>
+                                <td style="margin-left:20px;">
+                                    <a href="../ModuloPacientes?accion=Historial&idp=${item.idPaciente}" data-toggle="tooltip" title="Historial" ><img src="../img/foler_blue.png" style="width: 38px; height: 32px;"></a>
+                                    <a href="../ModuloPacientes?accion=Informacion&idp=${item.idPaciente}" data-toggle="tooltip" title="Perfil"><img src="../img/user_buscar.png" style="width: 55px; height: 48px;"></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>

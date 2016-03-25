@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,7 +28,7 @@
                                     <label>Nombre:</label>        
                                 </div>
                                 <div class="col-md-5">
-                                    <label class="value-label">Triana Andalucia</label>
+                                    <label class="value-label">${sessionScope.paciente.nombre}</label>
                                 </div>
                             </div>
                             <div class="row">
@@ -34,7 +36,7 @@
                                     <label>Apellido Paterno: </label>
                                 </div>
                                 <div class="col-md-5">
-                                    <label>Prieto </label>
+                                    <label>${sessionScope.paciente.apellidoPaterno} </label>
                                 </div>
                             </div>
                             <div class="row">
@@ -42,7 +44,7 @@
                                     <label>Apellido Materno: </label>
                                 </div>
                                 <div class="col-md-5">
-                                    <label>Galván </label>
+                                    <label>${sessionScope.paciente.apellidoMaterno} </label>
                                 </div>
                             </div>
                             <div class="row">
@@ -50,7 +52,9 @@
                                     <label>Edad: </label>
                                 </div>
                                 <div class="col-md-5">
-                                    <label>25 </label>
+                                    <c:if test="${sessionScope.paciente.edad != 0}">
+                                        <label>${sessionScope.paciente.edad} años</label>
+                                    </c:if>
                                 </div>
                             </div>
                             <div class="row">
@@ -58,7 +62,12 @@
                                     <label>Sexo: </label>
                                 </div>
                                 <div class="col-md-5">
-                                    <label>Femenino </label>
+                                    <c:if test="${sessionScope.paciente.sexo != null}">
+                                        <label>${sessionScope.paciente.sexo} </label>
+                                    </c:if>
+                                    <c:if test="${sessionScope.paciente.sexo == null}">
+                                        <label>No resgitrado </label>
+                                    </c:if>    
                                 </div>
                             </div>
                             <div class="row">
@@ -66,7 +75,12 @@
                                     <label>CURP: </label>
                                 </div>
                                 <div class="col-md-5">
-                                    <label>PIGT950402MOCRLR08 </label>
+                                    <c:if test="${sessionScope.paciente.curp != null}">
+                                        <label>${sessionScope.paciente.curp} </label>
+                                    </c:if>
+                                    <c:if test="${sessionScope.paciente.curp == null}">
+                                        <label>No resgitrado </label>
+                                    </c:if> 
                                 </div>
                             </div>
                         </fieldset>
@@ -79,15 +93,25 @@
                                     <label>Peso:</label>        
                                 </div>
                                 <div class="col-md-5">
-                                    <label class="value-label">59 Kg</label>
+                                    <c:if test="${sessionScope.paciente.peso != 0}">
+                                        <label>${sessionScope.paciente.peso} Kg</label>
+                                    </c:if>
+                                    <c:if test="${sessionScope.paciente.peso == 0}">
+                                        <label>No resgitrado </label>
+                                    </c:if> 
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label>Frecuencia cardiaca: </label>
+                                    <label>Frecuencia respiratoria: </label>
                                 </div>
                                 <div class="col-md-5">
-                                    <label>No registrado</label>
+                                    <c:if test="${sessionScope.paciente.frecuenciaRespiratoria != 0}">
+                                        <label>${sessionScope.paciente.frecuenciaRespiratoria} respiraciones por minuto</label>
+                                    </c:if>
+                                    <c:if test="${sessionScope.paciente.frecuenciaRespiratoria == 0}">
+                                        <label>No resgitrado </label>
+                                    </c:if> 
                                 </div>
                             </div>
                             <div class="row">
@@ -95,7 +119,12 @@
                                     <label>Presión arterial:</label>
                                 </div>
                                 <div class="col-md-5">
-                                    <label>No registrado</label>
+                                    <c:if test="${sessionScope.paciente.presionArterial != 0}">
+                                        <label>${sessionScope.paciente.presionArterial} mmHg</label>
+                                    </c:if>
+                                    <c:if test="${sessionScope.paciente.presionArterial == 0}">
+                                        <label>No resgitrado </label>
+                                    </c:if> 
                                 </div>
                             </div>
                             <div class="row">
@@ -103,7 +132,12 @@
                                     <label>Altura: </label>
                                 </div>
                                 <div class="col-md-5">
-                                    <label>1.60 m</label>
+                                    <c:if test="${sessionScope.paciente.altura != 0}">
+                                        <label>${sessionScope.paciente.altura} m</label>
+                                    </c:if>
+                                    <c:if test="${sessionScope.paciente.altura == 0}">
+                                        <label>No resgitrado </label>
+                                    </c:if>
                                 </div>
                             </div>
                             <div class="row">
@@ -111,7 +145,12 @@
                                     <label>Fecha de actualización: </label>
                                 </div>
                                 <div class="col-md-5">
-                                    <label>01/01/2016</label>
+                                    <c:if test="${sessionScope.paciente.fechamodificacion != null}">
+                                        <label>${sessionScope.paciente.fechamodificacion} </label>
+                                    </c:if>
+                                    <c:if test="${sessionScope.paciente.fechamodificacion == null}">
+                                        <label>No resgitrado </label>
+                                    </c:if>
                                 </div>
                             </div>
                         </fieldset>
