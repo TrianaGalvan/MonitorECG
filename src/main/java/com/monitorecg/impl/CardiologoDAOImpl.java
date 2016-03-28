@@ -21,20 +21,24 @@ import org.hibernate.Transaction;
 public class CardiologoDAOImpl implements CardiologoDAO{
 
     @Override
-    public void eliminarCardiologo(Cardiologo p) {
+    public boolean eliminarCardiologo(Cardiologo p) {
         Session s;
         s = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t = s.getTransaction();
+        boolean respuesta = false;
         try{
             t.begin();
             s.delete(p);
+            respuesta = true; 
             t.commit();
         }catch(HibernateException he){
+            respuesta = false;
             he.printStackTrace();
             if(t !=null){
                 t.rollback();
             }
         }
+        return respuesta;
     }
 
     @Override

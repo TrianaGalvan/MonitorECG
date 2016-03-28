@@ -4,11 +4,23 @@
  * and open the template in the editor.
  */
 package com.monitorecg.web.service;
-
+import spark.Filter;
+import spark.Request;
+import spark.Response;
+import static spark.Spark.*;
 /**
  *
  * @author trianaandaluciaprietogalvan
  */
 public class JsonController {
     protected JsonUtil jsonutil = new JsonUtil();
+    
+    public JsonController(){
+        after(new Filter() {
+            @Override
+            public void handle(Request rqst, Response rspns) throws Exception {
+                rspns.type("application/json");
+            }
+        });
+    }
 }

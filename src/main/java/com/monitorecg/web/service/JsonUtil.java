@@ -21,4 +21,8 @@ public class JsonUtil implements ResponseTransformer{
     public String render(Object o) throws Exception {
         return gson.toJson(o);
     }
+
+    public Gson getGson() {
+        return gson;
+    }
 }
