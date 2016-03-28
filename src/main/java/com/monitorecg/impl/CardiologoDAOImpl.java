@@ -19,6 +19,7 @@ import org.hibernate.Transaction;
  * @author trianaandaluciaprietogalvan
  */
 public class CardiologoDAOImpl implements CardiologoDAO{
+
     @Override
     public void eliminarCardiologo(Cardiologo p) {
         Session s;

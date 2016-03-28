@@ -54,7 +54,7 @@
             <column name="fechamodificacion" length="45" />
         </property>
         <set name="pruebas" table="Prueba" 
-                        inverse="true" lazy="true" fetch="select" cascade="all">
+                        inverse="false" lazy="true" fetch="join" cascade="all">
             <key>
                 <column name="Paciente_idPaciente" not-null="true" />
             </key>
