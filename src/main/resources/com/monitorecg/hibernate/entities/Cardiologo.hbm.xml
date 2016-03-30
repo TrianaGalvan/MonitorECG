@@ -41,10 +41,9 @@
         <property name="contrasena" type="string">
             <column name="contrasena" length="45" />
         </property>
-        <set name="pacientes" table="Paciente" 
-                        inverse="true" lazy="true"  cascade="all">
+        <set name="pacientes" table="Paciente" inverse="true" lazy="true">
             <key>
-                <column name="Cardiologo_idCardiologo" not-null="true" />
+                <column name="Cardiologo_idCardiologo" not-null="true"/>
             </key>
             <one-to-many class="com.monitorecg.hibernate.entities.Paciente"/>
         </set>

@@ -14,6 +14,7 @@ import static spark.Spark.*;
  */
 public class JsonController {
     protected JsonUtil jsonutil = new JsonUtil();
+    protected JsonUtilPaciente jsonutilpaciente = new JsonUtilPaciente();
     
     public JsonController(){
         after(new Filter() {

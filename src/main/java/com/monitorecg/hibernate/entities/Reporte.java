@@ -13,7 +13,6 @@ public class Reporte  implements java.io.Serializable {
      private String observaciones;
      private String recomendaciones;
      private Integer estatus;
-     @JsonIgnore
      private Prueba prueba; 
 
     public Reporte() {

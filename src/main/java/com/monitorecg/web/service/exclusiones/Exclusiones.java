@@ -8,6 +8,9 @@ package com.monitorecg.web.service.exclusiones;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.monitorecg.hibernate.entities.Cardiologo;
+import com.monitorecg.hibernate.entities.Paciente;
+import com.monitorecg.hibernate.entities.Prueba;
+import com.monitorecg.hibernate.entities.Reporte;
 
 /**
  *
@@ -19,6 +22,17 @@ public class Exclusiones implements ExclusionStrategy{
     public boolean shouldSkipField(FieldAttributes fa) {
         if(fa.getDeclaringClass() == Cardiologo.class){
             if(fa.getName().equals("pacientes")){
+                return true;
+            }
+        }else if(fa.getDeclaringClass() == Paciente.class){
+            if(fa.getName().equals("pruebas")){
+                return true;
+            }
+            /*else if(fa.getName().equals("cardiologo")){
+                return true;
+            }*/
+        }else if(fa.getDeclaringClass() == Prueba.class){
+            if(fa.getName().equals("paciente")){
                 return true;
             }
         }

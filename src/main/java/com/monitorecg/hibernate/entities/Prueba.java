@@ -23,6 +23,7 @@ public class Prueba  implements java.io.Serializable {
      private String observaciones;
      private Date fechaenvio;
      private Date horaenvio;
+     private Paciente paciente;
      
      private Reporte reporte; 
     
@@ -117,9 +118,14 @@ public class Prueba  implements java.io.Serializable {
     public void setReporte(Reporte reporte) {
         this.reporte = reporte;
     }
-    
-    
-   
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
 }
 
 

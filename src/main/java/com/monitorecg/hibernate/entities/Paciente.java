@@ -31,7 +31,7 @@ public class Paciente  implements java.io.Serializable {
      private String fechamodificacion;
      private Set<Prueba> pruebas = 
 				new HashSet<Prueba>(0);
-     
+     private Cardiologo cardiologo; 
 
     public Paciente() {
     }
@@ -180,7 +180,13 @@ public class Paciente  implements java.io.Serializable {
         this.pruebas = pruebas;
     }
 
-     
+    public Cardiologo getCardiologo() {
+        return cardiologo;
+    }
+
+    public void setCardiologo(Cardiologo cardiologo) {
+        this.cardiologo = cardiologo;
+    }
 }
 
 

@@ -22,37 +22,45 @@ import org.hibernate.Transaction;
 public class PruebaDAOImpl implements PruebaDAO{
 
    @Override
-    public void eliminarPrueba(Prueba p) {
+    public boolean eliminarPrueba(Prueba p) {
         Session s;
         s = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t = s.getTransaction();
+        boolean resp = false;
         try{
             t.begin();
             s.delete(p);
+            resp = true;
             t.commit();
         }catch(HibernateException he){
+            resp = false;
             he.printStackTrace();
             if(t !=null){
                 t.rollback();
             }
         }
+        return resp;
     }
 
     @Override
-    public void modificarPrueba(Prueba p) {
+    public boolean modificarPrueba(Prueba p) {
         Session s;
         s = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t = s.getTransaction();
+        boolean resp = false;
         try{
             t.begin();
             s.saveOrUpdate(p);
+            resp = true;
             t.commit();
         }catch(HibernateException he){
+            resp = false;
             he.printStackTrace();
             if( t !=null){
                 t.rollback();
             }
         }
+        return resp;
     }
 
     @Override

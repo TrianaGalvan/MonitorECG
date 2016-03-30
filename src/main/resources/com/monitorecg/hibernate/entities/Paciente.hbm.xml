@@ -53,10 +53,12 @@
         <property name="fechamodificacion" type="string">
             <column name="fechamodificacion" length="45" />
         </property>
-        <set name="pruebas" table="Prueba" 
-                        inverse="false" lazy="true" fetch="join" cascade="all">
+        <many-to-one name="cardiologo" class="com.monitorecg.hibernate.entities.Cardiologo" fetch="select">
+            <column name="Cardiologo_idCardiologo" not-null="false"/>
+        </many-to-one>
+        <set name="pruebas" table="Prueba" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="Paciente_idPaciente" not-null="true" />
+                <column name="Paciente_idPaciente"/>
             </key>
             <one-to-many class="com.monitorecg.hibernate.entities.Prueba"/>
         </set>

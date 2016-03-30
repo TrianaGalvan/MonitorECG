@@ -21,37 +21,45 @@ import org.hibernate.Transaction;
  */
 public class ReporteDAOImpl implements ReporteDAO{
     @Override
-    public void eliminarReporte(Reporte p) {
+    public boolean eliminarReporte(Reporte p) {
         Session s;
         s = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t = s.getTransaction();
+        boolean resp = false; 
         try{
             t.begin();
             s.delete(p);
+            resp = true;
             t.commit();
         }catch(HibernateException he){
+            resp = false;
             he.printStackTrace();
             if(t !=null){
                 t.rollback();
             }
         }
+        return resp;
     }
 
     @Override
-    public void modificarReporte(Reporte p) {
+    public boolean modificarReporte(Reporte p) {
         Session s;
         s = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t = s.getTransaction();
+        boolean resp = false;
         try{
             t.begin();
             s.saveOrUpdate(p);
+            resp = true;
             t.commit();
         }catch(HibernateException he){
+            resp = false;
             he.printStackTrace();
             if( t !=null){
                 t.rollback();
             }
         }
+        return resp;
     }
 
     @Override

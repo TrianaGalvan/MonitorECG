@@ -14,8 +14,8 @@ import java.util.List;
  * @author trianaandaluciaprietogalvan
  */
 public interface PruebaDAO {
-    public void eliminarPrueba(Prueba c);
-    public void modificarPrueba(Prueba c);
+    public boolean eliminarPrueba(Prueba c);
+    public boolean modificarPrueba(Prueba c);
     public boolean agregarPrueba(Prueba c);
     public List<Prueba> obtenerPruebas(); 
     public Prueba obtenerPrueba(Prueba c);
