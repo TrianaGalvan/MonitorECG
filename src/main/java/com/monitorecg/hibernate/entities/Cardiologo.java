@@ -1,6 +1,7 @@
 package com.monitorecg.hibernate.entities;
 // Generated 16-mar-2016 13:26:37 by Hibernate Tools 4.3.1
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
 /**

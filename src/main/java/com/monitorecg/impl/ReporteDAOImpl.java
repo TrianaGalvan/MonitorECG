@@ -9,6 +9,7 @@ import com.monitorecg.dao.impl.ReporteDAO;
 import com.monitorecg.hibernate.HibernateUtil;
 import com.monitorecg.hibernate.entities.Cardiologo;
 import com.monitorecg.hibernate.entities.Reporte;
+import java.io.Serializable;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -21,37 +22,45 @@ import org.hibernate.Transaction;
  */
 public class ReporteDAOImpl implements ReporteDAO{
     @Override
-    public void eliminarReporte(Reporte p) {
+    public boolean eliminarReporte(Reporte p) {
         Session s;
         s = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t = s.getTransaction();
+        boolean resp = false; 
         try{
             t.begin();
             s.delete(p);
+            resp = true;
             t.commit();
         }catch(HibernateException he){
+            resp = false;
             he.printStackTrace();
             if(t !=null){
                 t.rollback();
             }
         }
+        return resp;
     }
 
     @Override
-    public void modificarReporte(Reporte p) {
+    public boolean modificarReporte(Reporte p) {
         Session s;
         s = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t = s.getTransaction();
+        boolean resp = false;
         try{
             t.begin();
             s.saveOrUpdate(p);
+            resp = true;
             t.commit();
         }catch(HibernateException he){
+            resp = false;
             he.printStackTrace();
             if( t !=null){
                 t.rollback();
             }
         }
+        return resp;
     }
 
     @Override
@@ -62,7 +71,7 @@ public class ReporteDAOImpl implements ReporteDAO{
         Transaction t = s.getTransaction();
         try{
             t.begin();
-            s.save(p);
+            Serializable obj = s.save(p);
             t.commit();
             r = true; 
         }catch(HibernateException he){
@@ -160,5 +169,6 @@ public class ReporteDAOImpl implements ReporteDAO{
         }
         return reporte;
     }
+
   
 }

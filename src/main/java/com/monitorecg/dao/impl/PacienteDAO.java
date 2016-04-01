@@ -14,8 +14,8 @@ import java.util.List;
  * @author trianaandaluciaprietogalvan
  */
 public interface PacienteDAO {
-    public void eliminarPaciente(Paciente c);
-    public void modificarPaciente(Paciente c);
+    public boolean eliminarPaciente(Paciente c);
+    public boolean modificarPaciente(Paciente c);
     public boolean agregarPaciente(Paciente c);
     public List<Paciente> obtenerPacientes(); 
     public Paciente obtenerPaciente(Paciente c);

@@ -2,6 +2,8 @@ package com.monitorecg.hibernate.entities;
 // Generated 16-mar-2016 13:26:37 by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,9 +23,11 @@ public class Prueba  implements java.io.Serializable {
      private String observaciones;
      private Date fechaenvio;
      private Date horaenvio;
+     private Paciente paciente;
      private Reporte reporte; 
-    public Prueba() {
-    }
+    
+     public Prueba() {
+     }
 
 	
     public Prueba(int id) {
@@ -113,9 +117,14 @@ public class Prueba  implements java.io.Serializable {
     public void setReporte(Reporte reporte) {
         this.reporte = reporte;
     }
-    
-    
-   
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
 }
 
 

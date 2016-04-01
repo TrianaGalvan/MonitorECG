@@ -123,10 +123,12 @@ public class ModuloPerfil extends HttpServlet {
             c.setCorreo(request.getParameter("correo"));
             //obtener el sexo 
             String sexo = request.getParameter("sexo");
-            if(sexo.equals("Femenino")){
-                c.setSexo("F");
-            }else if(sexo.equals("Masculino")){
-                c.setSexo("M");
+            if(sexo != null){
+                if(sexo.equals("Femenino")){
+                    c.setSexo("F");
+                }else if(sexo.equals("Masculino")){
+                    c.setSexo("M");
+                }
             }else{
                 c.setSexo("");
             }

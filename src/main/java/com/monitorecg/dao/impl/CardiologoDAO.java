@@ -13,7 +13,7 @@ import java.util.List;
  * @author trianaandaluciaprietogalvan
  */
 public interface CardiologoDAO {
-    public void eliminarCardiologo(Cardiologo c);
+    public boolean eliminarCardiologo(Cardiologo c);
     public boolean modificarCardiologo(Cardiologo c);
     public boolean agregarCardiologo(Cardiologo c);
     public List<Cardiologo> obtenerCardiologos(); 

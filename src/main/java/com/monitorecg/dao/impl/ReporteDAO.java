@@ -14,8 +14,8 @@ import java.util.List;
  * @author trianaandaluciaprietogalvan
  */
 public interface ReporteDAO {
-    public void eliminarReporte(Reporte r);
-    public void modificarReporte(Reporte r);
+    public boolean eliminarReporte(Reporte r);
+    public boolean modificarReporte(Reporte r);
     public boolean agregarReporte(Reporte r);
     public List<Reporte> obtenerReportes(); 
     public Reporte obtenerReporte(Reporte r);

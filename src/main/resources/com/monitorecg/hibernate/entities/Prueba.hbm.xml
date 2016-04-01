@@ -32,6 +32,15 @@
         <property name="horaenvio" type="timestamp">
             <column name="horaenvio" length="19" />
         </property> 
-        <one-to-one name="reporte" class="com.monitorecg.hibernate.entities.Reporte" property-ref="prueba"></one-to-one>
+        <many-to-one name="reporte"
+                     class="com.monitorecg.hibernate.entities.Reporte"
+                     column="Reporte_idReporte"
+                     cascade="save-update" 
+                     unique="true"
+                     lazy="false"/>
+        
+        <many-to-one name="paciente" class="com.monitorecg.hibernate.entities.Paciente" fetch="select" lazy="false">
+            <column name="Paciente_idPaciente" />
+        </many-to-one>
     </class>
 </hibernate-mapping>
