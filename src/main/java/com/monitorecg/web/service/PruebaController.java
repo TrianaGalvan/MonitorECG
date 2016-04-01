@@ -8,7 +8,10 @@ package com.monitorecg.web.service;
 import com.google.gson.Gson;
 import com.monitorecg.hibernate.entities.Cardiologo;
 import com.monitorecg.hibernate.entities.Prueba;
+import com.monitorecg.hibernate.entities.Reporte;
 import com.monitorecg.impl.PruebaDAOImpl;
+import com.monitorecg.impl.ReporteDAOImpl;
+import java.io.Serializable;
 import static spark.Spark.delete;
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -21,7 +24,7 @@ import static spark.Spark.put;
 public class PruebaController extends JsonController{
 
     public PruebaController(final PruebaDAOImpl pdi) {
-        get("/pruebas",(req,res)->pdi.obtenerPruebas(),jsonutil);
+        get("/pruebas",(req,res)->pdi.obtenerPruebas(),jsonutilprueba);
         
         get("/prueba/:id",(req, res) -> {
             String id = req.params(":id");
@@ -35,11 +38,12 @@ public class PruebaController extends JsonController{
             res.status(400);
             //res.type("application/json");
             return "No se encontro el prueba con el id: "+id;
-          }, jsonutil);
+          }, jsonutilprueba);
         
         post("/prueba","application/json",(req,res)-> {
             String body = req.body();
-            Gson gson = jsonutil.getGson();
+            Gson gson = jsonutilprueba.getGson();
+            
             Prueba p = gson.fromJson(body,Prueba.class);
             boolean respuesta =pdi.agregarPrueba(p);
             if(respuesta){
@@ -49,25 +53,34 @@ public class PruebaController extends JsonController{
                 return null;
             }
             
-        },jsonutil);
+        },jsonutilprueba);
         
         delete("/prueba/:id",(req,res)->{
             String id = req.params("id");
             Prueba p = new Prueba();
+            
             p.setIdPrueba(Integer.parseInt(id));
+            p = pdi.obtenerPrueba(p);
+            Reporte reporte = p.getReporte();
             boolean resp = pdi.eliminarPrueba(p);
+            //eliminar reportes 
+            reporte.getIdReporte();
+            ReporteDAOImpl rdi = new ReporteDAOImpl();
+            rdi.eliminarReporte(reporte);
+            
+            //eliminar los reportes que tengas asociada la prueba 
             if(resp){
                 return "ok";
             }
             else{
                 return "error";
             }
-        },jsonutil);
+        },jsonutilprueba);
         
         put("/prueba/:id","application/json" ,(req,res)->{
             String body = req.body();
             String id = req.params("id");
-            Gson gson = jsonutil.getGson();
+            Gson gson = jsonutilprueba.getGson();
             Prueba p = gson.fromJson(body,Prueba.class);
             
             p.setIdPrueba(Integer.parseInt(id));
@@ -77,7 +90,7 @@ public class PruebaController extends JsonController{
             }else{
                 return "error";
             }
-        },jsonutil);
+        },jsonutilprueba);
     }
     
 }

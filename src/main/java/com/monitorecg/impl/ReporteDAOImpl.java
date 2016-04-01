@@ -9,6 +9,7 @@ import com.monitorecg.dao.impl.ReporteDAO;
 import com.monitorecg.hibernate.HibernateUtil;
 import com.monitorecg.hibernate.entities.Cardiologo;
 import com.monitorecg.hibernate.entities.Reporte;
+import java.io.Serializable;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -70,7 +71,7 @@ public class ReporteDAOImpl implements ReporteDAO{
         Transaction t = s.getTransaction();
         try{
             t.begin();
-            s.save(p);
+            Serializable obj = s.save(p);
             t.commit();
             r = true; 
         }catch(HibernateException he){
@@ -168,5 +169,6 @@ public class ReporteDAOImpl implements ReporteDAO{
         }
         return reporte;
     }
+
   
 }

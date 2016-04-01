@@ -24,7 +24,6 @@ public class Prueba  implements java.io.Serializable {
      private Date fechaenvio;
      private Date horaenvio;
      private Paciente paciente;
-     
      private Reporte reporte; 
     
      public Prueba() {

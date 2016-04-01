@@ -41,7 +41,7 @@
         <property name="contrasena" type="string">
             <column name="contrasena" length="45" />
         </property>
-        <set name="pacientes" table="Paciente" inverse="true" lazy="true">
+        <set name="pacientes" table="Paciente" inverse="true" lazy="true" cascade="all">
             <key>
                 <column name="Cardiologo_idCardiologo" not-null="true"/>
             </key>

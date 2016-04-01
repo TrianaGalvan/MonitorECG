@@ -21,7 +21,7 @@ import static spark.Spark.put;
 public class ReporteController extends JsonController{
 
     public ReporteController(final ReporteDAOImpl pdi) {
-        get("/reportes",(req,res)->pdi.obtenerReportes(),jsonutil);
+        get("/reportes",(req,res)->pdi.obtenerReportes(),jsonutilreporte);
         
         get("/reporte/:id",(req, res) -> {
             String id = req.params(":id");
@@ -35,7 +35,7 @@ public class ReporteController extends JsonController{
             res.status(400);
             //res.type("application/json");
             return "No se encontro el reporte con el id: "+id;
-          }, jsonutil);
+          }, jsonutilreporte);
         
         post("/reporte","application/json",(req,res)-> {
             String body = req.body();
@@ -68,10 +68,9 @@ public class ReporteController extends JsonController{
             String body = req.body();
             String id = req.params("id");
             Gson gson = jsonutil.getGson();
-            Reporte p = gson.fromJson(body,Reporte.class);
-            
-            p.setIdReporte(Integer.parseInt(id));
-            boolean resp = pdi.modificarReporte(p);
+            Reporte reporte = gson.fromJson(body,Reporte.class);
+            reporte.setIdReporte(Integer.parseInt(id));
+            boolean resp = pdi.modificarReporte(reporte);
             if(resp){
                 return "ok";
             }else{

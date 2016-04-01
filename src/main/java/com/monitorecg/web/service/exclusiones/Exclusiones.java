@@ -28,11 +28,8 @@ public class Exclusiones implements ExclusionStrategy{
             if(fa.getName().equals("pruebas")){
                 return true;
             }
-            /*else if(fa.getName().equals("cardiologo")){
-                return true;
-            }*/
         }else if(fa.getDeclaringClass() == Prueba.class){
-            if(fa.getName().equals("paciente")){
+            if(fa.getName().equals("reporte")){
                 return true;
             }
         }
