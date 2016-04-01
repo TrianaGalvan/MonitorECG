@@ -20,9 +20,9 @@
             <hr>
             <div class="content">
                 <div class="row">
-                    <div class="col-md-4"> 
+                    <!--<div class="col-md-4"> 
                         <button type="submit" class="btn btn-default color-boton boton-reporte"><a href="NuevoReporte.jsp" style="color: #333;">Nuevo reporte</a></button>    
-                    </div>
+                    </div>-->
                 </div>
                 
                 <%

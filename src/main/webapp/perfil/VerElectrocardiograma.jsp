@@ -165,8 +165,11 @@
                     <form class="form-horizontal" action="../ModuloElectrocardiogramas?accion=GuadarReporte" method="post" novalidate>
                         <div class="form-group">
                             <div class="row">
+                                <p id="msj-vacio"></p>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-12">
-                                    <textarea class="form-control text-diagnostico" name="recomendaciones" rows="8" style="font-size: 22px;" ></textarea>
+                                    <textarea class="form-control text-diagnostico" name="recomendaciones" rows="8" style="font-size: 22px;" id="text-recomendaciones"><c:out value="${sessionScope.prueba.reporte.recomendaciones}"></c:out></textarea>
                                 </div>
                             </div> 
                             <input type="hidden" id="estado" name="estado"/>

@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <br>
-                        <div class="row">
+                        <div class="row" style="margin-top: -9px;">
                             <div class="col-md-4 ">
                                 <label>2. Introduce el parámetro de búsqueda </label>
                             </div>
@@ -63,12 +63,9 @@
                     </div>
 
                 </form>
-
-
-                <div class="row">
+                <div class="row" style="margin-bottom: -10px;margin-top: -10px;">
                     <h2>Lista de pacientes </h2>
                 </div>
-
                 <!-- table -->
                 <table class="table table-bordered">
                     <tbody>

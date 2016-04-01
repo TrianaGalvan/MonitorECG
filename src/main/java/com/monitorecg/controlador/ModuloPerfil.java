@@ -135,6 +135,7 @@ public class ModuloPerfil extends HttpServlet {
             modificacion = cdi.moficarCardiologoSinContrasena(c);
             if(modificacion){
                 request.getSession().setAttribute("msj-guardar-cambios","Tus cambios han sido guardados con éxito");
+                request.getSession().setAttribute("user",request.getParameter("nombre"));
             }else if(!modificacion){
                 request.getSession().setAttribute("msj-error-guardar-cambios","Ocurrió un error, tus datos no fueron guardados");
             }

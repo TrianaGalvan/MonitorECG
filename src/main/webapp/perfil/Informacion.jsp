@@ -63,10 +63,10 @@
                                 </div>
                                 <div class="col-md-5">
                                     <c:if test="${sessionScope.paciente.sexo != null}">
-                                        <c:if test="${sessionScope.cardiologo.sexo eq 'F'}">
+                                        <c:if test="${sessionScope.paciente.sexo eq 'F'}">
                                             <label>Femenino</label>
                                         </c:if>
-                                        <c:if test="${sessionScope.cardiologo.sexo eq 'M'}">
+                                        <c:if test="${sessionScope.paciente.sexo eq 'M'}">
                                             <label>Masculino</label>
                                         </c:if>
                                     </c:if>

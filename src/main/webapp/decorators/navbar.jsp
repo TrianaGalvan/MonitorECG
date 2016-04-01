@@ -48,7 +48,7 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button>
-                                    <a class="navbar-brand page-scroll" href="#page-top" style="margin-left:-400px; font-weight: 700; font-size:38px; letter-spacing:0.2px;">Monitor ECG</a>
+                                    <a class="navbar-brand page-scroll" href="../perfil/Principal.jsp" style="margin-left:-400px; font-weight: 700; font-size:38px; letter-spacing:0.2px;">Monitor ECG</a>
                                 </div>
 
                                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -109,9 +109,31 @@
                 $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
             });
         </script>
+        <!-- Colocar ejemplo al seleccionar un filtro de búsqueda -->
+        <script>
+            function setFormato() {
+                var x = document.getElementById("tipo-filtro").value;
+                if (!x.localeCompare("Nombre")) {
+                    document.getElementById("valor-filtro").placeholder = "Ej. Diana López Martínez";
+                } else if (!x.localeCompare("CURP")) {
+                    document.getElementById("valor-filtro").placeholder = "Ej. PIGT940502MOCRLR08";
+                } else {
+                    document.getElementById("valor-filtro").placeholder = "Ej. usuario@gmail.com";
+                }
+            }
+        </script>
+        <!--<script>
+            function setEstadoRegistrar(){
+                var val = document.getElementById("text-recomendaciones");   
+                if(val === null){
+                    document.getElementById("msj-vacio").innerHTML = "Deberías escribir tus recomendaciones :)";
+                }
+                
+            }
+        </script>-->
 
         <!-- Cambiar el estado active de la navbar -->
-        <script>
+        <!--<script>
             $('.nav li').click(function(e) {
                 $('.nav li.active').removeClass('active');
                 var $this = $(this);
@@ -120,7 +142,7 @@
                 }
                 e.preventDefault();
             });
-        </script>
+        </script>-->
         
     </body>
 </html>
