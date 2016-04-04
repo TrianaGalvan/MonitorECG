@@ -86,6 +86,9 @@
                                 </td>
                             </tr>
                         </c:forEach>
+                        <%
+                            request.getSession().removeAttribute("pacientes");
+                        %>
                     </tbody>
                 </table>
             </div>

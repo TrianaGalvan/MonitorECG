@@ -23,4 +23,5 @@ public interface PacienteDAO {
     public List<Paciente> obtenerPacientePorCURP(Paciente p);
     public List<Paciente> obtenerPacientePorNombre(Paciente p);
     public List<Object[]> obtenerTablaPruebas(Paciente p);
+    public Paciente loginPaciente(Paciente p);
 }

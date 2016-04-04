@@ -37,6 +37,20 @@ public class PacienteController extends JsonController{
             return "No se encontro el paciente con el id: "+id;
           }, jsonutilpaciente);
         
+        post("/paciente/login",(req,res)->{
+            String correo = req.raw().getParameter("correo");
+            String pass = req.raw().getParameter("pass");
+            Paciente p = new Paciente();
+            p.setCorreo(correo);
+            p.setContrasena(pass);
+            p = pdi.loginPaciente(p);
+            if(p != null){
+                return true;
+            }else{
+                return false;
+            }
+        },jsonutil);
+        
         post("/paciente","application/json",(req,res)-> {
             String body = req.body();
             Gson gson = jsonutil.getGson();

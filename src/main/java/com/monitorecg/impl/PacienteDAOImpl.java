@@ -219,5 +219,28 @@ public class PacienteDAOImpl implements PacienteDAO{
         }
         return objects;
     }
+
+    @Override
+    public Paciente loginPaciente(Paciente p) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        Paciente paciente = null; 
+        try{
+            t.begin();
+            Query q =  s.createQuery("from Paciente p " +
+                                    "where p.correo = :correo and p.contrasena = :pass");
+            q.setParameter("correo",p.getCorreo());
+            q.setParameter("pass",p.getContrasena());
+            paciente = (Paciente) q.uniqueResult();
+            t.commit();
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(t !=null){
+                t.rollback();
+            }
+        }
+        return paciente;
+    }
     
 }
