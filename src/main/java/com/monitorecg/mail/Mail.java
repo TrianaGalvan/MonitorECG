@@ -25,8 +25,8 @@ import javax.mail.internet.MimeMultipart;
  * @author trianaandaluciaprietogalvan
  */
 public class Mail {
-        public static boolean enviarEmail(String mail){
-            boolean envio = false; 
+        public static String enviarEmail(String mail){
+            String envio = ""; 
             Properties props = new Properties();
             props.setProperty("mail.smtp.host","smtp.gmail.com");
             props.setProperty("mail.smtp.starttls.enable", "true");
@@ -50,13 +50,13 @@ public class Mail {
 
                 t.sendMessage(message, message.getAllRecipients());
                 t.close();
-                envio = true; 
+                envio = "Si se envio"; 
             } catch (AddressException ex) {
                 Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-                envio = false; 
+                envio = "Ocurrió un error, verifica tu conexión"; 
             } catch (MessagingException ex) {
                 Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-                envio = false; 
+                envio = "Ocurrió un error, verifica tu conexión"; 
             }
             
             return envio; 

@@ -80,14 +80,14 @@ public class Login extends HttpServlet {
             String enviomsj = "";
             String tipoEnvio = "";
             if (c != null) {
-                boolean envio = Mail.enviarEmail(email);
-                if (envio) {
+                String envio = Mail.enviarEmail(email);
+                if (envio.equals("Si se envio")) {
                     enviomsj = "Se a enviado un correo electrónico a tu cuenta";
                     tipoEnvio = "Exito";
                     HttpSession session = request.getSession();
                     session.setAttribute("email", c.getCorreo());
                 } else {
-                    enviomsj = "La cuenta de correo no existe";
+                    enviomsj = envio;
                     tipoEnvio = "Error";
                 }
 
