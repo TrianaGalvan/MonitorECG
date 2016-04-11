@@ -79,7 +79,8 @@ public class ModuloPacientes extends HttpServlet {
             pacientes = pdi.obtenerPacientePorNombre(paciente);
         }else if(filtro.contains("Correo")){
             paciente.setCorreo(valorFiltro);
-            pacientes = pdi.obtenerPacientePorCorreo(paciente);
+            Paciente p = pdi.obtenerPacientePorCorreo(paciente);
+            pacientes.add(p);
         }else if(filtro.equals("CURP")){
             paciente.setCurp(valorFiltro);
             pacientes = pdi.obtenerPacientePorCURP(paciente);

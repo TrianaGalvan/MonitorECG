@@ -126,25 +126,26 @@ public class PacienteDAOImpl implements PacienteDAO{
     }
 
     @Override
-    public List<Paciente> obtenerPacientePorCorreo(Paciente p) {
+    public Paciente obtenerPacientePorCorreo(Paciente p) {
         Session s;
         s = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t = s.getTransaction();
-        List<Paciente> resultados = null; 
+        Paciente paciente = null; 
         
         try{
             t.begin();
             Query q = s.createQuery("From Paciente WHERE correo = :correo");
             q.setParameter("correo", p.getCorreo());
-            resultados = q.list();
+            paciente = (Paciente) q.uniqueResult();
             t.commit();
         }catch(HibernateException he){
+            paciente = null;
             he.printStackTrace();
             if(t !=null){
                 t.rollback();
             }
         }
-        return resultados;
+        return paciente;
     }
 
     @Override
@@ -232,6 +233,27 @@ public class PacienteDAOImpl implements PacienteDAO{
                                     "where p.correo = :correo and p.contrasena = :pass");
             q.setParameter("correo",p.getCorreo());
             q.setParameter("pass",p.getContrasena());
+            paciente = (Paciente) q.uniqueResult();
+            t.commit();
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(t !=null){
+                t.rollback();
+            }
+        }
+        return paciente;
+    }
+
+    @Override
+    public Paciente verificarCorreo(Paciente p) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        Paciente paciente = null;
+        try{
+            t.begin();
+            Query q = s.createQuery("From Paciente WHERE correo = :correo");
+            q.setParameter("correo", p.getCorreo());
             paciente = (Paciente) q.uniqueResult();
             t.commit();
         }catch(HibernateException he){

@@ -7,11 +7,17 @@ package com.monitorecg.web.service;
 
 import com.google.gson.Gson;
 import com.monitorecg.hibernate.entities.Cardiologo;
+import com.monitorecg.hibernate.entities.Paciente;
 import com.monitorecg.hibernate.entities.Prueba;
 import com.monitorecg.hibernate.entities.Reporte;
+import com.monitorecg.impl.PacienteDAOImpl;
 import com.monitorecg.impl.PruebaDAOImpl;
 import com.monitorecg.impl.ReporteDAOImpl;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import static spark.Spark.delete;
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -26,8 +32,36 @@ public class PruebaController extends JsonController{
     public PruebaController(final PruebaDAOImpl pdi) {
         get("/pruebas",(req,res)->pdi.obtenerPruebas(),jsonutilprueba);
         
+        get("/prueba/correo",(req, res) -> {
+            String correo = req.queryParams("email");
+            
+            //obtener el paciente 
+            Paciente paciente = new Paciente();
+            paciente.setCorreo(correo);
+            PacienteDAOImpl pacientedaoimpl; 
+            pacientedaoimpl = new PacienteDAOImpl();
+            paciente = pacientedaoimpl.obtenerPacientePorCorreo(paciente);
+            
+            Set<Prueba> pruebas = paciente.getPruebas();
+            
+            Iterator<Prueba> iterador = pruebas.iterator();
+            
+            Prueba p = new Prueba();
+            
+            List<Prueba> listaPruebasEncontradas = new ArrayList<Prueba>();
+            
+            while (iterador.hasNext()) {                
+                Prueba pr = iterador.next();
+                p.setIdPrueba(pr.getIdPrueba());
+                Prueba prueba = pdi.obtenerPrueba(p);
+                listaPruebasEncontradas.add(prueba);
+            }
+            return listaPruebasEncontradas;
+          }, jsonutilprueba);
+        
         get("/prueba/:id",(req, res) -> {
             String id = req.params(":id");
+            
             Prueba p = new Prueba();
             p.setIdPrueba(Integer.parseInt(id));
             Prueba prueba = pdi.obtenerPrueba(p);
@@ -38,7 +72,7 @@ public class PruebaController extends JsonController{
             res.status(400);
             //res.type("application/json");
             return "No se encontro el prueba con el id: "+id;
-          }, jsonutilprueba);
+          }, jsonutilprueba);     
         
         post("/prueba","application/json",(req,res)-> {
             String body = req.body();

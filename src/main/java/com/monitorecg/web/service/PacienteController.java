@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.monitorecg.hibernate.entities.Cardiologo;
 import com.monitorecg.hibernate.entities.Paciente;
 import com.monitorecg.impl.PacienteDAOImpl;
+import com.monitorecg.mail.Mail;
 import static spark.Spark.delete;
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -55,9 +56,6 @@ public class PacienteController extends JsonController{
             String body = req.body();
             Gson gson = jsonutil.getGson();
             Paciente p = gson.fromJson(body,Paciente.class);
-            Cardiologo c = new Cardiologo();
-            c.setIdCardiologo(1);
-            p.setCardiologo(c);
             boolean respuesta =pdi.agregarPaciente(p);
             if(respuesta){
                 return p;
@@ -92,6 +90,20 @@ public class PacienteController extends JsonController{
                 return "ok";
             }else{
                 return "error";
+            }
+        },jsonutil);
+        
+        post("/paciente/verificarCorreo", (req,res)->{
+            String correo = req.raw().getParameter("correo");
+            Paciente p = new Paciente();
+            p.setCorreo(correo);
+            p = (Paciente) pdi.verificarCorreo(p);
+            if(p != null){
+                //mandar el correo 
+                Mail.enviarEmail(correo);
+                return true;
+            }else{
+                return false;
             }
         },jsonutil);
     }

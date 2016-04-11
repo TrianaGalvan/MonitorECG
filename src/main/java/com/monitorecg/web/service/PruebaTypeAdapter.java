@@ -166,6 +166,8 @@ public class PruebaTypeAdapter extends TypeAdapter<Prueba> {
             writer.beginObject();
             writer.name("idReporte").value(reporte.getIdReporte());
             writer.name("idCardiologo").value(reporte.getCardiologo().getIdCardiologo());
+            writer.name("estatus").value(reporte.getEstatus());
+            writer.name("recomendaciones").value(reporte.getRecomendaciones());
             writer.endObject();
         } catch (IOException ex) {
             Logger.getLogger(PacienteTypeAdapter.class.getName()).log(Level.SEVERE, null, ex);
