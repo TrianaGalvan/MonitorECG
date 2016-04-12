@@ -70,7 +70,7 @@
                                             <label>Masculino</label>
                                         </c:if>
                                     </c:if>
-                                    <c:if test="${sessionScope.paciente.sexo == null}">
+                                    <c:if test="${sessionScope.paciente.sexo eq 'N'}">
                                         <label>No resgitrado </label>
                                     </c:if>    
                                 </div>
