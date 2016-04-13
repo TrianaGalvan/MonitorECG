@@ -56,7 +56,7 @@
         <many-to-one name="cardiologo" class="com.monitorecg.hibernate.entities.Cardiologo" fetch="select">
             <column name="Cardiologo_idCardiologo" not-null="false"/>
         </many-to-one>
-        <set name="pruebas" table="Prueba" inverse="true" lazy="true" fetch="select" cascade="all">
+        <set name="pruebas" table="Prueba" inverse="true" lazy="false" fetch="select" cascade="all">
             <key>
                 <column name="Paciente_idPaciente"/>
             </key>
