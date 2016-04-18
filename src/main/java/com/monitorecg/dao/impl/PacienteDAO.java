@@ -25,4 +25,5 @@ public interface PacienteDAO {
     public List<Object[]> obtenerTablaPruebas(Paciente p);
     public Paciente loginPaciente(Paciente p);
     public Paciente verificarCorreo(Paciente p);
+    public boolean actualizarDatosPersonales(Paciente p );
 }

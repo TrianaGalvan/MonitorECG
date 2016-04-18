@@ -137,7 +137,7 @@ public class PacienteDAOImpl implements PacienteDAO{
             Query q = s.createQuery("From Paciente WHERE correo = :correo");
             q.setParameter("correo", p.getCorreo());
             paciente = (Paciente) q.uniqueResult();
-            t.commit();
+            t.commit();            
         }catch(HibernateException he){
             paciente = null;
             he.printStackTrace();
@@ -145,6 +145,7 @@ public class PacienteDAOImpl implements PacienteDAO{
                 t.rollback();
             }
         }
+        
         return paciente;
     }
 
@@ -264,5 +265,41 @@ public class PacienteDAOImpl implements PacienteDAO{
         }
         return paciente;
     }
+
+    @Override
+    public boolean actualizarDatosPersonales(Paciente p) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        boolean resp = true;
+        try{
+            t.begin();
+            String actualizar_datos_medicos = "update Paciente p set p.nombre = :nom,p.apellidoPaterno = :app, "
+                    + "p.apellidoMaterno = :apm , p.sexo = :s, p.edad =:edad, p.curp =:curp, "
+                    +"p.correo = :correo , p.telefono = :tel where p.idPaciente = :id";
+            Query q = s.createQuery(actualizar_datos_medicos);
+            q.setParameter("nom", p.getNombre());
+            q.setParameter("app", p.getApellidoPaterno());
+            q.setParameter("apm", p.getApellidoMaterno());
+            q.setParameter("s",p.getSexo());
+            q.setParameter("edad", p.getEdad());
+            q.setParameter("curp", p.getCurp());
+            q.setParameter("correo", p.getCorreo());
+            q.setParameter("tel", p.getTelefono());
+            q.setParameter("id", p.getIdPaciente());
+            System.out.println(q.toString());
+            q.executeUpdate();
+            t.commit();
+        }catch(HibernateException he){
+            resp = false;
+            he.printStackTrace();
+            if( t !=null){
+                t.rollback();
+            }
+        }
+        return resp;
+    }
+    
+    
     
 }

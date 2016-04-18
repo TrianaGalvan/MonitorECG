@@ -45,12 +45,8 @@ public class PacienteController extends JsonController{
             p.setCorreo(correo);
             p.setContrasena(pass);
             p = pdi.loginPaciente(p);
-            if(p != null){
-                return true;
-            }else{
-                return false;
-            }
-        },jsonutil);
+            return p;
+        },jsonutilpaciente);
         
         post("/paciente","application/json",(req,res)-> {
             String body = req.body();
@@ -92,6 +88,38 @@ public class PacienteController extends JsonController{
                 return "error";
             }
         },jsonutil);
+        
+        //ACTUALIZAR DATOS PERSONALES 
+        put("/paciente/dp/:id","application/json" ,(req,res)->{
+            String body = req.body();
+            String id = req.params("id");
+            Gson gson = jsonutil.getGson();
+            Paciente p = gson.fromJson(body,Paciente.class);
+            p.setIdPaciente(Integer.parseInt(id));
+            boolean resp = pdi.actualizarDatosPersonales(p);
+            if(resp){
+                return "ok";
+            }else{
+                return "error";
+            }
+        },jsonutil);
+        
+        
+        //MODIFICAR EL METODO MODIFICAR PARA QUE SOLO ACTUALIZE LOS DATOS DEL PACIENTE NO EL ID DEL CARDIOLOGO 
+        /*put("/paciente/:id","application/json" ,(req,res)->{
+            String body = req.body();
+            String id = req.params("id");
+            Gson gson = jsonutil.getGson();
+            Paciente p = gson.fromJson(body,Paciente.class);
+            p.setIdPaciente(Integer.parseInt(id));
+            boolean resp = pdi.modificarPaciente(p);
+            if(resp){
+                return "ok";
+            }else{
+                return "error";
+            }
+        },jsonutil);*/
+        
         
         post("/paciente/verificarCorreo", (req,res)->{
             String correo = req.raw().getParameter("correo");

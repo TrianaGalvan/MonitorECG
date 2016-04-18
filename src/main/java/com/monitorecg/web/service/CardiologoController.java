@@ -32,14 +32,8 @@ public class CardiologoController extends JsonController{
             Cardiologo c = new Cardiologo();
             c.setIdCardiologo(Integer.parseInt(id));
             Cardiologo cardiologo = cardiologoService.obtenerCardiologo(c);
-            if (cardiologo != null) {
-              
-              return cardiologo;
-            }
-            res.body("Cardiologo con id: "+id);
-            res.status(400);
-            //res.type("application/json");
-            return "No se encontro el cardiologo con el id: "+id;
+            return cardiologo;
+            
           }, jsonutil);
         
         post("/cardiologo","application/json",(req,res)-> {
@@ -55,6 +49,7 @@ public class CardiologoController extends JsonController{
             }
             
         },jsonutil);
+        
         
         delete("/cardiologo/:id",(req,res)->{
             String id = req.params("id");

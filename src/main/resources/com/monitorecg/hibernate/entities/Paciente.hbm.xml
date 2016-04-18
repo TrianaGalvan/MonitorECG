@@ -30,16 +30,13 @@
             <column name="correo" length="45" />
         </property>
         <property name="telefono" type="string">
-            <column name="telefono" length="10" />
+            <column name="telefono" length="15" />
         </property>
         <property name="contrasena" type="string">
             <column name="contrasena" length="45" />
         </property>
         <property name="peso" type="java.lang.Double">
             <column name="peso" precision="22" scale="0" />
-        </property>
-        <property name="presionArterial" type="java.lang.Double">
-            <column name="presionArterial" precision="22" scale="0" />
         </property>
         <property name="imc" type="java.lang.Double">
             <column name="imc" precision="22" scale="0" />
@@ -52,6 +49,12 @@
         </property>
         <property name="fechamodificacion" type="string">
             <column name="fechamodificacion" length="45" />
+        </property>
+        <property name="presionSistolica" type="java.lang.Integer">
+            <column name="presionSistolica" />
+        </property>
+        <property name="presionDiastolica" type="java.lang.Integer">
+            <column name="presionDiastolica" />
         </property>
         <many-to-one name="cardiologo" class="com.monitorecg.hibernate.entities.Cardiologo" fetch="select">
             <column name="Cardiologo_idCardiologo" not-null="false"/>

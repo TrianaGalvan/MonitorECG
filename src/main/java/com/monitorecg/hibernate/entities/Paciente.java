@@ -24,7 +24,6 @@ public class Paciente  implements java.io.Serializable {
      private String telefono;
      private String contrasena;
      private Double peso;
-     private Double presionArterial;
      private Double imc;
      private Double frecuenciaRespiratoria;
      private Double altura;
@@ -32,6 +31,10 @@ public class Paciente  implements java.io.Serializable {
      private Set<Prueba> pruebas = 
 				new HashSet<Prueba>(0);
      private Cardiologo cardiologo; 
+     private int presionSistolica; 
+     private int presionDiastolica; 
+     
+     
 
     public Paciente() {
     }
@@ -40,7 +43,7 @@ public class Paciente  implements java.io.Serializable {
     public Paciente(int id) {
         this.idPaciente = id;
     }
-    public Paciente(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String sexo, Integer edad, String curp, String correo, String telefono, String contrasena, Double peso, Double presionArterial, Double imc, Double frecuenciaRespiratoria, Double altura, String fechamodificacion) {
+    public Paciente(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String sexo, Integer edad, String curp, String correo, String telefono, String contrasena, Double peso, Double presionArterial, Double imc, Double frecuenciaRespiratoria, Double altura, String fechamodificacion,int ps, int pd) {
        this.idPaciente = id;
        this.nombre = nombre;
        this.apellidoPaterno = apellidoPaterno;
@@ -52,11 +55,12 @@ public class Paciente  implements java.io.Serializable {
        this.telefono = telefono;
        this.contrasena = contrasena;
        this.peso = peso;
-       this.presionArterial = presionArterial;
        this.imc = imc;
        this.frecuenciaRespiratoria = frecuenciaRespiratoria;
        this.altura = altura;
        this.fechamodificacion = fechamodificacion;
+       this.presionDiastolica = pd; 
+       this.presionSistolica = ps;
     }
    
     public int getIdPaciente() {
@@ -136,13 +140,6 @@ public class Paciente  implements java.io.Serializable {
     public void setPeso(Double peso) {
         this.peso = peso;
     }
-    public Double getPresionArterial() {
-        return this.presionArterial;
-    }
-    
-    public void setPresionArterial(Double presionArterial) {
-        this.presionArterial = presionArterial;
-    }
     public Double getImc() {
         return this.imc;
     }
@@ -187,6 +184,23 @@ public class Paciente  implements java.io.Serializable {
     public void setCardiologo(Cardiologo cardiologo) {
         this.cardiologo = cardiologo;
     }
+
+    public int getPresionSistolica() {
+        return presionSistolica;
+    }
+
+    public void setPresionSistolica(int presionSistolica) {
+        this.presionSistolica = presionSistolica;
+    }
+
+    public int getPresionDiastolica() {
+        return presionDiastolica;
+    }
+
+    public void setPresionDiastolica(int presionDiastolica) {
+        this.presionDiastolica = presionDiastolica;
+    }
+       
 }
 
 

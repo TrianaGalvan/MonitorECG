@@ -38,11 +38,12 @@ public class PacienteTypeAdapter extends TypeAdapter<Paciente> {
        writer.name("telefono").value(t.getTelefono());
        writer.name("contrasena").value(t.getContrasena());
        writer.name("peso").value(t.getPeso());
-       writer.name("presionArterial").value(t.getPresionArterial());
        writer.name("imc").value(t.getImc());
        writer.name("frecuenciaRespiratoria").value(t.getFrecuenciaRespiratoria());
        writer.name("altura").value(t.getAltura());
        writer.name("fechamodificacion").value(t.getFechamodificacion());
+       writer.name("presionDiastolica").value(t.getPresionDiastolica());
+       writer.name("presionSistolica").value(t.getPresionSistolica());
        writer.name("cardiologo");
        writeCardiologo(writer,t.getCardiologo());
        writer.endObject();

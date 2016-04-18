@@ -42,8 +42,14 @@ public class PruebaTypeAdapter extends TypeAdapter<Prueba> {
        SimpleDateFormat sh = new SimpleDateFormat("HH:mm:ss");
        writer.name("hora").value(sh.format(t.getHora()));
        
-       writer.name("frecuenciaCardiaca").value(t.getFrecuenciacardiaca());
        writer.name("observaciones").value(t.getObservaciones());
+       
+       if(t.getFrecuenciacardiaca() != null){
+          writer.name("frecuenciaCardiaca").value(t.getFrecuenciacardiaca());
+       }else{
+           writer.name("frecuenciaCardiaca").value("0");
+       }
+           
        
        String se = formatter.format(t.getFechaenvio());
        writer.name("fechaEnvio").value(se);
