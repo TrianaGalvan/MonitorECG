@@ -58,7 +58,6 @@ public class ModuloPacientes extends HttpServlet {
     }
     
     private void buscarPaciente(HttpServletRequest request, HttpServletResponse response) {
-        
         String filtro = request.getParameter("filtro");
         String valorFiltro = request.getParameter("valor-filtro");
         Charset.forName("UTF-8").encode(valorFiltro);
@@ -80,7 +79,9 @@ public class ModuloPacientes extends HttpServlet {
         }else if(filtro.contains("Correo")){
             paciente.setCorreo(valorFiltro);
             Paciente p = pdi.obtenerPacientePorCorreo(paciente);
-            pacientes.add(p);
+            if(p != null){
+                pacientes.add(p);
+            }
         }else if(filtro.equals("CURP")){
             paciente.setCurp(valorFiltro);
             pacientes = pdi.obtenerPacientePorCURP(paciente);

@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,6 +43,16 @@
                         <legend >Información general</legend>
                         <div class="row">
                             <div class="col-md-2">
+                                <label class="">Actualización de datos: </label>
+                            </div>
+                            <div class="col-md-3">
+                                <label>
+                                    <c:out value="${sessionScope.paciente.fechamodificacion}"/>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
                                 <label>Nombre:</label>        
                             </div>
                             <div class="col-md-3">
@@ -73,7 +84,7 @@
                                     </c:if>
                                     <c:if test="${sessionScope.paciente.edad != 0}">
                                         <c:out value="${sessionScope.paciente.edad} años"/></label>
-                                </c:if>
+                                    </c:if>
                                 </label>
                             </div>
                             <div class="col-md-3">
@@ -81,12 +92,12 @@
                             </div>
                             <div class="col-md-3">
                                 <label>
-                                    <c:if test="${sessionScope.paciente.presionArterial == 0}">
-                                        <c:out value="No registrado"/></label>
+                                    <c:if test="${sessionScope.paciente.presionSistolica == 0 && sessionScope.paciente.presionDiastolica == 0}">
+                                            <c:out value="No registrado"/>
+                                        </c:if>
+                                    <c:if test="${sessionScope.paciente.presionSistolica != 0 && sessionScope.paciente.presionDiastolica != 0}">
+                                        <c:out value="${sessionScope.paciente.presionSistolica}/${sessionScope.paciente.presionDiastolica}"/>
                                     </c:if>
-                                    <c:if test="${sessionScope.paciente.presionArterial != 0}">
-                                        <c:out value="${sessionScope.paciente.presionArterial} mmHg"/></label>
-                                </c:if>
                                 </label>
                             </div>
                         </div>
@@ -108,14 +119,14 @@
                                 <label>Altura: </label>
                             </div>
                             <div class="col-md-3">
-                                <label>
-                                    <c:if test="${sessionScope.paciente.altura == 0}">
-                                        <c:out value="No registrado"/></label>
+                                <c:if test="${sessionScope.paciente.altura != 0}">
+                                        <label>
+                                            <fmt:formatNumber value="${sessionScope.paciente.altura}" type="number"/> m
+                                        </label>
                                     </c:if>
-                                    <c:if test="${sessionScope.paciente.altura != 0}">
-                                        <c:out value="${sessionScope.paciente.altura} m"/></label>
+                                <c:if test="${sessionScope.paciente.altura == 0}">
+                                    <label>No resgitrado </label>
                                 </c:if>
-                                </label>
                             </div>
                         </div>
                         <br>
