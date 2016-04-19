@@ -4,10 +4,10 @@
         Author     : trianaandaluciaprietogalvan
     --%>
 
-    <%@page import="com.sun.glass.ui.SystemClipboard"%>
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <!DOCTYPE html>
     <html>
         <head>
@@ -68,7 +68,7 @@
                                             <c:out value="No registrado"/></label>
                                         </c:if>
                                         <c:if test="${sessionScope.paciente.frecuenciaRespiratoria != 0}">
-                                            <c:out value="${sessionScope.paciente.frecuenciaRespiratoria} respiraciones por minuto"/></label>
+                                            <c:out value="${sessionScope.paciente.frecuenciaRespiratoria} respiraciones/minuto"/></label>
                                     </c:if>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                             <c:out value="No registrado"/></label>
                                         </c:if>
                                         <c:if test="${sessionScope.paciente.presionSistolica != 0 && sessionScope.paciente.presionDiastolica != 0}">
-                                            <c:out value="${sessionScope.paciente.presionSistolica}/${sessionScope.paciente.presionDiastolica}"/></label>
+                                            <c:out value="${sessionScope.paciente.presionSistolica}/${sessionScope.paciente.presionDiastolica} mmHg"/></label>
                                     </c:if>
                                     </label>
                                 </div>
@@ -118,14 +118,14 @@
                                     <label>Altura: </label>
                                 </div>
                                 <div class="col-md-3">
-                                    <label>
-                                        <c:if test="${sessionScope.paciente.altura == 0}">
-                                            <c:out value="No registrado"/></label>
-                                        </c:if>
-                                        <c:if test="${sessionScope.paciente.altura != 0}">
-                                            <c:out value="${sessionScope.paciente.altura} m"/></label>
+                                    <c:if test="${sessionScope.paciente.altura != 0}">
+                                        <label>
+                                            <fmt:formatNumber value="${sessionScope.paciente.altura}" type="number"/> m
+                                        </label>
                                     </c:if>
-                                    </label>
+                                    <c:if test="${sessionScope.paciente.altura == 0}">
+                                        <label>No resgitrado </label>
+                                    </c:if>
                                 </div>
                             </div>
                             <br>

@@ -124,7 +124,6 @@ public class ModuloElectrocardiogramas extends HttpServlet {
             }else{
                 response.sendRedirect("perfil/VerElectrocardiograma.jsp");
             }
-            
         } catch (IOException ex) {
             Logger.getLogger(ModuloElectrocardiogramas.class.getName()).log(Level.SEVERE, null, ex);
         }
