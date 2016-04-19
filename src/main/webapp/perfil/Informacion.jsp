@@ -4,6 +4,7 @@
     Author     : trianaandaluciaprietogalvan
 --%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -112,7 +113,7 @@
                                 </div>
                                 <div class="col-md-5">
                                     <c:if test="${sessionScope.paciente.frecuenciaRespiratoria != 0}">
-                                        <label>${sessionScope.paciente.frecuenciaRespiratoria} respiraciones por minuto</label>
+                                        <label>${sessionScope.paciente.frecuenciaRespiratoria} respiraciones/minuto</label>
                                     </c:if>
                                     <c:if test="${sessionScope.paciente.frecuenciaRespiratoria == 0}">
                                         <label>No resgitrado </label>
@@ -124,10 +125,10 @@
                                     <label>Presión arterial:</label>
                                 </div>
                                 <div class="col-md-5">
-                                    <c:if test="${sessionScope.paciente.presionArterial != 0}">
-                                        <label>${sessionScope.paciente.presionArterial} mmHg</label>
+                                    <c:if test="${sessionScope.paciente.presionDiastolica != 0 && sessionScope.paciente.presionSistolica != 0}">
+                                        <label>${sessionScope.paciente.presionSistolica}/${sessionScope.paciente.presionDiastolica} mmHg</label>
                                     </c:if>
-                                    <c:if test="${sessionScope.paciente.presionArterial == 0}">
+                                    <c:if test="${sessionScope.paciente.presionDiastolica == 0 && sessionScope.paciente.presionSistolica == 0}">
                                         <label>No resgitrado </label>
                                     </c:if> 
                                 </div>
@@ -138,7 +139,9 @@
                                 </div>
                                 <div class="col-md-5">
                                     <c:if test="${sessionScope.paciente.altura != 0}">
-                                        <label>${sessionScope.paciente.altura} m</label>
+                                        <label>
+                                            <fmt:formatNumber value="${sessionScope.paciente.altura}" type="number"/> m
+                                        </label>
                                     </c:if>
                                     <c:if test="${sessionScope.paciente.altura == 0}">
                                         <label>No resgitrado </label>

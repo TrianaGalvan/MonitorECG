@@ -42,6 +42,16 @@
                             <legend >Información general</legend>
                             <div class="row">
                                 <div class="col-md-2">
+                                    <label class="">Actualización de datos: </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        <c:out value="${sessionScope.paciente.fechamodificacion}"/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
                                     <label>Nombre:</label>        
                                 </div>
                                 <div class="col-md-3">
@@ -81,11 +91,11 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <c:if test="${sessionScope.paciente.presionArterial == 0}">
+                                        <c:if test="${sessionScope.paciente.presionSistolica == 0 && sessionScope.paciente.presionDiastolica == 0}">
                                             <c:out value="No registrado"/></label>
                                         </c:if>
-                                        <c:if test="${sessionScope.paciente.presionArterial != 0}">
-                                            <c:out value="${sessionScope.paciente.presionArterial} mmHg"/></label>
+                                        <c:if test="${sessionScope.paciente.presionSistolica != 0 && sessionScope.paciente.presionDiastolica != 0}">
+                                            <c:out value="${sessionScope.paciente.presionSistolica}/${sessionScope.paciente.presionDiastolica}"/></label>
                                     </c:if>
                                     </label>
                                 </div>
