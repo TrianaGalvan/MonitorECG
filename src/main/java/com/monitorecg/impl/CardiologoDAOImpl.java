@@ -232,7 +232,7 @@ public class CardiologoDAOImpl implements CardiologoDAO{
         List<Object[]> objects;
         try{
             t.begin();
-            Query q =  s.createQuery("select p.nombre as nombre, pr.fechaenvio as fechaenvio ,r.estatus as estatus,p.apellidoPaterno,p.apellidoMaterno,p.idPaciente,pr.idPrueba,r.idReporte " +
+            Query q =  s.createQuery("select p.nombre as nombre, pr.fecha as fecha ,r.estatus as estatus,p.apellidoPaterno,p.apellidoMaterno,p.idPaciente,pr.idPrueba,r.idReporte " +
                                     "from Cardiologo c " +
                                     "inner join c.pacientes p " +
                                     "inner join p.pruebas pr " +

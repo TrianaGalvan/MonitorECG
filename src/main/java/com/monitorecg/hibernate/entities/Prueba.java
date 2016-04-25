@@ -17,12 +17,10 @@ public class Prueba  implements java.io.Serializable {
      private int idPrueba;
      private Date fecha;
      private Date hora;
-     private byte[] muestraqrs;
-     private byte[] muestracompleta;
+     private String muestraqrs;
+     private String muestracompleta;
      private Integer frecuenciacardiaca;
      private String observaciones;
-     private Date fechaenvio;
-     private Date horaenvio;
      private Paciente paciente;
      private Reporte reporte; 
     
@@ -33,7 +31,7 @@ public class Prueba  implements java.io.Serializable {
     public Prueba(int id) {
         this.idPrueba = id;
     }
-    public Prueba(int id, Date fecha, Date hora, byte[] muestraqrs, byte[] muestracompleta, Integer frecuenciacardiaca, String observaciones, Date fechaenvio, Date horaenvio) {
+    public Prueba(int id, Date fecha, Date hora, String muestraqrs, String muestracompleta, Integer frecuenciacardiaca, String observaciones) {
        this.idPrueba = id;
        this.fecha = fecha;
        this.hora = hora;
@@ -41,8 +39,6 @@ public class Prueba  implements java.io.Serializable {
        this.muestracompleta = muestracompleta;
        this.frecuenciacardiaca = frecuenciacardiaca;
        this.observaciones = observaciones;
-       this.fechaenvio = fechaenvio;
-       this.horaenvio = horaenvio;
     }
 
     public int getIdPrueba() {
@@ -67,18 +63,18 @@ public class Prueba  implements java.io.Serializable {
     public void setHora(Date hora) {
         this.hora = hora;
     }
-    public byte[] getMuestraqrs() {
+    public String getMuestraqrs() {
         return this.muestraqrs;
     }
     
-    public void setMuestraqrs(byte[] muestraqrs) {
+    public void setMuestraqrs(String muestraqrs) {
         this.muestraqrs = muestraqrs;
     }
-    public byte[] getMuestracompleta() {
+    public String getMuestracompleta() {
         return this.muestracompleta;
     }
     
-    public void setMuestracompleta(byte[] muestracompleta) {
+    public void setMuestracompleta(String muestracompleta) {
         this.muestracompleta = muestracompleta;
     }
     public Integer getFrecuenciacardiaca() {
@@ -95,21 +91,6 @@ public class Prueba  implements java.io.Serializable {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
-    public Date getFechaenvio() {
-        return this.fechaenvio;
-    }
-    
-    public void setFechaenvio(Date fechaenvio) {
-        this.fechaenvio = fechaenvio;
-    }
-    public Date getHoraenvio() {
-        return this.horaenvio;
-    }
-    
-    public void setHoraenvio(Date horaenvio) {
-        this.horaenvio = horaenvio;
-    }
-
     public Reporte getReporte() {
         return reporte;
     }
