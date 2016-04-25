@@ -5,7 +5,7 @@
 <hibernate-mapping>
     <class name="com.monitorecg.hibernate.entities.Cardiologo" table="Cardiologo" catalog="tt" optimistic-lock="version">
         <id name="idCardiologo" type="int">
-            <column name="idCardiologo" />
+            <column name='id_cardiologo' />
             <generator class="identity" />
         </id>
         <property name="instituto" type="string">
@@ -18,10 +18,10 @@
             <column name="nombre" length="45" />
         </property>
         <property name="apellidoPaterno" type="string">
-            <column name="apellidoPaterno" length="45" />
+            <column name='"apellidoPaterno"' length="45" />
         </property>
         <property name="apellidoMaterno" type="string">
-            <column name="apellidoMaterno" length="45" />
+            <column name='"apellidoMaterno"' length="45" />
         </property>
         <property name="edad" type="java.lang.Integer">
             <column name="edad" />
@@ -43,7 +43,7 @@
         </property>
         <set name="pacientes" table="Paciente" inverse="true" lazy="true" cascade="all">
             <key>
-                <column name="Cardiologo_idCardiologo" not-null="true"/>
+                <column name='"Cardiologo_idCardiologo"' not-null="true"/>
             </key>
             <one-to-many class="com.monitorecg.hibernate.entities.Paciente"/>
         </set>
