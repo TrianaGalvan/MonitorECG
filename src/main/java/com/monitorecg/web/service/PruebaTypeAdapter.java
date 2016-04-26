@@ -39,10 +39,12 @@ public class PruebaTypeAdapter extends TypeAdapter<Prueba> {
        String s = formatter.format(t.getFecha());
        writer.name("fecha").value(s);
        
-       SimpleDateFormat sh = new SimpleDateFormat("HH:mm:ss");
+       SimpleDateFormat sh = new SimpleDateFormat("HH:mm");
        writer.name("hora").value(sh.format(t.getHora()));
        
        writer.name("observaciones").value(t.getObservaciones());
+       writer.name("muestracompleta").value(t.getMuestracompleta());
+       writer.name("muestraqrs").value(t.getMuestraqrs());
        
        if(t.getFrecuenciacardiaca() != null){
           writer.name("frecuenciaCardiaca").value(t.getFrecuenciacardiaca());
@@ -50,12 +52,6 @@ public class PruebaTypeAdapter extends TypeAdapter<Prueba> {
            writer.name("frecuenciaCardiaca").value("0");
        }
            
-       
-       String se = formatter.format(t.getFechaenvio());
-       writer.name("fechaEnvio").value(se);
-       
-       writer.name("horaEnvio").value(sh.format(t.getHoraenvio()));
-       
        writer.name("paciente");
        writePaciente(writer,t.getPaciente());
        
@@ -101,23 +97,13 @@ public class PruebaTypeAdapter extends TypeAdapter<Prueba> {
                 case  "observaciones":
                     prueba.setObservaciones(reader.nextString());
                     break;
-                case "fechaEnvio":
-                    String fechaEnvio = reader.nextString();
-                    try {
-                        Date date = formatter.parse(fechaEnvio);
-                        prueba.setFechaenvio(date);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(PruebaTypeAdapter.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                case "muestracompleta":
+                    String mc = reader.nextString();
+                    prueba.setMuestracompleta(mc);
                     break;
-                case "horaEnvio":
-                    String horaEnvio = reader.nextString();
-                     try {
-                        Date horaEnvioDate = formatterHora.parse(horaEnvio);
-                        prueba.setHoraenvio(horaEnvioDate);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(PruebaTypeAdapter.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                case "muestraqrs":
+                    String mq = reader.nextString();
+                     prueba.setMuestraqrs(mq);
                     break;
                 case "paciente":
                     reader.beginObject();

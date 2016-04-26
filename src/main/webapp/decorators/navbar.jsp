@@ -54,7 +54,7 @@
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li><a class="menu" href="../ModuloElectrocardiogramas?accion=listarElectrocardiogramas"><i class="fa fa-heartbeat"></i> Electrocardiogramas</a></li>
+                                        <li><a class="menu" href="../ModuloElectrocardiogramas?accion=listarElectrocardiogramas"><i class="fa fa-heartbeat"></i>Electrocardiogramas</a></li>
                                         <li><a class="menu" href="../perfil/Pacientes.jsp"><i class="fa fa-users"></i> Pacientes</a></li>
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-md"></i> <%=nombre%><b class="caret"></b></a>

@@ -127,8 +127,6 @@ public class PacienteController extends JsonController{
             p.setCorreo(correo);
             p = (Paciente) pdi.verificarCorreo(p);
             if(p != null){
-                //mandar el correo 
-                Mail.enviarEmail(correo);
                 return true;
             }else{
                 return false;
