@@ -153,6 +153,13 @@
             <artifactId>jackson-annotations</artifactId>
             <version>2.7.3</version>
         </dependency>
+        
+        <!-- DROPBOX --> 
+        <dependency>
+            <groupId>com.dropbox.core</groupId>
+            <artifactId>dropbox-core-sdk</artifactId>
+            <version>1.7.2</version>
+        </dependency>
     </dependencies>
     
 

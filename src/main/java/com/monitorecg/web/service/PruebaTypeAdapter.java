@@ -66,7 +66,7 @@ public class PruebaTypeAdapter extends TypeAdapter<Prueba> {
         Prueba prueba = new Prueba();
         reader.beginObject();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat formatterHora = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat formatterHora = new SimpleDateFormat("HH:mm");
         while (reader.hasNext()) {            
             switch(reader.nextName()){
                 case "idPrueba":
@@ -91,7 +91,7 @@ public class PruebaTypeAdapter extends TypeAdapter<Prueba> {
                     }
                     
                     break;
-                case "frecienciaCardiaca":
+                case "frecuenciaCardiaca":
                     prueba.setFrecuenciacardiaca(reader.nextInt());
                     break;
                 case  "observaciones":
@@ -116,26 +116,10 @@ public class PruebaTypeAdapter extends TypeAdapter<Prueba> {
                     reader.endObject();
                     break;
                 case "reporte":
-                    reader.beginObject();
-                    Cardiologo c = new Cardiologo();
-                    Reporte reporte = new Reporte();
-                    String namereporte = reader.nextName();
-                    if(namereporte.equals("idReporte")){
-                        reporte.setIdReporte(reader.nextInt());
-                        String namecardiologo = reader.nextName();
-                        if(namecardiologo.equals("idCardiologo")){
-                            c.setIdCardiologo(reader.nextInt());
-                        }
-                    }else if(namereporte.equals("idCardiologo")){
-                        c.setIdCardiologo(reader.nextInt());
-                        String estatus = reader.nextName();
-                        if(estatus.equals("estatus")){
-                            reporte.setEstatus(reader.nextInt());
-                        }                        
-                    }
-                    reporte.setCardiologo(c);
-                    prueba.setReporte(reporte);
-                    reader.endObject();
+                    prueba.setReporte(readReporte(reader));
+                    break;
+                default:
+                    reader.skipValue();
                     break;
             }
         }
@@ -164,6 +148,29 @@ public class PruebaTypeAdapter extends TypeAdapter<Prueba> {
         } catch (IOException ex) {
             Logger.getLogger(PacienteTypeAdapter.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private Reporte readReporte(JsonReader reader) throws IOException{
+        reader.beginObject();
+        Cardiologo c = new Cardiologo();
+        Reporte reporte = new Reporte();
+        
+        while (reader.hasNext()) {            
+            switch(reader.nextName()){
+                case "idCardiologo":
+                    c.setIdCardiologo(reader.nextInt());
+                    break;
+                case "estatus":
+                    reporte.setEstatus(reader.nextInt());
+                    break;
+                default:
+                    reader.skipValue();
+                    break;    
+            }   
+        }
+        reporte.setCardiologo(c);
+        reader.endObject();
+        return reporte;
     }
     
 }
