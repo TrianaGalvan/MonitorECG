@@ -108,7 +108,7 @@ public class UtilDropbox {
 			IOException {
         //FileOutputStream outputStream = new FileOutputStream("/tmp/2016-04-27_1233_22_3.txt");
         try {
-            DbxEntry.File downloadedFile = dbxClient.getFile("/"+"2016-04-27_1233_22_3.txt",null,os);
+            DbxEntry.File downloadedFile = dbxClient.getFile("/"+fileName,null,os);
             System.out.println("Metadata: " + downloadedFile.toString());
         }catch(Exception e){
             e.printStackTrace();
