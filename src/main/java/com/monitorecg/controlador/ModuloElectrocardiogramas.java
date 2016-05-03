@@ -5,6 +5,7 @@
  */
 package com.monitorecg.controlador;
 
+import com.monitorecg.controlador.pushy.SenderPushy;
 import com.monitorecg.entities.aux.TablaElectrocardiogramas;
 import com.monitorecg.hibernate.entities.Cardiologo;
 import com.monitorecg.hibernate.entities.Paciente;
@@ -131,34 +132,38 @@ public class ModuloElectrocardiogramas extends HttpServlet {
     
     public void guardarRecomendaciones(HttpServletRequest request, HttpServletResponse response){
         String estado = request.getParameter("estado");
-            int idReporte = (Integer)request.getSession().getAttribute("idr");
-            String recomendaciones = request.getParameter("recomendaciones");
-            Reporte reporte = new Reporte(); 
-            reporte.setIdReporte(idReporte);
-            reporte.setRecomendaciones(recomendaciones);
-            String msj = "";
-            String msjTipo = "";
-            boolean res = false;
-            if(estado.equals("pendiente")){
-                reporte.setEstatus(1);
-                res = rdi.modificarRecomendaciones(reporte);
-                msjTipo = "pendiente";
-                msj = "Tus recomendaciones quedarán pendientes";
-            }else if(estado.equals("registrar")){
-                reporte.setEstatus(0);
-                res = rdi.modificarRecomendaciones(reporte);
-                msjTipo = "registrado";
-                msj = "Tus recomendaciones fueron guardadas con éxito";
-            }
-            
-            if(res){
-                request.getSession().setAttribute("estado", msjTipo);
-                request.getSession().setAttribute("msj-recomendaciones", msj);
-            }
-            else{   
-                request.getSession().setAttribute("error-recomendaciones","Ocurrió un error en el sistema al guardar tus recomendacioens");
-            }
-            listarElectrocardiogramas(request, response);
+        int idReporte = (Integer)request.getSession().getAttribute("idr");
+        String recomendaciones = request.getParameter("recomendaciones");
+        Reporte reporte = new Reporte(); 
+        reporte.setIdReporte(idReporte);
+        reporte.setRecomendaciones(recomendaciones);
+        String msj = "";
+        String msjTipo = "";
+        boolean res = false;
+        if(estado.equals("pendiente")){
+            reporte.setEstatus(1);
+            res = rdi.modificarRecomendaciones(reporte);
+            msjTipo = "pendiente";
+            msj = "Tus recomendaciones quedarán pendientes";
+        }else if(estado.equals("registrar")){
+            reporte.setEstatus(0);
+            res = rdi.modificarRecomendaciones(reporte);
+            msjTipo = "registrado";
+            msj = "Tus recomendaciones fueron guardadas con éxito";
+        }
+        
+        //notificar al paciente que se a cambiado el estado de tu ecg (PUSHY)
+        SenderPushy pushy = new SenderPushy(); 
+        pushy.sendPush(reporte);
+        
+        if(res){
+            request.getSession().setAttribute("estado", msjTipo);
+            request.getSession().setAttribute("msj-recomendaciones", msj);
+        }
+        else{   
+            request.getSession().setAttribute("error-recomendaciones","Ocurrió un error en el sistema al guardar tus recomendacioens");
+        }
+        listarElectrocardiogramas(request, response);
     }
     
     

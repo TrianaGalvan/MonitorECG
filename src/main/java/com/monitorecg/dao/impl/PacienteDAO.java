@@ -7,6 +7,7 @@ package com.monitorecg.dao.impl;
 
 import com.monitorecg.hibernate.entities.Paciente;
 import com.monitorecg.hibernate.entities.Paciente;
+import com.monitorecg.hibernate.entities.Prueba;
 import java.util.List;
 
 /**
@@ -26,4 +27,6 @@ public interface PacienteDAO {
     public Paciente loginPaciente(Paciente p);
     public Paciente verificarCorreo(Paciente p);
     public boolean actualizarDatosPersonales(Paciente p );
+    public List<String> obtenerTokens();
+    public String obtenerToken(Prueba p);
 }

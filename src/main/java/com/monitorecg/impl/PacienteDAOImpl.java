@@ -10,6 +10,7 @@ import com.monitorecg.hibernate.HibernateUtil;
 import com.monitorecg.hibernate.entities.Cardiologo;
 import com.monitorecg.hibernate.entities.Paciente;
 import com.monitorecg.hibernate.entities.Paciente;
+import com.monitorecg.hibernate.entities.Prueba;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -235,6 +236,14 @@ public class PacienteDAOImpl implements PacienteDAO{
             q.setParameter("correo",p.getCorreo());
             q.setParameter("pass",p.getContrasena());
             paciente = (Paciente) q.uniqueResult();
+            //verificar si el paciente existe 
+            if(paciente != null){
+                //insertar su token 
+                q = s.createQuery("update Paciente p set p.token =:tok where p.idPaciente =:id");
+                q.setParameter("tok", p.getToken());
+                q.setParameter("id", paciente.getIdPaciente());
+                q.executeUpdate();
+            }
             t.commit();
         }catch(HibernateException he){
             he.printStackTrace();
@@ -299,7 +308,47 @@ public class PacienteDAOImpl implements PacienteDAO{
         }
         return resp;
     }
-    
-    
-    
+
+    @Override
+    public List<String> obtenerTokens() {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        List resultados = null;
+        try{
+            t.begin();
+            Query q =  s.createQuery("select p.token from Paciente p");   
+            resultados = q.list();
+          
+            t.commit();
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(t !=null){
+                t.rollback();
+            }
+        }
+        return resultados;
+    }
+
+    @Override
+    public String obtenerToken(Prueba p) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        String token = null; 
+        try{
+            t.begin();
+            Query q =  s.createQuery("select p.token from Paciente p where"
+                    + " p.idPaciente = :id");  
+            q.setInteger("id", p.getPaciente().getIdPaciente()); 
+            token = (String) q.uniqueResult();
+            t.commit();
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(t !=null){
+                t.rollback();
+            }
+        }
+        return token;
+    }
 }

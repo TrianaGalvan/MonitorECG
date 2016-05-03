@@ -29,6 +29,9 @@
         <property name="correo" type="string">
             <column name="correo" length="45" />
         </property>
+        <property name="token" type="string">
+            <column name="token" length="100" />
+        </property>
         <property name="telefono" type="string">
             <column name="telefono" length="15" />
         </property>
