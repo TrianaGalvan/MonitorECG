@@ -230,7 +230,7 @@
                
                 
                 function descargarDatos(){
-                    var path = "http://localhost:8080/ultimo/prueba/electrocardiograma/"+$("#nombreArchivo").text();
+                    var path = "/ultimo/prueba/electrocardiograma/"+$("#nombreArchivo").text();
                     $.get(path, function(data) {
                         var lines = data.split("\n");
                         var data = [];

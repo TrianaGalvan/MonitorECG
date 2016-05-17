@@ -24,7 +24,7 @@
 
     </head>
 </head>
-<body style="background: #DEFDFD;">
+<body style="background: #F7FEFF;">
     <div class="container-fluid">
         <div class="tittle-registrarse">
             <img src="img/icon--medico.png">

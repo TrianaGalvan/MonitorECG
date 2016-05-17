@@ -16,13 +16,19 @@ button:hover{
 }
 
 .boton-guardar-pendiente{
-	background-color: #88A7EA;
+	background-color: #0086E5;
 	font-size: 17px;
 	border   : 1px solid ;
 	width: 145px;
+        color: white;
 }
 
 button a.boton-cancelar{
     color: #333;
     text-decoration: none;
+    color: white;
+}
+
+button a.boton-cancelar:hover{
+    color: #333;
 }
