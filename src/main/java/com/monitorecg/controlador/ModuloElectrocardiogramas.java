@@ -5,7 +5,9 @@
  */
 package com.monitorecg.controlador;
 
+import com.dropbox.core.DbxException;
 import com.monitorecg.controlador.pushy.SenderPushy;
+import com.monitorecg.dropbox.UtilDropbox;
 import com.monitorecg.entities.aux.TablaElectrocardiogramas;
 import com.monitorecg.hibernate.entities.Cardiologo;
 import com.monitorecg.hibernate.entities.Paciente;
@@ -116,7 +118,20 @@ public class ModuloElectrocardiogramas extends HttpServlet {
         Prueba pr = new Prueba();
         pr.setIdPrueba(idPrueba);
         pr = pdi.obtenerPrueba(pr);
-
+        
+        //bajar archivo de la prueba del dropbox 
+        UtilDropbox drop = new UtilDropbox();
+        String webInfPath = getServletConfig().getServletContext().getRealPath("/");
+        String file = pr.getMuestracompleta();
+        try {
+            drop.downloadFromDropboxVerECG(file,webInfPath);
+        } catch (DbxException ex) {
+            Logger.getLogger(ModuloElectrocardiogramas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ModuloElectrocardiogramas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         request.getSession().setAttribute("paciente",p);
         request.getSession().setAttribute("prueba",pr);
         try {
@@ -126,6 +141,7 @@ public class ModuloElectrocardiogramas extends HttpServlet {
                 response.sendRedirect("perfil/VerElectrocardiograma.jsp");
             }
         } catch (IOException ex) {
+            ex.printStackTrace();
             Logger.getLogger(ModuloElectrocardiogramas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

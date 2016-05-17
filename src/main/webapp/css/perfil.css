@@ -36,7 +36,7 @@ li.tamano-letra-tabs{
 
 /*header area*/
 .top-header{
-    background: #A9F5F2!important;
+    background: #A7F2FC!important;
     position: fixed;
     top: 0px;
     width: 100%;
@@ -166,7 +166,7 @@ tittles of pages **/
 
 .tittle hr{
     height: 15px;
-    border-top: 5px solid #51CCC7;
+    border-top: 5px solid #256FC3;
 }
 
 /**content**/

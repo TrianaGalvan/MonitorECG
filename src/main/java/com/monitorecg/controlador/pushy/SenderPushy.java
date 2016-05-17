@@ -34,6 +34,7 @@ public class SenderPushy {
         payload.put("status",Integer.toString(reporte.getEstatus()));
         if(pr  != null){
             payload.put("fecha",pr.getFecha().toString());
+            payload.put("idPrueba", Integer.toString(pr.getIdPrueba()));
         }
         
         

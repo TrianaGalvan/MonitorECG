@@ -181,11 +181,12 @@ public class ReporteDAOImpl implements ReporteDAO{
         Prueba prueba = null; 
         Object obj;
         int id = 0;
+        int idPrueba = 0;
         Date fecha = null;
         
         try{
             t.begin();
-            Query q =  s.createQuery("select pr.paciente.idPaciente,pr.fecha FROM Prueba pr inner join "
+            Query q =  s.createQuery("select pr.paciente.idPaciente,pr.fecha,pr.idPrueba FROM Prueba pr inner join "
                     + "pr.reporte "
                     + "where pr.reporte.idReporte = :id");
             q.setParameter("id",r.getIdReporte());
@@ -194,9 +195,11 @@ public class ReporteDAOImpl implements ReporteDAO{
                 for (Object[] row: rows) {
                     id = (int) row[0]; 
                     fecha = (Date) row[1];
+                    idPrueba = (int) row[2];
                 }
                 prueba = new Prueba();
                 prueba.setFecha(fecha);
+                prueba.setIdPrueba(idPrueba);
                 Paciente paciente = new Paciente();
                 paciente.setIdPaciente(id);
                 prueba.setPaciente(paciente);

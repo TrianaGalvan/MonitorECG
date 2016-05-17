@@ -1,8 +1,9 @@
 .color-boton{
-	background-color: #88A7EA;
+	background-color: #0086E5;
 	font-size: 17px;
 	border   : 1px solid ;
 	width: 100px;
+        color: white;
 }
 
 button:hover{

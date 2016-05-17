@@ -190,7 +190,7 @@
                         <br>
                         <div class="row">
                             <div class="col-md-2 col-md-offset-8">
-                                <button type="submit" class="btn btn-default color-boton pull-right"><a href="EditarDatos.jsp" style="color: #333">Editar datos</a></button>    
+                                <button type="submit" class="btn btn-default color-boton pull-right"><a href="EditarDatos.jsp" style="color: white">Editar datos</a></button>    
                             </div>
                         </div>
                     </div>

@@ -91,7 +91,7 @@ public class UtilDropbox {
     }
     
     public void createFolder(String folderName) throws DbxException {
-		dbxClient.createFolder("/" + folderName);
+        dbxClient.createFolder("/" + folderName);
     }
    
     
@@ -116,5 +116,19 @@ public class UtilDropbox {
         finally{
             os.close();
         }
-    }   
+    }  
+    
+    public void downloadFromDropboxVerECG(String fileName,String ruta)  throws DbxException,
+			IOException {
+        FileOutputStream outputStream = new FileOutputStream(ruta+"/"+fileName);
+        try {
+            DbxEntry.File downloadedFile = dbxClient.getFile("/"+fileName,null,outputStream);
+            System.out.println("Metadata: " + downloadedFile.toString());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            outputStream.close();
+        }
+    } 
 }

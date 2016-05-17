@@ -71,13 +71,12 @@ public class PruebaController extends JsonController{
                 }
                 return listaPruebasEncontradas;
             }
-            
             return "No hay pruebas o el paciente no existe";
           }, jsonutilprueba);
         
           get("/prueba/electrocardiograma/:id",(req, res) -> {
             String idPrueba = req.params(":id");
-            Prueba prueba = new Prueba();
+                Prueba prueba = new Prueba();
             prueba.setIdPrueba(Integer.parseInt(idPrueba));
             //obtener el nombre del archivo de la prueba 
             prueba = pdi.obtenerPrueba(prueba);
