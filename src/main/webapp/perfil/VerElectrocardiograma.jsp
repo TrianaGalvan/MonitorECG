@@ -231,6 +231,7 @@
                 
                 function descargarDatos(){
                     var path = "/prueba/electrocardiograma/"+$("#nombreArchivo").text();
+
                     $.get(path, function(data) {
                         var lines = data.split("\n");
                         var data = [];
