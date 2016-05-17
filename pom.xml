@@ -8,6 +8,8 @@
 
     <packaging>war</packaging>
 
+    <name>MonitorECG</name>
+
     <dependencies>
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
