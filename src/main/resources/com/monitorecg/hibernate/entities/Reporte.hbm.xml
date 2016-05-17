@@ -5,8 +5,8 @@
 <hibernate-mapping>
     <class name="com.monitorecg.hibernate.entities.Reporte" table="Reporte" catalog="tt" optimistic-lock="version">
         <id name="idReporte" type="int">
-            <column name="idReporte" />
-            <generator class="identity"/>
+            <column name="id_reporte" />
+            <generator class="identity" />
         </id>
         <property name="observaciones" type="string">
             <column name="observaciones" length="500" />
@@ -18,7 +18,7 @@
             <column name="estatus" />
         </property>
         <many-to-one name="cardiologo" class="com.monitorecg.hibernate.entities.Cardiologo" fetch="select" >
-            <column name="Cardiologo_idCardiologo" />
+            <column name='"Cardiologo_idCardiologo"' />
         </many-to-one>
     </class>
 </hibernate-mapping>
