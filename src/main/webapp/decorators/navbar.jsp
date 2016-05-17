@@ -21,8 +21,8 @@
         <link rel="stylesheet" href="../css/tables.css">
         <link rel="stylesheet" href="../css/botones.css">
         <link rel="stylesheet" href="../css/estados.css">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,800,700,300' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=BenchNine:300,400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=css?family=Open+Sans:600italic,400,800,700,300' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=css?family=BenchNine:300,400,700' rel='stylesheet' type='text/css'>
         <!-- script tags
          ============================================================= -->    
         

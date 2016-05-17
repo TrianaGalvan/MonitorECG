@@ -31,7 +31,7 @@
         <link href="css/style.css" rel="stylesheet">
         <!--<link href="css/reset.css" rel="stylesheet">-->
         <!-- Custom Fonts -->
-        <link href='http://fonts.googleapis.com/css?family=BenchNine:300,400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=css?family=BenchNine:300,400,700' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     </head>
 
