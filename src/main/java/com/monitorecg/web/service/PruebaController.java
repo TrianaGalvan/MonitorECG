@@ -20,6 +20,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -70,9 +71,27 @@ public class PruebaController extends JsonController{
                 }
                 return listaPruebasEncontradas;
             }
-            
             return "No hay pruebas o el paciente no existe";
           }, jsonutilprueba);
+        
+          get("/prueba/electrocardiograma/:id",(req, res) -> {
+            String idPrueba = req.params(":id");
+                Prueba prueba = new Prueba();
+            prueba.setIdPrueba(Integer.parseInt(idPrueba));
+            //obtener el nombre del archivo de la prueba 
+            prueba = pdi.obtenerPrueba(prueba);
+            UtilDropbox drop = new UtilDropbox();
+            try {
+                //crear el archivo obteniendolo del dropbox
+                drop.downloadFromDropbox(prueba.getMuestracompleta(),res.raw().getOutputStream());
+            } catch (IOException ex) {
+                Logger.getLogger(PruebaController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (DbxException ex) {
+                Logger.getLogger(PruebaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return res.raw();
+          });
+        
         
         get("/prueba/:id",(req, res) -> {
             String id = req.params(":id");

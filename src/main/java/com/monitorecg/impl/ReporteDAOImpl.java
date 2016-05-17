@@ -8,8 +8,11 @@ package com.monitorecg.impl;
 import com.monitorecg.dao.impl.ReporteDAO;
 import com.monitorecg.hibernate.HibernateUtil;
 import com.monitorecg.hibernate.entities.Cardiologo;
+import com.monitorecg.hibernate.entities.Paciente;
+import com.monitorecg.hibernate.entities.Prueba;
 import com.monitorecg.hibernate.entities.Reporte;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -170,5 +173,44 @@ public class ReporteDAOImpl implements ReporteDAO{
         return reporte;
     }
 
-  
+    @Override
+    public Prueba obtenerIdPacienteFromReporte(Reporte r) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        Prueba prueba = null; 
+        Object obj;
+        int id = 0;
+        int idPrueba = 0;
+        Date fecha = null;
+        
+        try{
+            t.begin();
+            Query q =  s.createQuery("select pr.paciente.idPaciente,pr.fecha,pr.idPrueba FROM Prueba pr inner join "
+                    + "pr.reporte "
+                    + "where pr.reporte.idReporte = :id");
+            q.setParameter("id",r.getIdReporte());
+            List<Object[]> rows = q.list();
+            if(rows != null){
+                for (Object[] row: rows) {
+                    id = (int) row[0]; 
+                    fecha = (Date) row[1];
+                    idPrueba = (int) row[2];
+                }
+                prueba = new Prueba();
+                prueba.setFecha(fecha);
+                prueba.setIdPrueba(idPrueba);
+                Paciente paciente = new Paciente();
+                paciente.setIdPaciente(id);
+                prueba.setPaciente(paciente);
+            }
+            t.commit();
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(t !=null){
+                t.rollback();
+            }
+        }
+        return prueba;
+    }
 }

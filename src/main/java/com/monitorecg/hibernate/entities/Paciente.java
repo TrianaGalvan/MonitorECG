@@ -33,9 +33,16 @@ public class Paciente  implements java.io.Serializable {
      private Cardiologo cardiologo; 
      private int presionSistolica; 
      private int presionDiastolica; 
-     
-     
+     private String token; 
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+    
     public Paciente() {
     }
 

@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Locale;
+import javax.servlet.ServletOutputStream;
 
 /**
  *
@@ -90,7 +91,7 @@ public class UtilDropbox {
     }
     
     public void createFolder(String folderName) throws DbxException {
-		dbxClient.createFolder("/" + folderName);
+        dbxClient.createFolder("/" + folderName);
     }
    
     
@@ -103,15 +104,31 @@ public class UtilDropbox {
         }
     }
     
-    public void downloadFromDropbox(String fileName) throws DbxException,
+    public void downloadFromDropbox(String fileName,ServletOutputStream os) throws DbxException,
 			IOException {
-        FileOutputStream outputStream = new FileOutputStream(fileName);
+        //FileOutputStream outputStream = new FileOutputStream("/tmp/2016-04-27_1233_22_3.txt");
         try {
-                DbxEntry.File downloadedFile = dbxClient.getFile("/" + fileName,
-                                null, outputStream);
-                System.out.println("Metadata: " + downloadedFile.toString());
-        } finally {
-                outputStream.close();
+            DbxEntry.File downloadedFile = dbxClient.getFile("/"+fileName,null,os);
+            System.out.println("Metadata: " + downloadedFile.toString());
+        }catch(Exception e){
+            e.printStackTrace();
         }
-    }
+        finally{
+            os.close();
+        }
+    }  
+    
+    public void downloadFromDropboxVerECG(String fileName,String ruta)  throws DbxException,
+			IOException {
+        FileOutputStream outputStream = new FileOutputStream(ruta+"/"+fileName);
+        try {
+            DbxEntry.File downloadedFile = dbxClient.getFile("/"+fileName,null,outputStream);
+            System.out.println("Metadata: " + downloadedFile.toString());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            outputStream.close();
+        }
+    } 
 }

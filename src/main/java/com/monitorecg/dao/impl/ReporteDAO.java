@@ -6,6 +6,7 @@
 package com.monitorecg.dao.impl;
 
 
+import com.monitorecg.hibernate.entities.Prueba;
 import com.monitorecg.hibernate.entities.Reporte;
 import java.util.List;
 
@@ -21,4 +22,5 @@ public interface ReporteDAO {
     public Reporte obtenerReporte(Reporte r);
     public boolean modificarRecomendaciones(Reporte r);
     public Reporte verificarEstatusReporte(Reporte r);
+    public Prueba obtenerIdPacienteFromReporte(Reporte r);
 }

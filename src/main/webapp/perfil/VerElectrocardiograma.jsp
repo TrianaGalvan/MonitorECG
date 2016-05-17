@@ -13,8 +13,6 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>JSP Page</title>
-            <script src="js/bootstrap.js"></script>
-            <script src="js/bootstrap.min.js"></script>
         </head>
         <body>
             <div class="container-fluid">
@@ -147,7 +145,7 @@
                             <label>Selecciona el tipo de gráfica a visualizar: </label>
                         </div> 
                     </div>
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-md-3">
                             <label class="checkbox-inline"><input type="checkbox" value="">Electrocardiograma completo</label>
                         </div>
@@ -155,15 +153,14 @@
                             <label class="checkbox-inline"><input type="checkbox" value="">Complejo QRS</label>
                         </div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-default color-boton pull-right">Gráficar</button>    
+                            <button type="submit" class="btn btn-default color-boton pull-right" id="graficarECG">Gráficar</button>    
                         </div>
                     </div>
-                    <br>
+                    <br>-->
                     <!-- grafica --> 
                     <div class="row">
-                        <div class="col-md-12" >
-                            <img src="../img/grafica.png" class="grafica">
-                        </div>
+                        <div id="nombreArchivo" style="visibility: hidden">${sessionScope.prueba.idPrueba}</div>
+                        <div id='grafica' style='height: 400px; min-width: 310px'></div>
                     </div>
                     <br>
                     <div class="row">
@@ -218,7 +215,10 @@
                     </div>
                 </div>
             </div> 
-
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+            <script src='https://code.highcharts.com/stock/highstock.js'></script>
+            <script src='https://code.highcharts.com/stock/modules/exporting.js'></script>
+            
             <script>
                 function setEstadoPendiente() {
                     document.getElementById("estado").value = "pendiente";
@@ -227,6 +227,84 @@
                 function setEstadoRegistrar() {
                     document.getElementById("estado").value = "registrar";
                 }
+               
+                
+                function descargarDatos(){
+                    var path = "http://localhost:8080/ultimo/prueba/electrocardiograma/"+$("#nombreArchivo").text();
+                    $.get(path, function(data) {
+                        var lines = data.split("\n");
+                        var data = [];
+                        var x = 0; 
+                        
+                        lines.forEach(function(item){
+                            data.push([
+                                x,
+                                Number(item)
+                            ]);
+                            x = x + 7.8125;
+                        });
+                        
+                        configuracionGrafica.series[0].data = data;
+                        $('#grafica').highcharts('StockChart',configuracionGrafica); 
+                    });
+                }
+                
+                var configuracionGrafica = {
+                    rangeSelector: {
+                        buttons: [{
+                            count:1,
+                            type:'second',
+                            text:'1s'
+                        }, {
+                            count:5,
+                            type:'second',
+                            text:'5s'
+                        }, {
+                            count:10,
+                            type:'second',
+                            text:'10s'
+                        }, {
+                            count:15,
+                            type:'second',
+                            text:'15s'
+                        }
+                        , {
+                            type: 'all',
+                            text: 'Todo'
+                        }],
+                        inputEnabled: false,
+                        selected: 4
+                    },
+                    tooltip:{
+                        enabled:false
+                    },
+                    title : {
+                        text : 'Electrocardiograma'
+                    },
+
+                    exporting: {
+                        enabled: true
+                    },
+
+                    series : [
+                        {
+                            name : 'ECG',
+                            data : [],
+                            type:'spline',
+                            color:'#C70039',
+                            tooltip:{
+                                valueDecimals:2
+                            },
+                            
+                        }
+                    ]
+                };  
+                
+                
+                $(function () {
+                    descargarDatos(); 
+                });
+
             </script>
         </body>
     </html>

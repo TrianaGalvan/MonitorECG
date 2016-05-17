@@ -41,10 +41,13 @@ public class PacienteController extends JsonController{
         post("/paciente/login",(req,res)->{
             String correo = req.raw().getParameter("correo");
             String pass = req.raw().getParameter("pass");
+            String token  = req.raw().getParameter("token");
             Paciente p = new Paciente();
             p.setCorreo(correo);
             p.setContrasena(pass);
+            p.setToken(token);
             p = pdi.loginPaciente(p);
+       
             return p;
         },jsonutilpaciente);
         

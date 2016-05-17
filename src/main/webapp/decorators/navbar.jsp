@@ -23,7 +23,12 @@
         <link rel="stylesheet" href="../css/estados.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,800,700,300' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=BenchNine:300,400,700' rel='stylesheet' type='text/css'>
-
+        <!-- script tags
+         ============================================================= -->    
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/principal/custom.js"></script>
     </head>
     <body>
 
@@ -79,12 +84,6 @@
 
         <decorator:body/>
 
-        <!-- script tags
-         ============================================================= -->    
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/principal/custom.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
         <script>
             $(document).ready(function () {
