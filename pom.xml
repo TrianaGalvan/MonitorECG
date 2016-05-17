@@ -6,12 +6,7 @@
     <artifactId>monitor-ecg</artifactId>
     <version>1.0</version>
 
-    <name>MonitorECG</name>
-
-    <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
