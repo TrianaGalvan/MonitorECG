@@ -150,22 +150,19 @@
             <version>2.7.3</version>
         </dependency>
         
-<<<<<<< HEAD
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-c3p0</artifactId>
             <version>5.1.0.Final</version>
         </dependency>
 
-
-=======
         <!-- DROPBOX --> 
         <dependency>
             <groupId>com.dropbox.core</groupId>
             <artifactId>dropbox-core-sdk</artifactId>
             <version>1.7.2</version>
         </dependency>
->>>>>>> TrianaGalvan/master
+
     </dependencies>
     
 
