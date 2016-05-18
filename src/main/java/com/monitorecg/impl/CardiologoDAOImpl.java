@@ -321,6 +321,34 @@ public class CardiologoDAOImpl implements CardiologoDAO{
         }
         return modificacion;
     }
+
+    @Override
+    public Long contarPruebasNoRevisadas(Cardiologo c) {
+        Session s;
+        s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = s.getTransaction();
+        Cardiologo cardiologo = null; 
+        boolean existencias = false; 
+        Long num = 0L;
+        try{
+            t.begin();
+            Query q =  s.createQuery("select count(*)" +
+                                    "from Cardiologo c " +
+                                    "inner join c.pacientes p " +
+                                    "inner join p.pruebas pr " +
+                                    "inner join pr.reporte r "+
+                                    "where c.idCardiologo = :id and r.estatus = 2");
+            q.setParameter("id",c.getIdCardiologo());
+            num  = (Long) q.uniqueResult();
+            t.commit();
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(t !=null){
+                t.rollback();
+            }
+        }
+        return num;
+    }
     
     
  

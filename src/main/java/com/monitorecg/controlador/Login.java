@@ -9,6 +9,8 @@ import com.monitorecg.dao.CardiologoDAO;
 import com.monitorecg.hibernate.entities.Cardiologo;
 
 import com.monitorecg.impl.CardiologoDAOImpl;
+import com.monitorecg.impl.PruebaDAOImpl;
+import com.monitorecg.impl.ReporteDAOImpl;
 import com.monitorecg.mail.Mail;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,6 +29,7 @@ import org.hibernate.Session;
 public class Login extends HttpServlet {
 
     private CardiologoDAOImpl impl = new CardiologoDAOImpl();
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -60,6 +63,9 @@ public class Login extends HttpServlet {
                 HttpSession sesion = request.getSession();
                 sesion.setAttribute("user", c.getNombre());
                 sesion.setAttribute("correo", c.getCorreo());
+                //contar las pruebas no revisadas 
+                Long pruebasNoRevisadas = impl.contarPruebasNoRevisadas(c);
+                request.getSession().setAttribute("noRevisadas", Long.toString(pruebasNoRevisadas));
                 destino = "perfil/Principal.jsp";
                 response.sendRedirect(destino);
             } else {

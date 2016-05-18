@@ -66,7 +66,7 @@
                 </table>
                 <div class="row">
                     <div class="col-md-2 col-md-offset-9">
-                        <button type="submit" class="btn btn-default color-boton pull-right"><a href="Pacientes.jsp" style="color: #333;">Regresar</a></button>    
+                        <button type="submit" class="btn btn-default color-boton pull-right"><a href="Pacientes.jsp" style="color: #fff;">Regresar</a></button>    
                     </div>
                 </div>
             </div>
