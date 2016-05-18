@@ -43,7 +43,7 @@ public class Mail {
                 //preparar la pagina 
                 String pagina = "<h1>Monitor ECG</h1>"+
                                 "<p>Si deseas cambiar tu contraseña en monitor ecg oprime el siguiente botón, en caso contrario no hagas caso a este email.</p>"+
-                                "<a href='http://localhost:8080/ultimo/RecuperarContrasena.jsp' style='text-decoration: none;'>Cambiar contraseña</a>";
+                                "<a href='http://monitor-ecg046.herokuapp.com/RecuperarContrasena.jsp' style='text-decoration: none;'>Cambiar contraseña</a>";
                 message.setContent(pagina, "text/html");
                 Transport t = sesion.getTransport("smtp");
                 t.connect("monitorecg046@gmail.com","monitorecg-a046");
