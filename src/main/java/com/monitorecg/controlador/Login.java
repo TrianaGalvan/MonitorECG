@@ -63,6 +63,7 @@ public class Login extends HttpServlet {
                 HttpSession sesion = request.getSession();
                 sesion.setAttribute("user", c.getNombre());
                 sesion.setAttribute("correo", c.getCorreo());
+                sesion.setAttribute("idCardiologo", c.getIdCardiologo());
                 //contar las pruebas no revisadas 
                 Long pruebasNoRevisadas = impl.contarPruebasNoRevisadas(c);
                 request.getSession().setAttribute("noRevisadas", Long.toString(pruebasNoRevisadas));

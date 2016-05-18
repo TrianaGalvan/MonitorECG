@@ -138,6 +138,7 @@ public class ModuloElectrocardiogramas extends HttpServlet {
         
         request.getSession().setAttribute("paciente",p);
         request.getSession().setAttribute("prueba",pr);
+        request.getSession().setAttribute("idPrueba", idPrueba);
         try {
             if(redirect != null){
                 response.sendRedirect("perfil/VerElectrocardiogramaHistorial.jsp");
