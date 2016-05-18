@@ -25,4 +25,5 @@ public interface CardiologoDAO {
     public List<Object[]> obtenerTablaElectrocardiogramas(Cardiologo c);
     public boolean moficarCardiologoSinContrasena(Cardiologo c);
     public boolean modificarContrasena(Cardiologo c);
+    public Long contarPruebasNoRevisadas(Cardiologo c);
 }

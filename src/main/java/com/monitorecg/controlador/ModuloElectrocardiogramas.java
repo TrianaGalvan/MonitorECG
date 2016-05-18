@@ -89,10 +89,14 @@ public class ModuloElectrocardiogramas extends HttpServlet {
             te.setIdReporte((Integer)elemento[7]);
             electrocardiogramas.add(te);
         }
-
+        
+        Long noRevisadas = impl.contarPruebasNoRevisadas(cardiologo);
         request.getSession().setAttribute("items",
                 electrocardiogramas);
+        request.getSession().setAttribute("noRevisadas",
+                Long.toString(noRevisadas));
         try {
+            
             response.sendRedirect("perfil/VerElectrocardiogramas.jsp");
         } catch (IOException ex) {
             Logger.getLogger(ModuloElectrocardiogramas.class.getName()).log(Level.SEVERE, null, ex);
@@ -148,6 +152,12 @@ public class ModuloElectrocardiogramas extends HttpServlet {
     
     public void guardarRecomendaciones(HttpServletRequest request, HttpServletResponse response){
         String estado = request.getParameter("estado");
+        int estadoActual = 2; 
+        if(estado.equals("pendiente")){
+            estadoActual = 1; 
+        }else if(estado.equals("registrar")){
+            estadoActual = 0; 
+        }
         int idReporte = (Integer)request.getSession().getAttribute("idr");
         String recomendaciones = request.getParameter("recomendaciones");
         Reporte reporte = new Reporte(); 
@@ -155,22 +165,26 @@ public class ModuloElectrocardiogramas extends HttpServlet {
         reporte.setRecomendaciones(recomendaciones);
         String msj = "";
         String msjTipo = "";
-        boolean res = false;
-        if(estado.equals("pendiente")){
-            reporte.setEstatus(1);
-            res = rdi.modificarRecomendaciones(reporte);
-            msjTipo = "pendiente";
-            msj = "Tus recomendaciones quedarán pendientes";
-        }else if(estado.equals("registrar")){
-            reporte.setEstatus(0);
-            res = rdi.modificarRecomendaciones(reporte);
-            msjTipo = "registrado";
-            msj = "Tus recomendaciones fueron guardadas con éxito";
-        }
+        boolean res = true;
         
-        //notificar al paciente que se a cambiado el estado de tu ecg (PUSHY)
-        SenderPushy pushy = new SenderPushy(); 
-        pushy.sendPush(reporte);
+        //buscar el reporte al que se le va a modificar el estatus 
+        Reporte reporteEncontrado = rdi.obtenerReporte(reporte);
+        if(reporteEncontrado.getEstatus() != estadoActual){
+            if(estado.equals("pendiente")){
+                reporte.setEstatus(1);
+                res = rdi.modificarRecomendaciones(reporte);
+                msjTipo = "pendiente";
+                msj = "Tus recomendaciones quedarán pendientes";
+            }else if(estado.equals("registrar")){
+                reporte.setEstatus(0);
+                res = rdi.modificarRecomendaciones(reporte);
+                msjTipo = "registrado";
+                msj = "Tus recomendaciones fueron guardadas con éxito";
+            }
+            //notificar al paciente que se a cambiado el estado de tu ecg (PUSHY)
+            SenderPushy pushy = new SenderPushy(); 
+            pushy.sendPush(reporte);
+        }
         
         if(res){
             request.getSession().setAttribute("estado", msjTipo);

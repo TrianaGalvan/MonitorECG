@@ -30,10 +30,10 @@
                     String estado = (String) request.getSession().getAttribute("estado");
                     String msje = (String) request.getSession().getAttribute("error-recomendaciones");
                     String tipoAlerta = "";
-                    if (msj != null) {%>
+                    if (msj != null && (!msj.equals(""))) {%>
                         <%if(estado.equals("registrado")){
                             tipoAlerta = "alert-success";
-                        }else{
+                        }else if(estado.equals("pendiente")){
                              tipoAlerta = "alert-warning";
                         }%>
                         <div class="alert <%=tipoAlerta%> fade in col-md-10 col-md-offset-1" style="margin-top: 20px; font-size: 18px;">
