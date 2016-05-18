@@ -140,11 +140,11 @@
                         </fieldset>
                     </div>
                     <br>
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-md-4 pull-left">
                             <label>Selecciona el tipo de gráfica a visualizar: </label>
                         </div> 
-                    </div>
+                    </div>-->
                     <!--<div class="row">
                         <div class="col-md-3">
                             <label class="checkbox-inline"><input type="checkbox" value="">Electrocardiograma completo</label>
