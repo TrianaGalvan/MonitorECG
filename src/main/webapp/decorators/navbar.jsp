@@ -29,7 +29,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script>
             function actualizarPruebas(){
-                var url = '/ultimo/cardiologos/Pruebas/NoRevisadas/'+$("#idCardiologo").text();
+                var url = '/cardiologos/Pruebas/NoRevisadas/'+$("#idCardiologo").text();
                 $.ajax({url: url,
                         type: 'GET',
                         success: function (data, textStatus, jqXHR) {
