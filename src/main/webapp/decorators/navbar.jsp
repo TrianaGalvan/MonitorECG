@@ -27,8 +27,31 @@
          ============================================================= -->    
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script>
+            function actualizarPruebas(){
+                var url = '/ultimo/cardiologos/Pruebas/NoRevisadas/'+$("#idCardiologo").text();
+                $.ajax({url: url,
+                        type: 'GET',
+                        success: function (data, textStatus, jqXHR) {
+                            if(data !== 0) {
+                                $("#spanNoRevisadas").html(data);
+                            }else{
+                                $("#spanNoRevisadas").html(0);
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            
+                        }
+                        })
+            }
+            
+            $(function () {
+                actualizarPruebas(); 
+            });
+        </script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/principal/custom.js"></script>
+        
     </head>
     <body>
 
@@ -59,7 +82,7 @@
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li><a class="menu" href="../ModuloElectrocardiogramas?accion=listarElectrocardiogramas"><i class="fa fa-heartbeat"></i>Electrocardiogramas <span class="badge">${sessionScope.noRevisadas}</span></a></li>
+                                        <li><a class="menu" href="../ModuloElectrocardiogramas?accion=listarElectrocardiogramas"><i class="fa fa-heartbeat"></i>Electrocardiogramas <span class="badge" id="spanNoRevisadas">${sessionScope.noRevisadas}</span></a></li>
                                         <li><a class="menu" href="../perfil/Pacientes.jsp"><i class="fa fa-users"></i> Pacientes</a></li>
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-md"></i> <%=nombre%><b class="caret"></b></a>
@@ -80,6 +103,7 @@
                     </div>
                 </div>
             </div>
+            <div id="idCardiologo" style="visibility: hidden;">${sessionScope.idCardiologo}</div>
         </header> <!-- end of header area -->
 
         <decorator:body/>
@@ -120,6 +144,7 @@
                     document.getElementById("valor-filtro").placeholder = "Ej. usuario@gmail.com";
                 }
             }
+            
         </script>
         <!--<script>
             function setEstadoRegistrar(){

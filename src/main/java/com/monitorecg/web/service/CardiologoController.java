@@ -27,6 +27,14 @@ public class CardiologoController extends JsonController{
 
         get("/cardiologos",(req,res)->cardiologoService.obtenerCardiologos(),jsonutil);
         
+        get("/cardiologos/Pruebas/NoRevisadas/:id",(req,res)->{
+            Cardiologo cardiologo = new Cardiologo();
+            String id = req.params(":id");
+            cardiologo.setIdCardiologo(Integer.parseInt(id));
+            Long pruebas = cardiologoService.contarPruebasNoRevisadas(cardiologo);
+            return pruebas;
+            });
+        
         get("/cardiologo/:id",(req, res) -> {
             String id = req.params(":id");
             Cardiologo c = new Cardiologo();
