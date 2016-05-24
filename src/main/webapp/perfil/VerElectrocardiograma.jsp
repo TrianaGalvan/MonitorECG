@@ -268,8 +268,16 @@
                             count:15,
                             type:'second',
                             text:'15s'
-                        }
-                        , {
+                        },{
+                            count:30,
+                            type:'second',
+                            text:'15s'
+                        },{
+                            count:1,
+                            type:'minute',
+                            text:'1M'
+                        },
+                        {
                             type: 'all',
                             text: 'Todo'
                         }],
