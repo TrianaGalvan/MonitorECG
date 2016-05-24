@@ -271,7 +271,7 @@
                         },{
                             count:30,
                             type:'second',
-                            text:'15s'
+                            text:'30s'
                         },{
                             count:1,
                             type:'minute',
