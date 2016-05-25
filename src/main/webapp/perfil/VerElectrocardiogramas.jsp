@@ -16,7 +16,7 @@
     <body>
         <div class="container-fluid tittle">
             <img src="../img/electro.jpeg">
-            <h1>Electrocrdiogramas</h1>
+            <h1>Electrocardiogramas</h1>
             <hr>
             <div class="content">
                 <div class="row">
