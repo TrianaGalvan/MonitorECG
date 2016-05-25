@@ -59,7 +59,7 @@
                             <label>Nombre:</label>        
                         </div>
                         <div class="col-md-3 control-group">
-                            <input type="text" class="form-control tamano-letra"  name="nombre" value="Triana Andalucia" 
+                            <input type="text" class="form-control tamano-letra"  name="nombre" 
                                    required 
                                    data-validation-required-message="* Campo requerido"
                                    data-validation-regex-regex="^([A-Za-z ñáéíóú]{2,60})" 
@@ -72,7 +72,7 @@
                             <label>Teléfono celular: </label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" class="form-control tamano-letra"  name="telefono" value="55-12-97-01-15">
+                            <input type="text" class="form-control tamano-letra"  name="telefono">
                         </div>                               
                     </div>
                     <div class="row">
@@ -80,11 +80,11 @@
                             <label>Apellido paterno:</label>        
                         </div>
                         <div class="col-md-3 control-group">
-                            <input type="text" class="form-control tamano-letra"  name="app" value="Prieto" 
+                            <input type="text" class="form-control tamano-letra"  name="app"
                                    required  
                                    data-validation-required-message="* Campo requerido"
                                    data-validation-regex-regex="^([A-Za-z ñáéíóú]{2,60})" 
-                                   data-validation-regex-message="Solo se aceptan letras" >
+                                   data-validation-regex-message="Solo se aceptan letras">
                             <div class="warnings">
                                 <p class="help-block style-warnings"></p> 
                             </div>
@@ -93,7 +93,7 @@
                             <label>Cédula profesional: </label>
                         </div>
                         <div class="col-md-3 control-group">
-                            <input type="text" class="form-control tamano-letra"  name="cedula" value="A9876" 
+                            <input type="text" class="form-control tamano-letra"  name="cedula" 
                                    required 
                                    data-validation-required-message="* Campo requerido">
                             <div class="warnings">
@@ -106,7 +106,7 @@
                             <label>Apellido materno:</label>        
                         </div>
                         <div class="col-md-3 control-group">
-                            <input type="text" class="form-control tamano-letra"  name="apm" value="Galvan" 
+                            <input type="text" class="form-control tamano-letra"  name="apm"
                                    required  
                                    data-validation-required-message="* Campo requerido"
                                    data-validation-regex-regex="^([A-Za-z ñáéíóú]{2,60})" 
@@ -119,7 +119,7 @@
                             <label>Instituto de estudios: </label>
                         </div>
                         <div class="col-md-3 control-group">
-                            <input type="text" class="form-control tamano-letra"  name="instituto" value="ESM" 
+                            <input type="text" class="form-control tamano-letra"  name="instituto" 
                                    required  
                                    data-validation-required-message="* Campo requerido"
                                    data-validation-regex-regex="^([A-Za-z ñáéíóú]{2,60})" 
@@ -134,7 +134,7 @@
                             <label>Edad:</label>        
                         </div>
                         <div class="col-md-3">
-                            <input type="number" class="form-control tamano-letra"  name="edad" value="21">
+                            <input type="number" class="form-control tamano-letra"  name="edad" >
                         </div>
                         <div class="col-md-2 segunda-columna">
                             <label>Sexo: </label>
@@ -151,7 +151,7 @@
                             <label>CURP:</label>        
                         </div>
                         <div class="col-md-3 control-group">
-                            <input type="text" class="form-control tamano-letra"  name="curp" value="PIGT940502MOCRLR08" 
+                            <input type="text" class="form-control tamano-letra"  name="curp" 
                                    required 
                                    data-validation-required-message="* Campo requerido">
                             <div class="warnings">
@@ -162,7 +162,7 @@
                             <label>Contraseña:</label>        
                         </div>
                         <div class="col-md-3 control-group">
-                            <input type="password" class="form-control tamano-letra"  name="contrasena" value="escom"
+                            <input type="password" class="form-control tamano-letra"  name="contrasena"
                                    required 
                                    data-validation-required-message="* Campo requerido">
                             <div class="warnings">
@@ -175,7 +175,7 @@
                             <label>Correo electrónico:</label>        
                         </div>
                         <div class="col-md-3 control-group">
-                            <input class="form-control tamano-letra" name="correo" value="trianagalvan@gmail.com" 
+                            <input class="form-control tamano-letra" name="correo"
                                    type="email"
                                    data-validation-email-message="Correo inválido"
                                    required 
@@ -188,7 +188,7 @@
                             <label>Confirmar contraseña:</label>        
                         </div>
                         <div class="col-md-3 control-group">
-                            <input type="password" class="form-control tamano-letra"  name="curp" value="escom" 
+                            <input type="password" class="form-control tamano-letra"  name="curp" 
                                    data-validation-match-match="contrasena"
                                    data-validation-match-message="No coinciden las contraseñas">
                             <div class="warnings">
