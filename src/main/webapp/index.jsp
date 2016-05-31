@@ -143,8 +143,8 @@
                     <p class="message"> <a href="#" style="margin-left: 80px;"> Inicia sesión</a></p>
                 </form>
                 <form class="login-form" action="Login?accion=login" method="post">
-                    <input type="text" placeholder="username" name="username" required/>
-                    <input type="password" placeholder="password" name="password" required/>
+                    <input type="text" placeholder="correo" name="username" required/>
+                    <input type="password" placeholder="contraseña" name="password" required/>
                     <button type="submit"><a class="boton-entrar">Entrar</a></button>
                     <p class="message"> <a href="#">¿Olvidaste tu contraseña?</a></p>
                     <div class="message"><a style="margin-left: 205px;" href="Registrarse.jsp">Registrarse</a></div>
