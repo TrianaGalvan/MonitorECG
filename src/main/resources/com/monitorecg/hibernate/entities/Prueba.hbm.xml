@@ -5,8 +5,8 @@
 <hibernate-mapping>
     <class name="com.monitorecg.hibernate.entities.Prueba" table="Prueba" catalog="tt" optimistic-lock="version">
         <id name="idPrueba" type="int">
-            <column name="idPrueba" />
-            <generator class="identity"/>
+            <column name="id_prueba" />
+            <generator class="identity" />
         </id>
         <property name="fecha" type="date">
             <column name="fecha" length="10" />
@@ -28,13 +28,13 @@
         </property> 
         <many-to-one name="reporte"
                      class="com.monitorecg.hibernate.entities.Reporte"
-                     column="Reporte_idReporte"
+                     column='"Reporte_idReporte"'
                      cascade="save-update" 
                      unique="true"
                      lazy="false"/>
         
         <many-to-one name="paciente" class="com.monitorecg.hibernate.entities.Paciente" fetch="select" lazy="false">
-            <column name="Paciente_idPaciente" />
+            <column name='"Paciente_idPaciente"' />
         </many-to-one>
     </class>
 </hibernate-mapping>

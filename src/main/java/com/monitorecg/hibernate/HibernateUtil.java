@@ -5,9 +5,9 @@
  */
 package com.monitorecg.hibernate;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
@@ -17,16 +17,28 @@ import org.hibernate.service.ServiceRegistryBuilder;
  */
 public class HibernateUtil {
 
-    private static SessionFactory sessionFactory;
-    private static ServiceRegistry serviceRegistry;
-    
+    private static SessionFactory sessionFactory = buildSessionFactory();
     
     public static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        serviceRegistry = new ServiceRegistryBuilder().applySettings(
-        configuration.getProperties()). buildServiceRegistry();
-        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+    	return sessionFactory;
+    }
+
+    private static SessionFactory buildSessionFactory() {
+        StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+                .configure()
+                .build();
+    	
+        try {
+            sessionFactory = new MetadataSources( serviceRegistry )
+                    .buildMetadata().buildSessionFactory();
+        } catch(Exception e) {
+            // The registry would be destroyed by the SessionFactory, 
+            // but we had trouble building the SessionFactory
+            // so destroy it manually.
+            StandardServiceRegistryBuilder.destroy( serviceRegistry );
+            e.printStackTrace();
+        }
+        
         return sessionFactory;
     }
 }

@@ -21,8 +21,8 @@
         <link rel="stylesheet" href="../css/tables.css">
         <link rel="stylesheet" href="../css/botones.css">
         <link rel="stylesheet" href="../css/estados.css">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,800,700,300' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=BenchNine:300,400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=css?family=Open+Sans:600italic,400,800,700,300' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=css?family=BenchNine:300,400,700' rel='stylesheet' type='text/css'>
         <!-- script tags
          ============================================================= -->    
         
@@ -62,7 +62,7 @@
                 <div class="row">
                     <div class="col-xs-5 header-logo" style="margin-top:-10px;">
                         <br>
-                        <a href="index.html"><img src="../img/logo.png" alt="" class="img-responsive logo"></a>
+                        <a href="../perfil/Principal.jsp"><img src="../img/logo.png" alt="" class="img-responsive logo"></a>
                     </div>
 
                     <div class="col-md-7">
